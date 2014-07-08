@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_drawer_top_background" >
+
+    <ImageView
+        android:id="@+id/iv_drawer_user_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_drawer_head" />
+
+    <TextView
+        android:id="@+id/tv_drawer_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@id/iv_drawer_user_img"
+        android:text="xxxxx,您好" />
+
+    <TextView
+        android:id="@+id/tv_drawer_user_voucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_alignLeft="@id/tv_drawer_user_name"
+        android:layout_below="@id/tv_drawer_user_name"
+        android:text="抵用券：" />
+
+    <TextView
+        android:id="@+id/tv_drawer_user_voucher_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_drawer_user_voucher"
+        android:layout_toRightOf="@id/tv_drawer_user_voucher"
+        android:text="0.00   "
+        android:textColor="#E31B5F" />
+
+    <TextView
+        android:id="@+id/tv_drawer_user_voucher_money_yuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_alignTop="@id/tv_drawer_user_voucher_money"
+        android:layout_toRightOf="@id/tv_drawer_user_voucher_money"
+        android:text="元" />
+    
+    <TextView
+        android:id="@+id/tv_drawer_user_expenditure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/tv_drawer_user_voucher"
+        android:layout_alignLeft="@id/tv_drawer_user_voucher"
+        android:text="累计消费额" />
+    
+    <ImageView android:id="@+id/iv_drawer_user_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_drawer_pen"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"/>
+    
+    <TextView android:id="@+id/tv_drawer_expenditure_per"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_alignLeft="@id/iv_drawer_user_modify"
+        android:layout_below="@id/tv_drawer_user_expenditure"
+        android:text="0%"/>
+    
+    <ProgressBar android:id="@+id/bar_drawer_expenditure"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="7dp"
+        style="@android:style/Widget.ProgressBar.Horizontal"  
+        android:layout_below="@id/tv_drawer_user_expenditure"
+        android:layout_alignLeft="@id/tv_drawer_user_expenditure"
+        android:layout_toLeftOf="@id/tv_drawer_expenditure_per"
+        />
+
+</RelativeLayout>
