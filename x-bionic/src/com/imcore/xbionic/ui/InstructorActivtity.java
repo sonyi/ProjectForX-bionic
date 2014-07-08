@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.imcore.xbionic.R;
-import com.imcore.xbionic.home.ui.HomeActivityUnlogin;
+import com.imcore.xbionic.home.ui.HomeActivityLogin;
 
 public class InstructorActivtity extends Activity implements
 		OnPageChangeListener {
@@ -57,7 +57,7 @@ public class InstructorActivtity extends Activity implements
 			
 			SharedPreferences sp = getSharedPreferences("loginUser", Context.MODE_PRIVATE); //私有数据
 			Editor editor = sp.edit();//获取编辑器
-			editor.putBoolean("isLoginFirst", false);
+			editor.putBoolean("isFirstUse", false);
 			editor.commit();//提交修改
 		}
 
@@ -104,7 +104,7 @@ public class InstructorActivtity extends Activity implements
 				@Override
 				public void onClick(View arg0) {
 					if(p == (mImageViews.length -1)){
-						Intent intent = new Intent(InstructorActivtity.this,HomeActivityUnlogin.class);
+						Intent intent = new Intent(InstructorActivtity.this,HomeActivityLogin.class);
 						InstructorActivtity.this.finish();
 						startActivity(intent);
 						

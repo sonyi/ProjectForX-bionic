@@ -1,6 +1,7 @@
 package com.imcore.xbionic.home.ui;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.util.Const;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-public class HomeActivityUnlogin extends FragmentActivity{
+/*public class HomeActivityUnlogin extends FragmentActivity{
 	Fragment mFragment;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,11 @@ public class HomeActivityUnlogin extends FragmentActivity{
 		mFragment = new HomeFragmentHost();
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
+		Bundle bundle = new Bundle();
+		bundle.putBoolean(Const.IS_LOGIN_KEY, Const.UN_LOGIN);
+		mFragment.setArguments(bundle);
 		ft.add(R.id.home_activity_unlogin_fragment, mFragment);
 		ft.commit();
 	}
 
-}
+}*/

@@ -1,10 +1,13 @@
 package com.imcore.xbionic.home.ui;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.login.ui.LoginMainActivity;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.DisplayUtil;
 import com.imcore.xbionic.util.ToastUtil;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -23,41 +26,46 @@ import android.widget.RelativeLayout.LayoutParams;
 
 public class HomeFragmentHost extends Fragment implements OnClickListener {
 	private View mFragmentView;
-	public ImageView mImgLogo;
+	public ImageView mLogoImg, mMenuImg, mSearchImg;
 	private ViewPager viewPager;
 	private ImageView[] mImageViews;
 	private int[] imgIdArray;
-	private String isLogin;
-	
+	private boolean isLogin;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		mFragmentView = inflater.inflate(R.layout.home_fragment, null);
-		mImgLogo = (ImageView) mFragmentView
-				.findViewById(R.id.iv_drawer_main_logo);
-		mImgLogo.setOnClickListener(new OnClickListener() {
+		mLogoImg = (ImageView) mFragmentView.findViewById(R.id.iv_home_logo);
+		mMenuImg = (ImageView) mFragmentView.findViewById(R.id.iv_home_menu);
+		mSearchImg = (ImageView) mFragmentView
+				.findViewById(R.id.iv_home_search);
 
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		Bundle bundle = this.getArguments();
+		isLogin = bundle.getBoolean(Const.IS_LOGIN_KEY);
+		if (isLogin) {
+			mMenuImg.setImageResource(R.drawable.ic_home_menu_login);
+		} else {
+			mMenuImg.setImageResource(R.drawable.ic_user);
+		}
+		mMenuImg.setOnClickListener(this);
+		mLogoImg.setOnClickListener(this);
+		mSearchImg.setOnClickListener(this);
 
 		initWidget();
 
 		return mFragmentView;
 	}
 
-	//viewPager小于三张时会出错，未做判断
+	// viewPager小于三张时会出错，未做判断
 	private void initWidget() {
 		viewPager = (ViewPager) mFragmentView
 				.findViewById(R.id.drawer_main_body_layout);
 
 		imgIdArray = new int[] { R.drawable.ic_home_activtypage1,
-				R.drawable.ic_home_activtypage2, R.drawable.ic_home_activtypage3,
+				R.drawable.ic_home_activtypage2,
+				R.drawable.ic_home_activtypage3,
 				R.drawable.ic_home_activtypage4 };
 
 		mImageViews = new ImageView[imgIdArray.length];
@@ -69,8 +77,8 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 		}
 
 		viewPager.setAdapter(new MyAdapter());
-		//viewPager.setOnPageChangeListener(pageViewChangeListener);
-		viewPager.setCurrentItem((mImageViews.length) * 200);//设置当前position
+		// viewPager.setOnPageChangeListener(pageViewChangeListener);
+		viewPager.setCurrentItem((mImageViews.length) * 200);// 设置当前position
 
 	}
 
@@ -96,59 +104,69 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 		@Override
 		public Object instantiateItem(View container, int position) {
 			View view = null;
-			try{
-				view = mImageViews[position% mImageViews.length];
+			try {
+				view = mImageViews[position % mImageViews.length];
 				final int p = position;
-				view.setOnClickListener(new OnClickListener() {//pager点击监听事件
-					
+				view.setOnClickListener(new OnClickListener() {// pager点击监听事件
+
 					@Override
 					public void onClick(View arg0) {
 						// TODO Auto-generated method stub
-						ToastUtil.showToast(getActivity(), p% mImageViews.length + "");
+						ToastUtil.showToast(getActivity(), p
+								% mImageViews.length + "");
 					}
 				});
-				
+
 				((ViewPager) container).addView(view, 0);
-			}catch(Exception e){
-				
+			} catch (Exception e) {
+
 			}
 			return view;
 		}
 	}
 
-/*	private OnPageChangeListener pageViewChangeListener = new OnPageChangeListener() {
-
-		@Override
-		public void onPageSelected(int arg0) {
-
-		}
-
-		@Override
-		public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-		}
-
-		@Override
-		public void onPageScrollStateChanged(int arg0) {
-			// TODO Auto-generated method stub
-			// setImageBackground(arg0 % mImageViews.length);
-		}
-	};*/
-
 	@Override
-	public void onClick(View arg0) {
-		switch (arg0.getId()) {
-		case R.id.iv_drawer_main_menu:
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.iv_home_menu:
+			menuClickListener(isLogin);
+			break;
+		case R.id.iv_home_logo:
 
 			break;
-		case R.id.iv_drawer_main_logo:
-
-			break;
-		case R.id.iv_drawer_main_search:
+		case R.id.iv_home_search:
 
 			break;
 		}
 
 	}
+	
+	private void menuClickListener(boolean isLogin){
+		if(isLogin){
+			ToastUtil.showToast(getActivity(), "login");
+		}else {
+			ToastUtil.showToast(getActivity(), "unlogin");
+			Intent intent = new Intent(getActivity(),LoginMainActivity.class);
+			startActivity(intent);
+		}
+	}
+
+	/*
+	 * private OnPageChangeListener pageViewChangeListener = new
+	 * OnPageChangeListener() {
+	 * 
+	 * @Override public void onPageSelected(int arg0) {
+	 * 
+	 * }
+	 * 
+	 * @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
+	 * 
+	 * }
+	 * 
+	 * @Override public void onPageScrollStateChanged(int arg0) { // TODO
+	 * Auto-generated method stub // setImageBackground(arg0 %
+	 * mImageViews.length); } };
+	 */
 
 }

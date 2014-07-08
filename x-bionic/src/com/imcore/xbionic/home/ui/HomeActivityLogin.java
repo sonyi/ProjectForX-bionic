@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -26,32 +28,54 @@ import com.imcore.xbionic.util.ToastUtil;
 public class HomeActivityLogin extends FragmentActivity {
 	public DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
-	// private View mDrawerUserDetail;
 	private String[] mNaviItemText;
 	private int[] mNaviItemIcon;
 	private final static String NAVI_ITEM_TEXT = "item_text";
 	private final static String NAVI_ITEM_ICOM = "item_icom";
-	private Fragment mFragmentHost;
-	private Fragment mFragmentUser;
+	private Fragment mFragmentForLoginHost;
+	private Fragment mFragmentForLoginUser;
 	
-
+	private Fragment mFragmentForUnLogin;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home_login);
-
-		initDrawerLayout();// 侧拉菜单
-		initFragment(); // 主页面
+		SharedPreferences sp = getSharedPreferences("loginUser",
+				Context.MODE_PRIVATE); // 私有数据
+		boolean isLogin = sp.getBoolean("isLogin", false);
+		
+		if(isLogin){
+			setContentView(R.layout.activity_home_login);
+			initDrawerLayout();// 侧拉菜单
+			initFragmentForLogin(); // 主页面
+		}else{
+			setContentView(R.layout.activity_home_unlogin);
+			initFragmentForUnLogin();	//主页面
+		}
 	}
-
-	private void initFragment() {
-		mFragmentHost = new HomeFragmentHost();
-		mFragmentUser = new HomeDrawerUser();
+	
+	private void initFragmentForUnLogin() {
+		mFragmentForUnLogin = new HomeFragmentHost();
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
-		ft.add(R.id.home_activity_login_fragment, mFragmentHost);
-		ft.add(R.id.drawer_fragment_user, mFragmentUser);
+		Bundle bundle = new Bundle();
+		bundle.putBoolean(Const.IS_LOGIN_KEY, Const.UN_LOGIN);
+		mFragmentForUnLogin.setArguments(bundle);
+		ft.add(R.id.home_activity_unlogin_fragment, mFragmentForUnLogin);
+		ft.commit();
+	}
+
+	private void initFragmentForLogin() {
+		mFragmentForLoginHost = new HomeFragmentHost();
+		mFragmentForLoginUser = new HomeDrawerUser();
+		FragmentManager fm = getSupportFragmentManager();
+		FragmentTransaction ft = fm.beginTransaction();
+		Bundle bundle = new Bundle();
+		bundle.putBoolean(Const.IS_LOGIN_KEY, Const.LOGIN);
+		mFragmentForLoginHost.setArguments(bundle);
+		ft.add(R.id.home_activity_login_fragment, mFragmentForLoginHost);
+		ft.add(R.id.drawer_fragment_user, mFragmentForLoginUser);
 		ft.commit();
 	}
 
