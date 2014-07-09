@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_login_background" >
+
+    <RelativeLayout
+        android:id="@+id/rel_account_reset_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_home_top_background" >
+
+        <ImageView
+            android:id="@+id/iv_account_reset_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_back_btn_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="账户设置"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_account_reset_baseinformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_account_reset_top"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="基本资料"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/rel_account_reset_baseinfromation"
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:layout_below="@id/tv_account_reset_baseinformation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_account_reset_background" >
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_lastname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="姓氏"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_info_lastname_text"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tv_acc_reset_info_lastname_text"
+            android:text="xxxx"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_firstname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_info_lastname"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@id/tv_acc_reset_info_lastname"
+            android:text="名字"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_firstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_info_firstname_text"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tv_acc_reset_info_firstname_text"
+            android:text="xxxxxxxxxx"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_sex_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_acc_reset_info_lastname_text"
+            android:layout_below="@id/tv_acc_reset_info_lastname_text"
+            android:layout_marginTop="38dp"
+            android:text="性别"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_info_sex_text"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tv_acc_reset_info_sex_text"
+            android:text="男"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_acc_reset_info_sex_text"
+            android:layout_below="@id/tv_acc_reset_info_sex_text"
+            android:layout_marginTop="38dp"
+            android:text="email"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_info_email_text"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tv_acc_reset_info_email_text"
+            android:text="xxxxxxxxxxxx@gmail.com"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_account_reset_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_account_reset_baseinfromation"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="地址信息"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/rel_account_reset_address"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@id/tv_account_reset_address"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_account_address_background" >
+
+        <TextView
+            android:id="@+id/tv_acc_reset_address_privince_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="省市区"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_province"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_address_privince_text"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tv_acc_reset_address_privince_text"
+            android:text="xxxxxxxxxxxx"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_address_detail_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_acc_reset_address_privince_text"
+            android:layout_below="@id/tv_acc_reset_address_privince_text"
+            android:layout_marginTop="35dp"
+            android:text="详细地址"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_acc_reset_info_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_acc_reset_address_detail_text"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/tv_acc_reset_address_detail_text"
+            android:text="xxxxxxx"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_account_reset_signout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_account_reset_address"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_account_signout_background"
+        android:gravity="center"
+        android:text="注销登陆"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>

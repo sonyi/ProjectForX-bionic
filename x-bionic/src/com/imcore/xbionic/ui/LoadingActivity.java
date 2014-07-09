@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
+import com.imcore.xbionic.menu.ui.AccountResetActivity;
 
 public class LoadingActivity extends Activity {
 	private ProgressBar mProgressBar;
@@ -41,7 +42,7 @@ public class LoadingActivity extends Activity {
 		}
 		
 		//intent = new Intent(this, LoginMainActivity.class);
-		//intent = new Intent(this, XLoginActivity.class);
+		//intent = new Intent(this, AccountResetActivity.class);
 		
 
 		final Intent it = intent; // 你要转向的Activity

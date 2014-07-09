@@ -36,6 +36,8 @@
         
         <activity android:name="com.imcore.xbionic.login.ui.XLoginActivity" />
         
+        <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity" />
+        
     </application>
 
 </manifest>

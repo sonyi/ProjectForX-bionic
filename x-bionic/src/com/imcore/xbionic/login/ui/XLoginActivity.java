@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ import com.imcore.xbionic.util.JsonUtil;
 public class XLoginActivity extends Activity implements OnClickListener {
 	private ImageView mBackImg, mForgetpsw, mSignIn;
 	private EditText mUser, mPsw;
+	ProgressDialog mDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,20 +67,22 @@ public class XLoginActivity extends Activity implements OnClickListener {
 		}
 
 	}
-	
+
 	private void doLogin() {
 		final String userName = mUser.getText().toString().trim();
 		final String password = mPsw.getText().toString().trim();
 
+		mDialog = ProgressDialog.show(XLoginActivity.this, " ",
+				"正在登陆中,请稍后... ", true);
 		String url = Constant.HOST + "/passport/login.do";
 		DataRequest request = new DataRequest(Request.Method.POST, url,
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
 						// 解析用户信息的json，保存userid和token
-						//Log.i("sign", response);
+						// Log.i("sign", response);
 						onResponseForLogin(response);
-						
+
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -94,7 +98,7 @@ public class XLoginActivity extends Activity implements OnClickListener {
 				params.put("phoneNumber", userName);
 				params.put("password", password);
 				Log.i("msg", userName + "----" + password);
-//				params.put("device", "device");
+				// params.put("device", "device");
 				params.put("client", "android");
 
 				return params;
@@ -104,9 +108,9 @@ public class XLoginActivity extends Activity implements OnClickListener {
 		RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
 	}
 
-
-	private void onResponseForLogin(String response){
-		String userAddress = JsonUtil.getJsonValueByKey(response, "userAddress");
+	private void onResponseForLogin(String response) {
+		String userAddress = JsonUtil
+				.getJsonValueByKey(response, "userAddress");
 		String userId = null;
 		JSONObject jo;
 		try {
@@ -121,19 +125,21 @@ public class XLoginActivity extends Activity implements OnClickListener {
 		String firstName = JsonUtil.getJsonValueByKey(response, "firstName");
 		String lastName = JsonUtil.getJsonValueByKey(response, "lastName");
 		String userName = lastName + firstName;
-		
-		SharedPreferences sp = getSharedPreferences("loginUser", Context.MODE_PRIVATE); //私有数据
-		Editor editor = sp.edit();//获取编辑器
+
+		SharedPreferences sp = getSharedPreferences("loginUser",
+				Context.MODE_PRIVATE); // 私有数据
+		Editor editor = sp.edit();// 获取编辑器
 		editor.putString("userId", userId);
 		editor.putString("token", token);
 		editor.putString("userName", userName);
 		editor.putBoolean("isLogin", true);
-		editor.commit();//提交修改
+		editor.commit();// 提交修改
 		
-		Intent intent = new Intent(this,HomeActivityLogin.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//清除栈内其他activity
+		mDialog.cancel();
+
+		Intent intent = new Intent(this, HomeActivityLogin.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);// 清除栈内其他activity
 		startActivity(intent);
-		
-		
+
 	}
 }

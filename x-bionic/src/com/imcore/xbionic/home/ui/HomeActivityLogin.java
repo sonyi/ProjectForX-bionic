@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.menu.ui.AccountResetActivity;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 
@@ -34,9 +36,9 @@ public class HomeActivityLogin extends FragmentActivity {
 	private final static String NAVI_ITEM_ICOM = "item_icom";
 	private Fragment mFragmentForLoginHost;
 	private Fragment mFragmentForLoginUser;
-	
+
 	private Fragment mFragmentForUnLogin;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -44,17 +46,17 @@ public class HomeActivityLogin extends FragmentActivity {
 		SharedPreferences sp = getSharedPreferences("loginUser",
 				Context.MODE_PRIVATE); // 私有数据
 		boolean isLogin = sp.getBoolean("isLogin", false);
-		
-		if(isLogin){
+
+		if (isLogin) {
 			setContentView(R.layout.activity_home_login);
 			initDrawerLayout();// 侧拉菜单
 			initFragmentForLogin(); // 主页面
-		}else{
+		} else {
 			setContentView(R.layout.activity_home_unlogin);
-			initFragmentForUnLogin();	//主页面
+			initFragmentForUnLogin(); // 主页面
 		}
 	}
-	
+
 	private void initFragmentForUnLogin() {
 		mFragmentForUnLogin = new HomeFragmentHost();
 		FragmentManager fm = getSupportFragmentManager();
@@ -91,15 +93,14 @@ public class HomeActivityLogin extends FragmentActivity {
 				R.drawable.ic_launcher, R.drawable.ic_launcher,
 				R.drawable.ic_launcher, R.drawable.ic_launcher,
 				R.drawable.ic_launcher, R.drawable.ic_launcher };
-		
+
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-		for(int i = 0; i < mNaviItemText.length; i++){
+		for (int i = 0; i < mNaviItemText.length; i++) {
 			Map<String, Object> item = new HashMap<String, Object>();
 			item.put(NAVI_ITEM_TEXT, mNaviItemText[i]);
 			item.put(NAVI_ITEM_ICOM, mNaviItemIcon[i]);
 			data.add(item);
-			
-			
+
 		}
 
 		String[] from = new String[] { NAVI_ITEM_ICOM, NAVI_ITEM_TEXT };
@@ -115,11 +116,51 @@ public class HomeActivityLogin extends FragmentActivity {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			ToastUtil.showToast(HomeActivityLogin.this, "item:" + arg2);
+			listMenuClickListener(arg2);
 			mDrawerLayout.closeDrawers();
-			
-
 		}
+
 	};
 
+	private void listMenuClickListener(int arg2) {
+		switch (arg2) {
+		case 0://您的订购
+
+			break;
+
+		case 1://账户设置
+			//ToastUtil.showToast(HomeActivityLogin.this, "账户设置");
+			Intent intent = new Intent(this,AccountResetActivity.class);
+			startActivity(intent);
+			break;
+
+		case 2://达人社区
+
+			break;
+
+		case 3://部落社区
+
+			break;
+
+		case 4://购物车
+
+			break;
+
+		case 5://订阅信息
+
+			break;
+
+		case 6://分享设置
+
+			break;
+
+		case 7://密码设置
+
+			break;
+
+		case 8://关于我们
+
+			break;
+		}
+	}
 }
