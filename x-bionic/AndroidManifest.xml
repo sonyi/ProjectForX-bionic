@@ -38,6 +38,8 @@
         
         <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity" />
         
+         <activity android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity" />
+        
     </application>
 
 </manifest>
