@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity;
+import com.imcore.xbionic.login.ui.LonginByWeibo;
 
 public class LoadingActivity extends Activity {
 	private ProgressBar mProgressBar;
@@ -42,7 +43,7 @@ public class LoadingActivity extends Activity {
 		}
 		
 		//intent = new Intent(this, LoginMainActivity.class);
-		//intent = new Intent(this, PhoneRegisterCodeActivity.class);
+		//intent = new Intent(this, LonginByWeibo.class);
 		
 
 		final Intent it = intent; // 你要转向的Activity

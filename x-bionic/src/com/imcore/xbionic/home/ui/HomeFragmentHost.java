@@ -144,9 +144,9 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 	
 	private void menuClickListener(boolean isLogin){
 		if(isLogin){
-			ToastUtil.showToast(getActivity(), "login");
+			//ToastUtil.showToast(getActivity(), "login");
 		}else {
-			ToastUtil.showToast(getActivity(), "unlogin");
+			//ToastUtil.showToast(getActivity(), "unlogin");
 			Intent intent = new Intent(getActivity(),LoginMainActivity.class);
 			startActivity(intent);
 		}
