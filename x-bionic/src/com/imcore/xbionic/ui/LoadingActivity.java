@@ -13,8 +13,7 @@ import android.widget.ProgressBar;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
-import com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity;
-import com.imcore.xbionic.login.ui.LonginByWeibo;
+import com.imcore.xbionic.product.ui.ProductMainActivity;
 
 public class LoadingActivity extends Activity {
 	private ProgressBar mProgressBar;
@@ -36,14 +35,14 @@ public class LoadingActivity extends Activity {
 		boolean isFirstUse = sp.getBoolean("isFirstUse", true);
 
 		Intent intent = null;
-		if (isFirstUse) {
-			intent = new Intent(this, InstructorActivtity.class);
-		} else {
-			intent = new Intent(this, HomeActivityLogin.class);
-		}
+//		if (isFirstUse) {
+//			intent = new Intent(this, InstructorActivtity.class);
+//		} else {
+//			intent = new Intent(this, HomeActivityLogin.class);
+//		}
 		
 		//intent = new Intent(this, LoginMainActivity.class);
-		//intent = new Intent(this, LonginByWeibo.class);
+		intent = new Intent(this, ProductMainActivity.class);
 		
 
 		final Intent it = intent; // 你要转向的Activity

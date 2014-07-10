@@ -29,12 +29,12 @@
         </activity>
         <activity android:name="com.imcore.xbionic.ui.InstructorActivtity" />
         <activity android:name="com.imcore.xbionic.home.ui.HomeActivityLogin" />
-        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityUnlogin" />
         <activity android:name="com.imcore.xbionic.login.ui.LoginMainActivity" />
         <activity android:name="com.imcore.xbionic.login.ui.XLoginActivity" />
         <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity" />
         <activity android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity" />
-        <activity android:name="com.imcore.xbionic.login.ui.LonginByWeibo" />
+        <activity android:name="com.tencent.weibo.sdk.android.component.Authorize" />
+         <activity android:name="com.imcore.xbionic.product.ui.ProductMainActivity" />
     </application>
 
 </manifest>

@@ -1,12 +1,31 @@
 package com.imcore.xbionic.home.ui;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.http.Constant;
+import com.imcore.xbionic.http.DataRequest;
+import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.login.ui.XLoginActivity;
+import com.imcore.xbionic.util.JsonUtil;
 import com.imcore.xbionic.util.ToastUtil;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +57,9 @@ public class HomeDrawerUser extends Fragment implements OnClickListener{
 		
 		return mFragmentView;
 	}
+	
+	
+	
 
 	@Override
 	public void onClick(View v) {

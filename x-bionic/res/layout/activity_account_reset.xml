@@ -150,7 +150,7 @@
         android:background="@drawable/ic_account_address_background" >
 
         <TextView
-            android:id="@+id/tv_acc_reset_address_privince_text"
+            android:id="@+id/tv_acc_reset_address_province_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -159,32 +159,32 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_acc_reset_info_province"
+            android:id="@+id/tv_acc_reset_address_province"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/tv_acc_reset_address_privince_text"
+            android:layout_alignTop="@id/tv_acc_reset_address_province_text"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/tv_acc_reset_address_privince_text"
+            android:layout_toRightOf="@id/tv_acc_reset_address_province_text"
             android:text="xxxxxxxxxxxx"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_acc_reset_address_detail_text"
+            android:id="@+id/tv_acc_reset_address_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_acc_reset_address_privince_text"
-            android:layout_below="@id/tv_acc_reset_address_privince_text"
+            android:layout_alignLeft="@id/tv_acc_reset_address_province_text"
+            android:layout_below="@id/tv_acc_reset_address_province_text"
             android:layout_marginTop="35dp"
             android:text="详细地址"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_acc_reset_info_detail"
+            android:id="@+id/tv_acc_reset_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/tv_acc_reset_address_detail_text"
+            android:layout_alignTop="@id/tv_acc_reset_address_text"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/tv_acc_reset_address_detail_text"
+            android:layout_toRightOf="@id/tv_acc_reset_address_text"
             android:text="xxxxxxx"
             android:textSize="20sp" />
     </RelativeLayout>

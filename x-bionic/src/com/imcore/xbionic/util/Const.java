@@ -7,4 +7,6 @@ public interface Const {
 	public static final boolean LOGIN = true;
 	public static final boolean UN_LOGIN = false;
 	
+
+	
 }
