@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.util.DisplayUtil;
 
 import android.content.Context;
-
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,18 +17,18 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class ListViewAdapter extends BaseExpandableListAdapter implements
 		OnItemClickListener {
-	public static final int ItemHeight = 48;//每项的高度
-	public static final int PaddingLeft = 36;//每项的高度
+	public static int ItemHeight = 20;//每项的高度
+	public static final int PaddingLeft = 100;//每项的高度
 	private int myPaddingLeft = 0;
-
+	
 	private MyGridView toolbarGrid;
 
 	private String menu_toolbar_name_array[] = { "1", "2", "3",
@@ -52,6 +52,9 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 	public ListViewAdapter(Context view, int myPaddingLeft) {
 		parentContext = view;
 		this.myPaddingLeft = myPaddingLeft;
+		
+		int height = DisplayUtil.px2Dip(view, DisplayUtil.getScreenHeight(view));
+		ItemHeight = (height - 50)/2;
 	}
 
 	public List<TreeNode> GetTreeNode() {
@@ -74,14 +77,16 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 		return treeNodes.get(groupPosition).childs.size();
 	}
 
-	static public TextView getTextView(Context context) {
-		AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-				ViewGroup.LayoutParams.FILL_PARENT, ItemHeight);
+	static public ImageView getImageView(Context context) {
+		//AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
+		//		ViewGroup.LayoutParams.FILL_PARENT, ItemHeight);
+		LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ItemHeight);
 
-		TextView textView = new TextView(context);
-		textView.setLayoutParams(lp);
-		textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-		return textView;
+		ImageView imgView = new ImageView(context);
+		
+		imgView.setLayoutParams(lay);
+		
+		return imgView;
 	}
 
 	/**
@@ -110,10 +115,13 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 	 */
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
-		TextView textView = getTextView(this.parentContext);
-		textView.setText(getGroup(groupPosition).toString());
-		textView.setPadding(myPaddingLeft + PaddingLeft, 0, 0, 0);
-		return textView;
+		ImageView imgView = getImageView(this.parentContext);
+		imgView.setImageResource(Integer.parseInt(getGroup(groupPosition).toString()));
+		
+//		TextView textView = getTextView(this.parentContext);
+//		textView.setText(getGroup(groupPosition).toString());
+	//	textView.setPadding(myPaddingLeft + PaddingLeft, 0, 0, 0);
+		return imgView;
 	}
 
 	public long getChildId(int groupPosition, int childPosition) {

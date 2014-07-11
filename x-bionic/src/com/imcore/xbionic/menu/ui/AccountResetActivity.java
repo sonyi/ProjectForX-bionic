@@ -33,7 +33,7 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 	private ImageView mBack;
 	private TextView mSignOut;
 	private TextView mLastName, mFirstName, mSex, mEmail, mProvince, mAddress;
-	private boolean isUserInfoChange = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,15 +55,20 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 		if(sp.getBoolean("isChange", true)){
 			doLogin();// 网络获取数据
 		}
+		
+		initWidget(sp);
+
+		mBack.setOnClickListener(this);
+		mSignOut.setOnClickListener(this);
+
+	}
+
+	private void initWidget(SharedPreferences sp) {
 		mLastName.setText(sp.getString("lastName", ""));
 		mFirstName.setText(sp.getString("firstName", ""));
 		mEmail.setText(sp.getString("email", ""));
 		mProvince.setText(sp.getString("address", ""));
 		mAddress.setText(sp.getString("address", ""));
-
-		mBack.setOnClickListener(this);
-		mSignOut.setOnClickListener(this);
-
 	}
 
 	@Override
@@ -160,5 +165,7 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 		editor.putString("lastName", lastName);
 		editor.putString("email", email);
 		editor.commit();// 提交修改
+		
+		initWidget(sp);
 	}
 }

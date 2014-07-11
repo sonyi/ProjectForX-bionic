@@ -15,28 +15,9 @@ public class ProductMainActivity extends Activity {
 	ExpandableListView expandableListView;
 
 	ListViewAdapter treeViewAdapter;
-	//ImageView img = new ImageView(this);
-	//ImageView img2 = new ImageView(this);
-	
-//	RelativeLayout r = new RelativeLayout(this);  
-//	ImageView mImageView = new ImageView(this);  
-//	
-//	private ImageView[] getImageViews(){
-//		RelativeLayout r = new RelativeLayout(this);  
-//		ImageView mImageView = new ImageView(this);  
-//		mImageView.setImageResource(R.drawable.ic_launcher);  
-//		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(15, 15);  
-//		params.addRule(RelativeLayout.ALIGN_PARENT_TOP);  
-//		params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);  
-//		mImageView.setLayoutParams(params);  
-//		r.add(mImageView);  
-//		return null;
-//		
-//	}
 
-	
-	public int[] imgs = {R.drawable.ic_launcher,R.drawable.ic_launcher};
-	public String[] groups = { "列表1", "列表2" };
+	public int[] groups = {R.drawable.ic_priduct_main_upbackground,R.drawable.ic_priduct_main_downbackground};
+	//public String[] groups = { "列表1", "列表2" };
 
 	public String[][] child = { { "" }, { "" }};
 
