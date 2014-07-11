@@ -1,47 +1,43 @@
 package com.imcore.xbionic.product.ui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import com.imcore.xbionic.R;
-import com.imcore.xbionic.util.DisplayUtil;
-
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
+import com.imcore.xbionic.R;
+import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.util.DisplayUtil;
 
 public class ListViewAdapter extends BaseExpandableListAdapter implements
 		OnItemClickListener {
-	public static int ItemHeight = 20;//每项的高度
-	public static final int PaddingLeft = 100;//每项的高度
-	private int myPaddingLeft = 0;
+	public static int ItemHeight;//每项的高度
+	public static int ItemWidth;
+	public static final int PaddingLeft = 0;
+	private int myPaddingLeft;
 	
 	private MyGridView toolbarGrid;
 
-	private String menu_toolbar_name_array[] = { "1", "2", "3",
-			"4", "5"};
-	private int menu_toolbar_image_array[] = { R.drawable.ic_launcher,
-			R.drawable.ic_launcher, R.drawable.ic_launcher,
-			R.drawable.ic_launcher, R.drawable.ic_launcher,
-			};
+
 
 	private List<TreeNode> treeNodes = new ArrayList<TreeNode>();
 
 	private Context parentContext;
-
 	private LayoutInflater layoutInflater;
 
 	static public class TreeNode {
@@ -52,9 +48,10 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 	public ListViewAdapter(Context view, int myPaddingLeft) {
 		parentContext = view;
 		this.myPaddingLeft = myPaddingLeft;
-		
-		int height = DisplayUtil.px2Dip(view, DisplayUtil.getScreenHeight(view));
-		ItemHeight = (height - 50)/2;
+		getData();
+		int height = DisplayUtil.getScreenHeight(view);
+		ItemHeight = (height - DisplayUtil.dip2Px(parentContext, 76))/2;
+		ItemWidth = DisplayUtil.getScreenWidth(view);	
 	}
 
 	public List<TreeNode> GetTreeNode() {
@@ -78,12 +75,9 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 	}
 
 	static public ImageView getImageView(Context context) {
-		//AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-		//		ViewGroup.LayoutParams.FILL_PARENT, ItemHeight);
-		LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ItemHeight);
-
+		LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams(ItemWidth, ItemHeight);
 		ImageView imgView = new ImageView(context);
-		
+		imgView.setScaleType(ImageView.ScaleType.FIT_XY);
 		imgView.setLayoutParams(lay);
 		
 		return imgView;
@@ -102,12 +96,108 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 					.findViewById(R.id.GridView_toolbar);
 			toolbarGrid.setNumColumns(4);//设置每行列数
 			toolbarGrid.setGravity(Gravity.CENTER);// 位置居中
-			toolbarGrid.setHorizontalSpacing(10);// 水平间隔
-			toolbarGrid.setAdapter(getMenuAdapter(menu_toolbar_name_array,
-					menu_toolbar_image_array));//  设置菜单Adapter
+			toolbarGrid.setHorizontalSpacing(2);// 水平间隔
+			
+			if(groupPosition == 0){
+				toolbarGrid.setAdapter(new gridAdapter(itemInfo));
+			}else if(groupPosition == 1){
+				toolbarGrid.setAdapter(new gridAdapter(itemIn));
+			}
+			
+			
+			//toolbarGrid.setAdapter(new gridAdapter(data.get(groupPosition)));
+		
+
 			toolbarGrid.setOnItemClickListener(this);
+			Log.i("position", groupPosition+"");
 		}
 		return convertView;
+	}
+	
+	ArrayList<ArrayList<ArrayList<String>>> data;
+	ArrayList<ArrayList<String>> itemInfo;
+	ArrayList<ArrayList<String>> itemIn;
+	
+	private void getData(){
+//		GetInfoFormInternet gi = new GetInfoFormInternet(parentContext);
+//		ArrayList<String> groups = gi.getGroups();
+//		Log.i("gi", groups.toString());
+		
+//		for(String s : groups){
+			GetInfoFormInternet getInfo = new GetInfoFormInternet(parentContext);
+			itemInfo = getInfo.getItemInfo("100001");
+//			data.add(itemInfo);
+//		}
+			
+			GetInfoFormInternet getIn = new GetInfoFormInternet(parentContext);
+			itemIn = getIn.getItemInfo("100002");
+	}
+	
+	
+	
+	
+	
+//	GetInfoFormInternet getIn = new GetInfoFormInternet(parentContext);
+//	private ArrayList<ArrayList<String>> itemIn = getIn.getItemInfo("100002");
+	
+	private class gridAdapter extends BaseAdapter {
+		private ArrayList<String> itemName;
+		ArrayList<String> itemUrl;
+		gridAdapter(ArrayList<ArrayList<String>> itemInfo){
+			itemName = itemInfo.get(0);
+			itemUrl = itemInfo.get(1);
+		}
+		
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View view = convertView;
+			ViewHolder vh = null;
+			if(view == null){
+				view = LayoutInflater.from(parentContext).inflate(R.layout.item_menu, null);
+				vh = new ViewHolder();
+				vh.img = (ImageView) view.findViewById(R.id.item_image);
+				vh.text = (TextView) view.findViewById(R.id.item_text);
+				view.setTag(vh);
+			}else{
+				vh = (ViewHolder) view.getTag();
+			}
+			//vh.img.setImageBitmap(itemBitmap.get(position));
+			vh.text.setText(itemName.get(position));
+			getImag(vh.img, itemUrl.get(position));
+			return view;
+		}
+		
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+		
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return itemName.get(position);
+		}
+		
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return itemName.size();
+		}
+		
+		class ViewHolder{
+			ImageView img;
+			TextView text;
+		}
+	};
+	
+	
+	private void getImag(ImageView image, String url) {
+		ImageLoader loader = RequestQueueSingleton.getInstance(
+				parentContext.getApplicationContext()).getImageLoader();
+		ImageListener listener = ImageLoader.getImageListener(image,
+				R.drawable.ic_launcher, R.drawable.ic_launcher);
+		loader.get(url, listener, 400, 400);
 	}
 
 	/**
@@ -117,10 +207,6 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 			View convertView, ViewGroup parent) {
 		ImageView imgView = getImageView(this.parentContext);
 		imgView.setImageResource(Integer.parseInt(getGroup(groupPosition).toString()));
-		
-//		TextView textView = getTextView(this.parentContext);
-//		textView.setText(getGroup(groupPosition).toString());
-	//	textView.setPadding(myPaddingLeft + PaddingLeft, 0, 0, 0);
 		return imgView;
 	}
 
@@ -148,29 +234,6 @@ public class ListViewAdapter extends BaseExpandableListAdapter implements
 		return true;
 	}
 
-	/**
-	 * 构造菜单Adapter
-	 * 
-	 * @param menuNameArray
-	 *            名称
-	 * @param imageResourceArray
-	 *            图片
-	 * @return SimpleAdapter
-	 */
-	private SimpleAdapter getMenuAdapter(String[] menuNameArray,
-			int[] imageResourceArray) {
-		ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
-		for (int i = 0; i < menuNameArray.length; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("itemImage", imageResourceArray[i]);
-			map.put("itemText", menuNameArray[i]);
-			data.add(map);
-		}
-		SimpleAdapter simperAdapter = new SimpleAdapter(parentContext, data,
-				R.layout.item_menu, new String[] { "itemImage", "itemText" },
-				new int[] { R.id.item_image, R.id.item_text });
-		return simperAdapter;
-	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,

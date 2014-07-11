@@ -1,0 +1,23 @@
+{
+    "status": 200,
+    "message": null,
+    "data": [
+        {
+            "id": 2,
+            "code": 100001,
+            "name": "X-BIONIC",
+            "imageUrl": "mobile/upload/Category/X-BIONIC/XBIONIC",
+            "status": 1
+        },
+        {
+            "id": 3,
+            "code": 100002,
+            "name": "X-SOCKS",
+            "imageUrl": "mobile/upload/Category/X-SOCKS/XSOCKS",
+            "status": 1
+        }
+    ],
+    "offset": 0,
+    "fetchSize": 0,
+    "total": 0
+}

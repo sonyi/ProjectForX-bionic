@@ -7,9 +7,13 @@
 
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" >
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" >
     </ImageView>
 
     <TextView
@@ -17,7 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_image"
-        android:layout_centerHorizontal="true" >
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" >
     </TextView>
 
 </RelativeLayout>

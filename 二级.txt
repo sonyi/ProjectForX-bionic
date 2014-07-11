@@ -1,0 +1,65 @@
+{
+    "status": 200,
+    "message": null,
+    "data": [
+        {
+            "id": 4,
+            "code": 200004,
+            "name": "高尔夫系列",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Golf"
+        },
+        {
+            "id": 5,
+            "code": 200005,
+            "name": "自行车系列",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Bike"
+        },
+        {
+            "id": 6,
+            "code": 200006,
+            "name": "跑步/健身系列",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Run"
+        },
+        {
+            "id": 8,
+            "code": 200008,
+            "name": "冬季运动系列",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Winter"
+        },
+        {
+            "id": 9,
+            "code": 200009,
+            "name": "专项运动系列",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Special"
+        },
+        {
+            "id": 10,
+            "code": 200010,
+            "name": "户外系列",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Outdoor"
+        },
+        {
+            "id": 18,
+            "code": 200018,
+            "name": "配件",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/Fitting"
+        },
+        {
+            "id": 19,
+            "code": 200019,
+            "name": "决定层",
+            "status": 1,
+            "imageUrl": "mobile/upload/Category/X-BIONIC/DecisionLayer"
+        }
+    ],
+    "offset": 0,
+    "fetchSize": 0,
+    "total": 0
+}
