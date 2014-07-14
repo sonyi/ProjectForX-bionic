@@ -1,0 +1,5 @@
+http://bulo2bulo.com:8080/mobile/api/category/products.do?subNavId=4&offset=0&fetchSize=10&navId=100001
+
+http://bulo2bulo.com:8080/mobile/api/category/list.do?navId=100002
+
+http://bulo2bulo.com:8080/mobile/api/shoppingcart/list.do?

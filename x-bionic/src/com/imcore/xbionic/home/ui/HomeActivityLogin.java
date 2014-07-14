@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -36,12 +38,11 @@ public class HomeActivityLogin extends FragmentActivity {
 	private final static String NAVI_ITEM_ICOM = "item_icom";
 	private Fragment mFragmentForLoginHost;
 	private Fragment mFragmentForLoginUser;
-
 	private Fragment mFragmentForUnLogin;
+	private View mDrawerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		SharedPreferences sp = getSharedPreferences("loginUser",
 				Context.MODE_PRIVATE); // 私有数据
@@ -55,8 +56,14 @@ public class HomeActivityLogin extends FragmentActivity {
 			setContentView(R.layout.activity_home_unlogin);
 			initFragmentForUnLogin(); // 主页面
 		}
-	}
 
+		//注册打开侧拉菜单监听事件
+		IntentFilter filter = new IntentFilter(Const.OPEN_DRAWERLAYOUT);
+		registerReceiver(receiverForDrawer, filter);
+
+	}
+	
+	//初始化未登录的主界面
 	private void initFragmentForUnLogin() {
 		mFragmentForUnLogin = new HomeFragmentHost();
 		FragmentManager fm = getSupportFragmentManager();
@@ -68,6 +75,7 @@ public class HomeActivityLogin extends FragmentActivity {
 		ft.commit();
 	}
 
+	//初始化登录后的主界面
 	private void initFragmentForLogin() {
 		mFragmentForLoginHost = new HomeFragmentHost();
 		mFragmentForLoginUser = new HomeDrawerUser();
@@ -81,12 +89,14 @@ public class HomeActivityLogin extends FragmentActivity {
 		ft.commit();
 	}
 
+	//初始化侧拉菜单
 	private void initDrawerLayout() {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 		mNaviItemText = getResources().getStringArray(
 				R.array.drawer_item_array_text);
+		mDrawerView = findViewById(R.id.left_drawer);
 
 		mNaviItemIcon = new int[] { R.drawable.ic_launcher,
 				R.drawable.ic_launcher, R.drawable.ic_launcher,
@@ -111,6 +121,17 @@ public class HomeActivityLogin extends FragmentActivity {
 		mDrawerList.setOnItemClickListener(drawerListOnItemClickListener);
 	}
 
+	// 接收menu按钮点击事件，打开侧拉菜单
+	private BroadcastReceiver receiverForDrawer = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (intent.getAction().equals(Const.OPEN_DRAWERLAYOUT)) {
+				mDrawerLayout.openDrawer(mDrawerView);
+			}
+		}
+	};
+
+	//侧拉菜单选项单击事件
 	private OnItemClickListener drawerListOnItemClickListener = new OnItemClickListener() {
 
 		@Override
@@ -119,46 +140,45 @@ public class HomeActivityLogin extends FragmentActivity {
 			listMenuClickListener(arg2);
 			mDrawerLayout.closeDrawers();
 		}
-
 	};
 
 	private void listMenuClickListener(int arg2) {
 		switch (arg2) {
-		case 0://您的订购
+		case 0:// 您的订购
 
 			break;
 
-		case 1://账户设置
-			//ToastUtil.showToast(HomeActivityLogin.this, "账户设置");
-			Intent intent = new Intent(this,AccountResetActivity.class);
+		case 1:// 账户设置
+				// ToastUtil.showToast(HomeActivityLogin.this, "账户设置");
+			Intent intent = new Intent(this, AccountResetActivity.class);
 			startActivity(intent);
 			break;
 
-		case 2://达人社区
+		case 2:// 达人社区
 
 			break;
 
-		case 3://部落社区
+		case 3:// 部落社区
 
 			break;
 
-		case 4://购物车
+		case 4:// 购物车
 
 			break;
 
-		case 5://订阅信息
+		case 5:// 订阅信息
 
 			break;
 
-		case 6://分享设置
+		case 6:// 分享设置
 
 			break;
 
-		case 7://密码设置
+		case 7:// 密码设置
 
 			break;
 
-		case 8://关于我们
+		case 8:// 关于我们
 
 			break;
 		}

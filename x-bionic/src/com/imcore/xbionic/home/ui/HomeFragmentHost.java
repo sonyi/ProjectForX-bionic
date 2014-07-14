@@ -1,28 +1,20 @@
 package com.imcore.xbionic.home.ui;
 
-import com.imcore.xbionic.R;
-import com.imcore.xbionic.login.ui.LoginMainActivity;
-import com.imcore.xbionic.util.Const;
-import com.imcore.xbionic.util.DisplayUtil;
-import com.imcore.xbionic.util.ToastUtil;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.MarginLayoutParams;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
+
+import com.imcore.xbionic.R;
+import com.imcore.xbionic.login.ui.LoginMainActivity;
+import com.imcore.xbionic.util.Const;
+import com.imcore.xbionic.util.ToastUtil;
 
 public class HomeFragmentHost extends Fragment implements OnClickListener {
 	private View mFragmentView;
@@ -98,7 +90,6 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 		public void destroyItem(View container, int position, Object object) {
 			((ViewPager) container).removeView(mImageViews[position
 					% mImageViews.length]);
-
 		}
 
 		@Override
@@ -106,22 +97,40 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 			View view = null;
 			try {
 				view = mImageViews[position % mImageViews.length];
-				final int p = position;
-				view.setOnClickListener(new OnClickListener() {// pager点击监听事件
-
-					@Override
-					public void onClick(View arg0) {
-						// TODO Auto-generated method stub
-						ToastUtil.showToast(getActivity(), p
-								% mImageViews.length + "");
-					}
-				});
-
+				view.setOnClickListener(new ViewPagerOnClickListener(position));
 				((ViewPager) container).addView(view, 0);
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 			return view;
+		}
+	}
+
+	private class ViewPagerOnClickListener implements OnClickListener {
+		private int position;
+
+		ViewPagerOnClickListener(int position) {
+			this.position = position% mImageViews.length;
+		}
+
+		@Override
+		public void onClick(View v) {
+			ToastUtil.showToast(getActivity(), position+ "");
+			switch (position) {
+			case 0://产品购买
+				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
+				startActivity(intent);
+				break;
+			case 1://x的介绍
+
+				break;
+			case 2://达人故事
+
+				break;
+			case 3://x的活动
+
+				break;
+			}
 		}
 	}
 
@@ -141,32 +150,18 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 		}
 
 	}
-	
-	private void menuClickListener(boolean isLogin){
-		if(isLogin){
-			//ToastUtil.showToast(getActivity(), "login");
-		}else {
-			//ToastUtil.showToast(getActivity(), "unlogin");
-			Intent intent = new Intent(getActivity(),LoginMainActivity.class);
+
+	private void menuClickListener(boolean isLogin) {
+		if (isLogin) {
+			// ToastUtil.showToast(getActivity(), "login");
+			Intent intent = new Intent(Const.OPEN_DRAWERLAYOUT);
+			getActivity().sendBroadcast(intent);
+			
+		} else {
+			// ToastUtil.showToast(getActivity(), "unlogin");
+			Intent intent = new Intent(getActivity(), LoginMainActivity.class);
 			startActivity(intent);
 		}
 	}
-
-	/*
-	 * private OnPageChangeListener pageViewChangeListener = new
-	 * OnPageChangeListener() {
-	 * 
-	 * @Override public void onPageSelected(int arg0) {
-	 * 
-	 * }
-	 * 
-	 * @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
-	 * 
-	 * }
-	 * 
-	 * @Override public void onPageScrollStateChanged(int arg0) { // TODO
-	 * Auto-generated method stub // setImageBackground(arg0 %
-	 * mImageViews.length); } };
-	 */
 
 }

@@ -6,7 +6,7 @@ public interface Const {
 	public static final String IS_LOGIN_KEY ="is_login_key";
 	public static final boolean LOGIN = true;
 	public static final boolean UN_LOGIN = false;
-	
+	public static final String OPEN_DRAWERLAYOUT = "com.imcore.xbionic.OPEN_DRAWERLAYOUT";
 
 	
 }
