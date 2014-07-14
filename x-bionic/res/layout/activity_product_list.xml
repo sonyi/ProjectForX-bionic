@@ -42,6 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rel_product_list_top"
+        android:background="@drawable/ic_all_background"
         android:numColumns="3" />
 
 </RelativeLayout>

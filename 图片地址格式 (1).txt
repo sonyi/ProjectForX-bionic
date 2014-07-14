@@ -1,0 +1,11 @@
+域名：http://bulo2bulo.com:8080/
+类别：域名+类别接口返回的图片地址+_L.png
+如：
+http://bulo2bulo.com:8080/mobile/upload/Category/X-BIONIC/XBIONIC_L.png
+
+域名：http://www.bulo2bulo.com/
+格式：_L.jpg、_S.jpg、_M.jpg、_XL.jpg、.jpg
+
+注：
+需要获取图片的地方，分别试试两个域名和图片格式。
+都不行，评论留言。

@@ -1,16 +1,6 @@
 package com.imcore.xbionic.home.ui;
 
-<<<<<<< HEAD
-=======
-import com.imcore.xbionic.R;
-import com.imcore.xbionic.login.ui.LoginMainActivity;
-import com.imcore.xbionic.product.ui.ProductMainActivity;
-import com.imcore.xbionic.util.Const;
-import com.imcore.xbionic.util.DisplayUtil;
-import com.imcore.xbionic.util.ToastUtil;
 
-import android.annotation.SuppressLint;
->>>>>>> 4ae08863ddd7722db6345c357184a05010561b96
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -129,8 +119,8 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 			ToastUtil.showToast(getActivity(), position+ "");
 			switch (position) {
 			case 0://产品购买
-				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
+//				startActivity(intent);
 				break;
 			case 1://x的介绍
 

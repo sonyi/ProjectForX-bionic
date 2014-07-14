@@ -12,6 +12,4 @@ public class ProductItem {
 		return "ProductItem [id=" + id + ", code=" + code + ", imageUrl="
 				+ imageUrl + ", status=" + status + ", name=" + name + "]";
 	}
-	
-	
 }

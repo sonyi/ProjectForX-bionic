@@ -1,0 +1,25 @@
+{
+    "status": 200,
+    "message": null,
+    "data": [
+        {
+            "id": 934,
+            "productColorId": 391,
+            "image": "/Image/Product/2012/7/ec0b15d3-caf8-40f8-97c1-e41eea085861",
+            "default": true
+        },
+        {
+            "id": 935,
+            "productColorId": 391,
+            "image": "/Image/Product/2012/7/e80c8c57-d45d-48b2-9a95-84a3f4e53047",
+            "default": false
+        },
+        {
+            "id": 1180,
+            "productColorId": 428,
+            "image": "/Image/Product/2012/7/dc31cab1-1e7d-436e-882b-0fadbb0e9146",
+            "default": true
+        }
+    ],
+    "fieldErrors": null
+}

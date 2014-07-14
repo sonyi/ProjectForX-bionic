@@ -1,0 +1,48 @@
+{
+    "status": 200,
+    "message": null,
+    "data": {
+        "id": 267,
+        "name": "¸ß¶û·òÄÐÊ¿¶ÌÐäpoloÉÀ O20523",
+        "categoryId": 61,
+        "price": 2990,
+        "serialNo": "O20523",
+        "description": "<div><br />  </div>  <div>&nbsp;</div>  <div style=\"text-align: center;\"><img src=\"/FileServer/O20523-X01.jpg\" width=\"700\" height=\"492\" alt=\"\" />&nbsp;</div>",
+        "washCareStandardId": 0,
+        "sizeStandardId": 2,
+        "createDate": "01/08/2012T12:37:03",
+        "updateByUserId": 1,
+        "updateDate": "11/07/2012T18:27:17",
+        "createByUserId": 1,
+        "publishedDate": "03/06/2012T22:35:14",
+        "publishedByUserId": 1,
+        "isNearPublished": 0,
+        "courseStartDate": null,
+        "courseEndDate": null,
+        "courseTeachers": "",
+        "isCommision": "Y",
+        "cataLogId": 2,
+        "imageUrl": "/Image/Product/2012/7/dc31cab1-1e7d-436e-882b-0fadbb0e9146",
+        "sysColorList": [
+            {
+                "id": 2,
+                "color": "ºÚÉ«",
+                "colorImage": "/Image/ProductColor/35e9e5d7-5f39-4c7f-b059-bfba918546ff"
+            },
+            {
+                "id": 61,
+                "color": "XT6»Ê¼ÒÀ¶",
+                "colorImage": "/Image/ProductColor/2d588fb8-ffe0-4336-a1d5-9f618f809c64"
+            },
+            {
+                "id": 71,
+                "color": "X06 °×É«",
+                "colorImage": "/Image/ProductColor/c8ba1bf6-14b0-427e-a089-f9da7edf5071"
+            }
+        ],
+        "sysSize": null,
+        "sysColor": null,
+        "published": true
+    },
+    "fieldErrors": null
+}

@@ -33,7 +33,7 @@ import com.imcore.xbionic.util.JsonUtil;
 public class XLoginActivity extends Activity implements OnClickListener {
 	private ImageView mBackImg, mForgetpsw, mSignIn;
 	private EditText mUser, mPsw;
-	ProgressDialog mDialog;
+	private ProgressDialog mDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class XLoginActivity extends Activity implements OnClickListener {
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
 						Log.i("sign", error.getMessage());
+						mDialog.cancel();
 					}
 				}) {
 			@Override
