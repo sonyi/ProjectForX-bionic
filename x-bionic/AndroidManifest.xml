@@ -35,6 +35,8 @@
         <activity android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity" />
         <activity android:name="com.tencent.weibo.sdk.android.component.Authorize" />
          <activity android:name="com.imcore.xbionic.product.ui.ProductMainActivity" />
+         <activity android:name="com.imcore.xbionic.product.ui.ProductListActivity" />
+         <activity android:name="com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity" />
     </application>
 
 </manifest>

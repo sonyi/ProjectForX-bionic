@@ -11,7 +11,7 @@
         android:background="@drawable/ic_home_top_background"
         android:paddingTop="7dp" >
 
-        <ImageButton
+        <ImageView
             android:id="@+id/iv_home_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_centerInParent="true"
             android:src="@drawable/ic_home_logo" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/iv_home_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
