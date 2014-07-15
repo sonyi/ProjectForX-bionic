@@ -54,21 +54,21 @@
                 android:id="@+id/fragment_product_detail_info"
                 android:layout_width="match_parent"
                 android:name="com.imcore.xbionic.product.ui.FragmentProductDetailInfo"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/fragment_product_detail_img" />
 
             <fragment
                 android:id="@+id/fragment_product_detail_size"
                 android:layout_width="match_parent"
                 android:name="com.imcore.xbionic.product.ui.FragmentProductDetailSize"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/fragment_product_detail_info" />
 
             <fragment
                 android:id="@+id/fragment_product_detail_tech"
                 android:layout_width="match_parent"
                 android:name="com.imcore.xbionic.product.ui.FragmentProductDetailTech"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/fragment_product_detail_size" />
         </RelativeLayout>
     </ScrollView>

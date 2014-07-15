@@ -9,3 +9,8 @@ http://bulo2bulo.com:8080/mobile/upload/Category/X-BIONIC/XBIONIC_L.png
 注：
 需要获取图片的地方，分别试试两个域名和图片格式。
 都不行，评论留言。
+
+
+/Image/LabsFile/71356c81-0387-4c3b-8e85-beb79146991a
+
+http://bulo2bulo.com:8080/Image/LabsFile/71356c81-0387-4c3b-8e85-beb79146991a.png

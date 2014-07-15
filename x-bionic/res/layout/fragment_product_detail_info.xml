@@ -3,13 +3,183 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-   <!-- <Gallery android:id="@+id/gal_product_detail_img"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"/> -->
-   <ImageView android:id="@+id/img"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:src="@drawable/ic_product_img"
-       />
+    <TextView
+        android:id="@+id/tv_pro_det_info_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_procuct_detail_titleandsizebackground"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="标题栏"
+        android:textColor="@android:color/white" />
+
+    <RelativeLayout
+        android:id="@+id/rel_pro_det_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_pro_det_info_title" >
+
+        <TextView
+            android:id="@+id/tv_pro_det_price_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="售价：" />
+
+        <TextView
+            android:id="@+id/tv_pro_det_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_pro_det_price_detail"
+            android:layout_toRightOf="@id/tv_pro_det_price_detail"
+            android:text="￥2990" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_pro_det_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_pro_det_price" >
+
+        <TextView
+            android:id="@+id/tv_pro_det_color_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="颜色：" />
+
+        <TextView
+            android:id="@+id/tv_pro_det_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_pro_det_color_detail"
+            android:layout_toRightOf="@id/tv_pro_det_color_detail"
+            android:text="￥2990" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_pro_det_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_pro_det_color" >
+
+        <TextView
+            android:id="@+id/tv_pro_det_size_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="尺码：" />
+
+
+        <!--
+             <RadioGroup
+            android:id="@+id/rig_pro_det_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_pro_det_size_detail"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/btn_pro_det_s"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="S"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/btn_pro_det_m"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:gravity="fill"
+                android:layout_marginLeft="0dp"
+                android:text="M"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_pro_det_l"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:gravity="fill"
+                android:text="L"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_pro_det_xl"
+                android:layout_width="40dp"
+                android:layout_height="33dp"
+                android:gravity="fill"
+                android:text="XL"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_pro_det_xxl"
+                android:layout_width="48dp"
+                android:layout_height="33dp"
+                android:gravity="fill"
+                android:text="XXL"
+                android:textSize="12sp" />
+
+           
+        </RadioGroup>
+        -->
+
+        <TextView
+            android:id="@+id/tv_pro_det_add_house"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_product_detail_buy"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:text="添加收藏"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_pro_det_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_pro_det_size" >
+
+        <TextView
+            android:id="@+id/tv_pro_det_amount_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="数量：" />
+
+        <EditText
+            android:id="@+id/et_pro_det_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tv_pro_det_amount_detail"
+            android:layout_toRightOf="@id/tv_pro_det_amount_detail"
+            android:text="3" />
+
+        <TextView
+            android:id="@+id/tv_pro_det_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_pro_det_amount_detail"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/et_pro_det_amount"
+            android:text="(库存3件)" />
+
+        <TextView
+            android:id="@+id/tv_pro_det_add_trolley"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_product_detail_buy"
+            android:gravity="center_vertical"
+            android:paddingLeft="3dp"
+            android:text="加入购物车"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
 
 </RelativeLayout>

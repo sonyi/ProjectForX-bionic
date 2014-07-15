@@ -6,7 +6,11 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -19,17 +23,19 @@ import com.imcore.xbionic.model.ProductCatagory;
 import com.imcore.xbionic.model.ProductItem;
 import com.imcore.xbionic.util.JsonUtil;
 
-public class ProductMainActivity extends Activity {
+public class ProductMainActivity extends Activity implements OnClickListener{
 	private ExpandableListView mExpandableListView;
 	private ArrayList<ProductCatagory> mProductGroups;
 	private HashMap<String, ArrayList<ProductItem>> mProductItems;
-
+	private ImageView mBack;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_main);
 		mExpandableListView = (ExpandableListView) findViewById(R.id.exp_product_main_list);
 		mProductItems = new HashMap<String, ArrayList<ProductItem>>();
+		mBack = (ImageView) findViewById(R.id.iv_product_main_back);
+		mBack.setOnClickListener(this);
 		getGroupsInfo();
 
 	}
@@ -86,5 +92,13 @@ public class ProductMainActivity extends Activity {
 	
 	private void initAdapter(){
 		mExpandableListView.setAdapter(new ExpandableAdapter(this, mProductGroups, mProductItems));
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if(v.getId() == R.id.iv_product_main_back){
+			finish();
+		}
 	}
 }

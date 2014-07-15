@@ -149,6 +149,7 @@ public class ProductListActivity extends Activity implements OnClickListener{
 			vh.tvPrice.setText("￥" + mProductListGroup.get(position).price);
 			String url = Constant.IMAGE_ADDRESS + mProductListGroup.get(position).imageUrl + "_L.jpg";
 			setImag(vh.img, url);
+			view.setOnClickListener(new ItemOnClickListener(mProductListGroup.get(position)));
 			return view;
 		}
 
@@ -166,6 +167,23 @@ public class ProductListActivity extends Activity implements OnClickListener{
 			loader.get(url, listener, 400, 400);
 		}
 
+	}
+	
+	private class ItemOnClickListener implements OnClickListener{
+		private ProductList p;
+		ItemOnClickListener(ProductList p){
+			this.p = p;
+		}
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			//ToastUtil.showToast(ProductListActivity.this, p.id + "");
+			Intent intent = new Intent(ProductListActivity.this,ProductDetailsActivity.class);
+			intent.putExtra("detailId", p.id);
+			startActivity(intent);
+		}
+		
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.login.ui.LoginMainActivity;
+import com.imcore.xbionic.product.ui.ProductMainActivity;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 
@@ -29,7 +30,7 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		mFragmentView = inflater.inflate(R.layout.home_fragment, null);
+		mFragmentView = inflater.inflate(R.layout.fragment_home, null);
 		mLogoImg = (ImageView) mFragmentView.findViewById(R.id.iv_home_logo);
 		mMenuImg = (ImageView) mFragmentView.findViewById(R.id.iv_home_menu);
 		mSearchImg = (ImageView) mFragmentView
@@ -119,8 +120,8 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 			ToastUtil.showToast(getActivity(), position+ "");
 			switch (position) {
 			case 0://产品购买
-//				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
-//				startActivity(intent);
+				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
+				startActivity(intent);
 				break;
 			case 1://x的介绍
 

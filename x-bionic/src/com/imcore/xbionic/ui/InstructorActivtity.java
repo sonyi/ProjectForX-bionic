@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
+import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
 
 public class InstructorActivtity extends Activity implements
 		OnPageChangeListener {
@@ -104,7 +105,7 @@ public class InstructorActivtity extends Activity implements
 				@Override
 				public void onClick(View arg0) {
 					if(p == (mImageViews.length -1)){
-						Intent intent = new Intent(InstructorActivtity.this,HomeActivityLogin.class);
+						Intent intent = new Intent(InstructorActivtity.this,HomeActivityUnLogin.class);
 						InstructorActivtity.this.finish();
 						startActivity(intent);
 						

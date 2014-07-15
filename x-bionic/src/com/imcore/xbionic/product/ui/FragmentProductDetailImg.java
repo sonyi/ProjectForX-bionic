@@ -99,7 +99,7 @@ public class FragmentProductDetailImg extends Fragment {
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						Log.i("sign", response);
+						//Log.i("sign", response);
 						onResponseForProductList(response);
 
 					}

@@ -2,14 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+    <TextView
+        android:id="@+id/tv_pro_det_tech_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_procuct_detail_titleandsizebackground"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="科技点"
+        android:textColor="@android:color/white" />
 
-   <!-- <Gallery android:id="@+id/gal_product_detail_img"
+   <ListView android:id="@+id/lv_pro_det_tech"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"/> -->
-   <ImageView android:id="@+id/img"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:src="@drawable/ic_product_img"
-       />
+       android:layout_height="wrap_content"
+       android:layout_below="@id/tv_pro_det_tech_title"/>
 
 </RelativeLayout>

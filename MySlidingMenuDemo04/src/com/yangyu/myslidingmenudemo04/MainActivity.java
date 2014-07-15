@@ -18,7 +18,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setTitle("Change Fragment");
+		//setTitle("Change Fragment");
 						
 		initSlidingMenu(savedInstanceState);
 		
@@ -42,17 +42,21 @@ public class MainActivity extends SlidingFragmentActivity {
 			}
 		});
 		
+		intiMenu();
+		
+	}
+
+	private void intiMenu() {
 		// 设置滑动菜单视图界面
 		setBehindContentView(R.layout.menu_frame);
 		getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame, new ColorMenuFragment()).commit();
 
 		// 设置滑动菜单的属性值
-		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);	
 		getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		getSlidingMenu().setFadeDegree(0.35f);
 		getSlidingMenu().setMode(SlidingMenu.RIGHT);
-		
 	}
 }

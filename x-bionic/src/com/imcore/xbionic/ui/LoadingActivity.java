@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
+import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
 import com.imcore.xbionic.product.ui.ProductDetailsActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
 
@@ -34,16 +35,21 @@ public class LoadingActivity extends Activity {
 		SharedPreferences sp = getSharedPreferences("loginUser",
 				Context.MODE_PRIVATE); // 私有数据
 		boolean isFirstUse = sp.getBoolean("isFirstUse", true);
+		boolean isLogin = sp.getBoolean("isLogin", false);
 
 		Intent intent = null;
-//		if (isFirstUse) {
-//			intent = new Intent(this, InstructorActivtity.class);
-//		} else {
-//			intent = new Intent(this, HomeActivityLogin.class);
-//		}
+		if (isFirstUse) {
+			intent = new Intent(this, InstructorActivtity.class);
+		} else {
+			if(isLogin){
+				intent = new Intent(this, HomeActivityLogin.class);
+			}else{
+				intent = new Intent(this, HomeActivityUnLogin.class);
+			}
+		}
 		
-		//intent = new Intent(this, LoginMainActivity.class);
-		intent = new Intent(this, ProductDetailsActivity.class);
+		//intent = new Intent(this, HomeActivityLogin.class);
+		//intent = new Intent(this, ProductDetailsActivity.class);
 		
 
 		final Intent it = intent; // 你要转向的Activity
@@ -63,7 +69,6 @@ public class LoadingActivity extends Activity {
 						e.printStackTrace();
 					}
 				}
-				
 				 LoadingActivity.this.finish();
 				 startActivity(it); // 执行
 			}
