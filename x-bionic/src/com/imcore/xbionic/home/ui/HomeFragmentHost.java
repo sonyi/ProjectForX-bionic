@@ -1,29 +1,21 @@
 package com.imcore.xbionic.home.ui;
 
-import com.imcore.xbionic.R;
-import com.imcore.xbionic.login.ui.LoginMainActivity;
-import com.imcore.xbionic.product.ui.ProductMainActivity;
-import com.imcore.xbionic.util.Const;
-import com.imcore.xbionic.util.DisplayUtil;
-import com.imcore.xbionic.util.ToastUtil;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.MarginLayoutParams;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
+
+import com.imcore.xbionic.R;
+import com.imcore.xbionic.login.ui.LoginMainActivity;
+import com.imcore.xbionic.util.Const;
+import com.imcore.xbionic.util.ToastUtil;
 
 public class HomeFragmentHost extends Fragment implements OnClickListener {
 	private View mFragmentView;
@@ -127,8 +119,8 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 			ToastUtil.showToast(getActivity(), position+ "");
 			switch (position) {
 			case 0://产品购买
-				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
+//				startActivity(intent);
 				break;
 			case 1://x的介绍
 

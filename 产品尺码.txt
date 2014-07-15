@@ -1,0 +1,124 @@
+{
+    "status": 200,
+    "message": null,
+    "data": {
+        "id": 2,
+        "fieldColumns": "Size,P1,P2,P3",
+        "sizeStandard": "男装尺码表-0730",
+        "sizeStandardDetailList": [
+            {
+                "id": 25,
+                "sizeStandardId": 2,
+                "size": "尺码",
+                "p1": "S 小码",
+                "p2": "M 中码",
+                "p3": "L 大码",
+                "p4": "",
+                "p5": "",
+                "p6": "",
+                "p7": "",
+                "p8": "",
+                "p9": "",
+                "p10": "",
+                "p11": "",
+                "displayOrder": 1
+            },
+            {
+                "id": 26,
+                "sizeStandardId": 2,
+                "size": "胸围（厘米）",
+                "p1": "91",
+                "p2": "96",
+                "p3": "101",
+                "p4": "",
+                "p5": "",
+                "p6": "",
+                "p7": "",
+                "p8": "",
+                "p9": "",
+                "p10": "",
+                "p11": "",
+                "displayOrder": 2
+            },
+            {
+                "id": 27,
+                "sizeStandardId": 2,
+                "size": "腰围（英寸）",
+                "p1": "28",
+                "p2": "30",
+                "p3": "32",
+                "p4": "",
+                "p5": "",
+                "p6": "",
+                "p7": "",
+                "p8": "",
+                "p9": "",
+                "p10": "",
+                "p11": "",
+                "displayOrder": 3
+            },
+            {
+                "id": 28,
+                "sizeStandardId": 2,
+                "size": "腰围（厘米）",
+                "p1": "70-74",
+                "p2": "74-78",
+                "p3": "78-82",
+                "p4": "",
+                "p5": "",
+                "p6": "",
+                "p7": "",
+                "p8": "",
+                "p9": "",
+                "p10": "",
+                "p11": "",
+                "displayOrder": 4
+            },
+            {
+                "id": 29,
+                "sizeStandardId": 2,
+                "size": "腰围（市尺）",
+                "p1": "2.16",
+                "p2": "2.28",
+                "p3": "2.40",
+                "p4": "",
+                "p5": "",
+                "p6": "",
+                "p7": "",
+                "p8": "",
+                "p9": "",
+                "p10": "",
+                "p11": "",
+                "displayOrder": 5
+            }
+        ],
+        "sysSizeList": [
+            {
+                "id": 1,
+                "size": "S",
+                "sizeName": "小码"
+            },
+            {
+                "id": 2,
+                "size": "M",
+                "sizeName": "中码"
+            },
+            {
+                "id": 3,
+                "size": "L",
+                "sizeName": "大码"
+            },
+            {
+                "id": 5,
+                "size": "XL",
+                "sizeName": "加大码"
+            },
+            {
+                "id": 17,
+                "size": "XXL",
+                "sizeName": "加加大号"
+            }
+        ]
+    },
+    "fieldErrors": null
+}

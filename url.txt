@@ -3,3 +3,21 @@ http://bulo2bulo.com:8080/mobile/api/category/products.do?subNavId=4&offset=0&fe
 http://bulo2bulo.com:8080/mobile/api/category/list.do?navId=100002
 
 http://bulo2bulo.com:8080/mobile/api/shoppingcart/list.do?
+
+
+http://bulo2bulo.com:8080/Image/Product/2012/7/dc31cab1-1e7d-436e-882b-0fadbb0e9146_L.png
+
+
+http://bulo2bulo.com:8080/product/images/list?id=267
+
+//产品图片
+http://bulo2bulo.com:8080/mobile/api/product/images/list.do?id=267
+
+//产品尺码
+http://bulo2bulo.com:8080/mobile/api/product/size/list.do?id=267
+
+//产品科技点
+http://bulo2bulo.com:8080/mobile/api/product/labs/list.do?id=267
+
+//产品详情
+http://bulo2bulo.com:8080/mobile/api/product/get.do?id=267
