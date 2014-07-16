@@ -41,7 +41,7 @@ public class FragmentProductDetailTech extends Fragment{
 		mListView = (ListView) view.findViewById(R.id.lv_pro_det_tech);
 
 		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
-		ToastUtil.showToast(getActivity(), productDetailId + "");
+		//ToastUtil.showToast(getActivity(), productDetailId + "");
 		
 		
 		getProductDetailTech();
@@ -103,7 +103,7 @@ public class FragmentProductDetailTech extends Fragment{
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						Log.i("sign", response);
+						//Log.i("sign", response);
 						onResponseForProductList(response);
 
 					}

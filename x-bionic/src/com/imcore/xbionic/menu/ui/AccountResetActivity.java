@@ -84,6 +84,8 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 					Context.MODE_PRIVATE); // 私有数据
 			Editor editor = sp.edit();// 获取编辑器
 			editor.putBoolean("isLogin", false);
+			editor.putString("userId", "");
+			editor.putString("token", "");
 			editor.commit();// 提交修改
 			Intent intent = new Intent(this, HomeActivityUnLogin.class);
 			startActivity(intent);

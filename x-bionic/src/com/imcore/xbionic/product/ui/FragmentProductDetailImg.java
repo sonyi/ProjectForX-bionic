@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Gallery;
+import android.widget.ImageView;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -16,19 +26,9 @@ import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
-import com.imcore.xbionic.util.ToastUtil;
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Gallery;
-import android.widget.ImageView;
 
 public class FragmentProductDetailImg extends Fragment {
+	@SuppressWarnings("deprecation")
 	private Gallery gal;
 	private View view;
 	private long productDetailId;
@@ -40,7 +40,7 @@ public class FragmentProductDetailImg extends Fragment {
 		gal = (Gallery) view.findViewById(R.id.gal_product_detail_img);
 		
 		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
-		ToastUtil.showToast(getActivity(), productDetailId + "");
+		//ToastUtil.showToast(getActivity(), productDetailId + "");
 		getProductDetailImg();
 		
 		return view;

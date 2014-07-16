@@ -16,6 +16,7 @@ import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
 import com.imcore.xbionic.product.ui.ProductDetailsActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
+import com.imcore.xbionic.util.Const;
 
 public class LoadingActivity extends Activity {
 	private ProgressBar mProgressBar;
@@ -49,9 +50,9 @@ public class LoadingActivity extends Activity {
 		}
 		
 		//intent = new Intent(this, HomeActivityLogin.class);
-		//intent = new Intent(this, ProductDetailsActivity.class);
-		
-
+//		intent = new Intent(this, ProductDetailsActivity.class);
+//		intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, 267);
+ 
 		final Intent it = intent; // 你要转向的Activity
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {

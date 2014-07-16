@@ -26,13 +26,13 @@
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/iv_product_detail_search"
+            android:id="@+id/iv_product_detail_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_home_search" />
+            android:src="@drawable/ic_home_menu_login" />
     </RelativeLayout>
 
     <ScrollView

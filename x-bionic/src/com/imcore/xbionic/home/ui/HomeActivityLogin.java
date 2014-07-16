@@ -92,8 +92,8 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 	 */  
 	   private Dialog ExitDialog(Context context) {  
 	    AlertDialog.Builder builder = new AlertDialog.Builder(context);  
-	    builder.setIcon(R.drawable.ic_launcher);  
-	    builder.setTitle("系统信息");  
+	   // builder.setIcon(R.drawable.ic_launcher);  
+	  //  builder.setTitle("系统信息");  
 	    builder.setMessage("确定要退出程序吗?");  
 	    builder.setPositiveButton("确定",  
 	            new DialogInterface.OnClickListener() {  

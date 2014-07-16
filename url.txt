@@ -21,3 +21,9 @@ http://bulo2bulo.com:8080/mobile/api/product/labs/list.do?id=267
 
 //产品详情
 http://bulo2bulo.com:8080/mobile/api/product/get.do?id=267
+
+
+http://bulo2bulo.com:8080/mobile/api/Image/ProductColor/35e9e5d7-5f39-4c7f-b059-bfba918546ff_L.jpg
+
+//产品库存
+http://bulo2bulo.com:8080/mobile/api/product/quantity/get.do?id=267&colorId=2&sizeId=1

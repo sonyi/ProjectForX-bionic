@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +19,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.home.ui.HomeActivityLogin;
+import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
 import com.imcore.xbionic.model.ProductCatagory;
 import com.imcore.xbionic.model.ProductItem;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
 
 public class ProductMainActivity extends Activity implements OnClickListener{
@@ -96,9 +102,16 @@ public class ProductMainActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if(v.getId() == R.id.iv_product_main_back){
-			finish();
+			SharedPreferences sp = getSharedPreferences("loginUser",
+					Context.MODE_PRIVATE); // 私有数据
+			Intent intent;
+			if(sp.getBoolean("isLogin", false)){
+				intent = new Intent(this,HomeActivityLogin.class);
+			}else{
+				intent = new Intent(this,HomeActivityUnLogin.class);
+			}
+			startActivity(intent);
 		}
 	}
 }

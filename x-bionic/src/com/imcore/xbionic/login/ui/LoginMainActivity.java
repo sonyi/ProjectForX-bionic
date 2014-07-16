@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
@@ -70,7 +71,9 @@ public class LoginMainActivity extends Activity implements OnClickListener {
 			mWeiboAuth.anthorize(new AuthListener());
 			break;
 		case R.id.iv_login_main_x:// 部落账户登录
-			startActivity(new Intent(this, XLoginActivity.class));
+			Intent intent = new Intent(this, XLoginActivity.class);
+			intent.putExtra(Const.LOGIN_KEY, Const.LOGIN_AT_OTHER_VALUE);
+			startActivity(intent);
 			break;
 		case R.id.iv_login_main_register:// 新用户注册
 			startActivity(new Intent(this, PhoneRegisterCodeActivity.class));

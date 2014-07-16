@@ -19,6 +19,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 public class ProductDetailsActivity extends SlidingFragmentActivity implements OnClickListener{
 	private long productDetailId;
 	private ImageView mBack;
+	private ImageView mMenu;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,9 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_detail);
 		mBack = (ImageView) findViewById(R.id.iv_product_detail_back);
+		mMenu = (ImageView) findViewById(R.id.iv_product_detail_menu);
 		mBack.setOnClickListener(this);
+		mMenu.setOnClickListener(this);
 		
 		Intent intent = getIntent();
 		productDetailId = intent.getLongExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, 0);
@@ -90,6 +93,9 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 	public void onClick(View v) {
 		if(v.getId() == R.id.iv_product_detail_back){
 			finish();
+		}
+		if(v.getId() == R.id.iv_product_detail_menu){
+			toggle();
 		}
 	} 
 }

@@ -56,24 +56,34 @@ public class FragmentProductDetailSize extends Fragment{
 	private void initGridView() {
 		LayoutInflater inflater;
 		gridView = (GridView) view.findViewById(R.id.gri_Pro_det_size);
-		
-		
 		inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		 
 		gridView.setAdapter(new GridViewAdapter());
-		int size = dataList.size();
+		
+		int sums = dataList.size();
 		int columns = dataColumns.size();
+		int rows = sums/columns;
+		
+		int allWidth;
+		int allHeight;
+		int itemWidth;
 		
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 		float density = dm.density;
-		int allWidth = (int) (80 * columns * density);
-		int itemWidth = (int) (80 * density);
+		int screenWidth = DisplayUtil.getScreenWidth(getActivity());
+		int gridWidth = (int) (80 * columns * density);
+		if(screenWidth < gridWidth){
+			allWidth = gridWidth;
+			itemWidth = (int) (80 * density);
+		}else{
+			allWidth = screenWidth;
+			itemWidth = screenWidth/columns;
+		}
 		int h = DisplayUtil.dip2Px(getActivity(), 36);
-		int allHeight = 6*120;
+		allHeight = rows*h;
 		
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				allWidth,6*h );
+				allWidth,allHeight);
 		gridView.setLayoutParams(params);
 		gridView.setColumnWidth(itemWidth);
 		//gridView.setHorizontalSpacing(10);

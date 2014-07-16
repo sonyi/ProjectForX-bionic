@@ -28,13 +28,14 @@ import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
 
 public class XLoginActivity extends Activity implements OnClickListener {
 	private ImageView mBackImg, mForgetpsw, mSignIn;
 	private EditText mUser, mPsw;
 	private ProgressDialog mDialog;
-
+	private String loginValue;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,6 +50,9 @@ public class XLoginActivity extends Activity implements OnClickListener {
 		mBackImg.setOnClickListener(this);
 		mForgetpsw.setOnClickListener(this);
 		mSignIn.setOnClickListener(this);
+		
+		loginValue = getIntent().getStringExtra(Const.LOGIN_KEY);
+		
 
 	}
 
@@ -138,9 +142,13 @@ public class XLoginActivity extends Activity implements OnClickListener {
 		
 		mDialog.cancel();
 
-		Intent intent = new Intent(this, HomeActivityLogin.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);// 清除栈内其他activity
-		startActivity(intent);
-
+		Intent intent = null;
+		if(loginValue.equals(Const.LOGIN_AT_BUY_VALUE)){
+			finish();
+		}else if(loginValue.equals(Const.LOGIN_AT_OTHER_VALUE)){
+			intent = new Intent(this, HomeActivityLogin.class);
+			//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);// 清除栈内其他activity
+			startActivity(intent);
+		}
 	}
 }
