@@ -14,10 +14,11 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
+import com.imcore.xbionic.util.ToastUtil;
 
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,13 +30,17 @@ import android.widget.ImageView;
 
 public class FragmentProductDetailImg extends Fragment {
 	private Gallery gal;
-	View view;
-
+	private View view;
+	private long productDetailId;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_product_detail_img, null);
 		gal = (Gallery) view.findViewById(R.id.gal_product_detail_img);
+		
+		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
+		ToastUtil.showToast(getActivity(), productDetailId + "");
 		getProductDetailImg();
 		
 		return view;
@@ -94,7 +99,7 @@ public class FragmentProductDetailImg extends Fragment {
 
 	private void getProductDetailImg() {
 		imgUrl = new ArrayList<String>();
-		String url = Constant.HOST + "/product/images/list.do?id=267";
+		String url = Constant.HOST + "/product/images/list.do?id=" + productDetailId;
 		DataRequest request = new DataRequest(Request.Method.GET, url,
 				new Response.Listener<String>() {
 					@Override

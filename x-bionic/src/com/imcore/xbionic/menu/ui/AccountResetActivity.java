@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
+import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
@@ -84,7 +85,7 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 			Editor editor = sp.edit();// 获取编辑器
 			editor.putBoolean("isLogin", false);
 			editor.commit();// 提交修改
-			Intent intent = new Intent(this, HomeActivityLogin.class);
+			Intent intent = new Intent(this, HomeActivityUnLogin.class);
 			startActivity(intent);
 			finish();
 			break;

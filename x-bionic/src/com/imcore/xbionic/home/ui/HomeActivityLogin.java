@@ -1,13 +1,17 @@
 package com.imcore.xbionic.home.ui;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.util.Const;
@@ -37,7 +41,7 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 				.commit();
 
 		// 设置滑动菜单的属性值
-		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 		getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
 		getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.slidingmenu_offset);
@@ -66,4 +70,47 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 			}
 		}
 	};
+	
+	
+	/** 
+	 * 捕捉back 
+	 */  
+	@Override  
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
+	        ExitDialog(HomeActivityLogin.this).show();  
+	        return true;  
+	    }  
+	      
+	    return super.onKeyDown(keyCode, event);  
+	} 
+	
+	/** 
+	 * 提示退出系统 
+	 * @param context 
+	 * @return 
+	 */  
+	   private Dialog ExitDialog(Context context) {  
+	    AlertDialog.Builder builder = new AlertDialog.Builder(context);  
+	    builder.setIcon(R.drawable.ic_launcher);  
+	    builder.setTitle("系统信息");  
+	    builder.setMessage("确定要退出程序吗?");  
+	    builder.setPositiveButton("确定",  
+	            new DialogInterface.OnClickListener() {  
+	                public void onClick(DialogInterface dialog, int whichButton) {           
+	                   // System.exit(0);
+	                    Intent i = new Intent(Intent.ACTION_MAIN);
+	                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	                    i.addCategory(Intent.CATEGORY_HOME);
+	                    startActivity(i);
+	                    
+	                }  
+	            });  
+	    builder.setNegativeButton("取消",  
+	            new DialogInterface.OnClickListener() {  
+	                public void onClick(DialogInterface dialog, int whichButton) {  
+	                }  
+	            });  
+	    return builder.create();  
+	}  
 }

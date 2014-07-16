@@ -64,8 +64,9 @@
                 android:layout_toRightOf="@id/iv_login_x_user"
                 android:text="15105957760"
                 android:maxLength="30"
+                android:textColor="@android:color/white"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                 />
         </RelativeLayout>
 
         <RelativeLayout
@@ -92,9 +93,10 @@
                 android:layout_toRightOf="@id/iv_login_x_password"
                 android:text="wxy15105957760"
                 android:inputType="textPassword"
+                  android:textColor="@android:color/white"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+               />
         </RelativeLayout>
 
         <ImageView

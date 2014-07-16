@@ -4,22 +4,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class ProductDetailsActivity extends SlidingFragmentActivity {
+public class ProductDetailsActivity extends SlidingFragmentActivity implements OnClickListener{
+	private long productDetailId;
+	private ImageView mBack;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_detail);
-		Intent intent = getIntent();
-		long id = intent.getLongExtra("detailId", 0);
-		ToastUtil.showToast(this, id + "");
+		mBack = (ImageView) findViewById(R.id.iv_product_detail_back);
+		mBack.setOnClickListener(this);
 		
+		Intent intent = getIntent();
+		productDetailId = intent.getLongExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, 0);
 		
 		initProductDetailFragment();
 		intiMenuFragment();
@@ -28,9 +38,22 @@ public class ProductDetailsActivity extends SlidingFragmentActivity {
 	// 初始化界面信息
 	private void initProductDetailFragment() {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		Fragment ImgFragment = new FragmentProductDetailImg();
-		ft.add(R.id.fragment_product_detail_img, ImgFragment)
-				.addToBackStack(null).commit();
+		Fragment imgFragment = new FragmentProductDetailImg();
+		Fragment infoFragment = new FragmentProductDetailInfo();
+		Fragment sizeFragment = new FragmentProductDetailSize();
+		Fragment techFragment = new FragmentProductDetailTech();
+		ft.add(R.id.fragment_product_detail_img, imgFragment);
+		ft.add(R.id.fragment_product_detail_info, infoFragment);
+		ft.add(R.id.fragment_product_detail_size, sizeFragment);
+		ft.add(R.id.fragment_product_detail_tech, techFragment);
+		Bundle bundle = new Bundle();
+		bundle.putLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY, productDetailId);
+		imgFragment.setArguments(bundle);
+		infoFragment.setArguments(bundle);
+		sizeFragment.setArguments(bundle);
+		techFragment.setArguments(bundle);
+	
+		ft.addToBackStack(null).commit();
 
 	}
 
@@ -50,4 +73,23 @@ public class ProductDetailsActivity extends SlidingFragmentActivity {
 		getSlidingMenu().setFadeDegree(0.35f);
 		getSlidingMenu().setMode(SlidingMenu.RIGHT);
 	}
+	
+	/** 
+	 * 捕捉back 
+	 */  
+	@Override  
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
+	        finish();
+	        return true;  
+	    }  
+	    return super.onKeyDown(keyCode, event);  
+	}
+
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.iv_product_detail_back){
+			finish();
+		}
+	} 
 }

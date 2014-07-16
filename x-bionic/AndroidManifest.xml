@@ -28,8 +28,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.imcore.xbionic.ui.InstructorActivtity" />
-        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityLogin" />
-        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityUnLogin" />
+        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityLogin" 
+            android:launchMode="singleTask"/>
+        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityUnLogin" 
+            android:launchMode="singleTask"/>
         <activity android:name="com.imcore.xbionic.login.ui.LoginMainActivity" />
         <activity android:name="com.imcore.xbionic.login.ui.XLoginActivity" />
         <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity" />

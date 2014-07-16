@@ -21,6 +21,7 @@ import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
 import com.imcore.xbionic.login.ui.XLoginActivity;
 import com.imcore.xbionic.model.ProductList;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
 import com.imcore.xbionic.util.ToastUtil;
 
@@ -180,7 +181,7 @@ public class ProductListActivity extends Activity implements OnClickListener{
 			// TODO Auto-generated method stub
 			//ToastUtil.showToast(ProductListActivity.this, p.id + "");
 			Intent intent = new Intent(ProductListActivity.this,ProductDetailsActivity.class);
-			intent.putExtra("detailId", p.id);
+			intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, p.id);
 			startActivity(intent);
 		}
 		

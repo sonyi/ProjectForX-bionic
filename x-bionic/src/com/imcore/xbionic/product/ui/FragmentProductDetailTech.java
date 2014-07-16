@@ -25,17 +25,25 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
+import com.imcore.xbionic.util.ToastUtil;
 
 public class FragmentProductDetailTech extends Fragment{
-	View view;
+	private View view;
 	private ListView mListView;
+	private long productDetailId;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_product_detail_tech, null);
 		mListView = (ListView) view.findViewById(R.id.lv_pro_det_tech);
+
+		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
+		ToastUtil.showToast(getActivity(), productDetailId + "");
+		
+		
 		getProductDetailTech();
 		
 		return view;
@@ -90,7 +98,7 @@ public class FragmentProductDetailTech extends Fragment{
 	private void getProductDetailTech() {
 		mImgUrl = new ArrayList<String>();
 		mTitle = new ArrayList<String>();
-		String url = Constant.HOST + "/product/labs/list.do?id=267";
+		String url = Constant.HOST + "/product/labs/list.do?id=" + productDetailId;
 		DataRequest request = new DataRequest(Request.Method.GET, url,
 				new Response.Listener<String>() {
 					@Override

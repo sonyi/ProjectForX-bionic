@@ -26,19 +26,27 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.util.Const;
+import com.imcore.xbionic.util.DisplayUtil;
 import com.imcore.xbionic.util.JsonUtil;
+import com.imcore.xbionic.util.ToastUtil;
 
 public class FragmentProductDetailSize extends Fragment{
 	View view;
 	private GridView gridView;
 	private LayoutInflater inflater;
 	private List<String> dataList = new ArrayList<String>();
-	ArrayList<String> arrRow;
+	private List<String> dataColumns = new ArrayList<String>();
+	
+	private long productDetailId;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_product_detail_size, null);
+		
+		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
+		//ToastUtil.showToast(getActivity(), productDetailId + "");
 		
 		getProductDetailSize();
 		
@@ -54,21 +62,23 @@ public class FragmentProductDetailSize extends Fragment{
 		 
 		gridView.setAdapter(new GridViewAdapter());
 		int size = dataList.size();
-		int row = arrRow.size();
+		int columns = dataColumns.size();
 		
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 		float density = dm.density;
-		int allWidth = (int) (70 * 14 * density);
-		int itemWidth = (int) (70 * density);
-		int allHeight = row*85;
+		int allWidth = (int) (80 * columns * density);
+		int itemWidth = (int) (80 * density);
+		int h = DisplayUtil.dip2Px(getActivity(), 36);
+		int allHeight = 6*120;
+		
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				allWidth, allHeight);
+				allWidth,6*h );
 		gridView.setLayoutParams(params);
 		gridView.setColumnWidth(itemWidth);
 		//gridView.setHorizontalSpacing(10);
 		gridView.setStretchMode(GridView.NO_STRETCH);
-		gridView.setNumColumns(14);
+		gridView.setNumColumns(columns);
 	}
 	
 	class GridViewAdapter extends BaseAdapter {
@@ -102,7 +112,7 @@ public class FragmentProductDetailSize extends Fragment{
 
 	private void getProductDetailSize() {
 		imgUrl = new ArrayList<String>();
-		String url = Constant.HOST + "/product/size/list.do?id=267";
+		String url = Constant.HOST + "/product/size/list.do?id=" + productDetailId;
 		DataRequest request = new DataRequest(Request.Method.GET, url,
 				new Response.Listener<String>() {
 					@Override
@@ -126,45 +136,48 @@ public class FragmentProductDetailSize extends Fragment{
 
 	private void onResponseForProductList(String response) {
 		String jsonSize = JsonUtil.getJsonValueByKey(response, "sizeStandardDetailList");
-		arrRow = (ArrayList<String>) JsonUtil.toJsonStrList(jsonSize);
+		ArrayList<String> arrRow = (ArrayList<String>) JsonUtil.toJsonStrList(jsonSize);
 		if(!dataList.isEmpty()){
 			dataList.clear();
 		}
-		dataList.add("ID");
-		dataList.add("StandardId");
-		dataList.add("Size");
-		dataList.add("P1");
-		dataList.add("P2");
-		dataList.add("P3");
-		dataList.add("P4");
-		dataList.add("P5");
-		dataList.add("P6");
-		dataList.add("P7");
-		dataList.add("P8");
-		dataList.add("P9");
-		dataList.add("P10");
-		dataList.add("P11");
 		for (String json : arrRow) {
 			try {
-				JSONObject jsonObject = new JSONObject(json);
-				dataList.add(jsonObject.getString("id") +"");
-				dataList.add(jsonObject.getString("sizeStandardId") +"");
-				dataList.add(jsonObject.getString("size") +"");
-				dataList.add(jsonObject.getString("p1") +"");
-				dataList.add(jsonObject.getString("p2") +"");
-				dataList.add(jsonObject.getString("p3") +"");
-				dataList.add(jsonObject.getString("p4") +"");
-				dataList.add(jsonObject.getString("p5") +"");
-				dataList.add(jsonObject.getString("p6") +"");
-				dataList.add(jsonObject.getString("p7") +"");
-				dataList.add(jsonObject.getString("p8") +"");
-				dataList.add(jsonObject.getString("p9") +"");
-				dataList.add(jsonObject.getString("p10") +"");
-				dataList.add(jsonObject.getString("p11") +"");
+				JSONObject j = new JSONObject(json);
+				if(!dataColumns.isEmpty()){
+					dataColumns.clear();
+				}
+				if(j.getString("size") != null && !j.getString("size").equals("")){
+					dataColumns.add(j.getString("size"));
+				}
+				if(j.getString("p1") != null && !j.getString("p1").equals("")){
+					dataColumns.add(j.getString("p1"));
+				}
+				if(j.getString("p2") != null && !j.getString("p2").equals("")){
+					dataColumns.add(j.getString("p2"));
+				}
+				if(j.getString("p3") != null && !j.getString("p3").equals("")){
+					dataColumns.add(j.getString("p3"));
+				}
+				if(j.getString("p4") != null && !j.getString("p4").equals("")){
+					dataColumns.add(j.getString("p4"));
+				}
+				if(j.getString("p5") != null && !j.getString("p5").equals("")){
+					dataColumns.add(j.getString("p5"));
+				}
+				if(j.getString("p6") != null && !j.getString("p6").equals("")){
+					dataColumns.add(j.getString("p6"));
+				}
+				
+				if(j.getString("p7") != null && !j.getString("p7").equals("")){
+					dataColumns.add(j.getString("p7"));
+				}
+				if(j.getString("p8") != null && !j.getString("p8").equals("")){
+					dataColumns.add(j.getString("p8"));
+				}
+				dataList.addAll(dataColumns);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			//Log.i("sign", json);
 		}
 		initGridView();
 	}
