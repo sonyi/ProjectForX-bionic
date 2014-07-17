@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+     android:background="@drawable/ic_pro_comment_list_background"
     android:layout_height="match_parent" >
 
     <ListView
         android:id="@+id/lv_pro_comment_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_pro_comment_list_background"
+        android:layout_marginBottom="50dp" />
+
+    <RelativeLayout
+        android:id="@+id/rel_pro_comment_send"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        android:layout_alignParentBottom="true" >
+        
+        <TextView android:id="@+id/tv_pro_comment_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:text="想说点什么呢？点击这里-->"
+            />
+        <TextView android:id="@+id/tv_pro_comment_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="发表评论"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:background="@drawable/ic_pro_comment_send"/>
+        
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.imcore.xbionic.http;
 
+import android.util.Log;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -20,6 +22,7 @@ public class DataRequest extends Request<String> {
 	protected Response<String> parseNetworkResponse(NetworkResponse response) {
 		try {
 			String json = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
+			//Log.i("sign", json);
 			int status = Integer.parseInt(JsonUtil.getJsonValueByKey(json, "status"));
 			if (status == 200) {
 				String data = JsonUtil.getJsonValueByKey(json, "data");

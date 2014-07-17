@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_all_background" >
+
+    <RelativeLayout
+        android:id="@+id/rel_product_comment_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_home_top_background" >
+
+        <ImageView
+            android:id="@+id/iv_product_comment_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_back_btn_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="商品评论"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    
+    <EditText
+        android:id="@+id/et_product_comment_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_product_comment_top"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="#FFFFFF"
+        android:maxLength="50"
+        android:gravity="left"
+        android:singleLine="true"
+        android:hint="标题" />
+
+    <EditText
+        android:id="@+id/et_product_comment_text"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/et_product_comment_title"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="#FFFFFF"
+        android:maxLength="200"
+        android:gravity="left|top"
+        android:hint="说点什么好呢？" />
+
+    <RelativeLayout
+        android:id="@+id/rel_pro_commnent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/et_product_comment_text"
+        android:layout_below="@id/et_product_comment_text" >
+
+        <TextView
+            android:id="@+id/tv_pro_comment_rat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="给赞"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RatingBar
+            android:id="@+id/rat_pro_comment_ratingbar"
+            style="@style/product_comment_RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/tv_pro_comment_rat"
+            android:layout_marginTop="2dp"
+            android:numStars="5"
+            android:rating="5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_pro_comment_sendcomment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_pro_commnent_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_pro_comment_sendcomment"
+        android:gravity="center"
+        android:text="发送评论"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>

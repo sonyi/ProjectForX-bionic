@@ -25,8 +25,16 @@ http://bulo2bulo.com:8080/mobile/api/product/get.do?id=267
 
 http://bulo2bulo.com:8080/mobile/api/Image/ProductColor/35e9e5d7-5f39-4c7f-b059-bfba918546ff_L.jpg
 
+http://bulo2bulo.com:8080/mobile/api//Image/NewsFile/258bf0c5-3d21-4cb5-bfdd-108d8166dfae.jpg
+
 //产品库存
 http://bulo2bulo.com:8080/mobile/api/product/quantity/get.do?id=267&colorId=2&sizeId=1
 
 
 http://bulo2bulo.com:8080/mobile/api/product/comments/list.do?id=267
+
+//产品新闻
+http://bulo2bulo.com:8080/mobile/api/news/list.do?offset=0&fetchSize=10
+
+
+http://bulo2bulo.com:8080/mobile/api/news/get.do?id=23

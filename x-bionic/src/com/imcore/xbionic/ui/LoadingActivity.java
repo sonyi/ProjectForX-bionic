@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
+import com.imcore.xbionic.product.ui.CommentActivity;
 import com.imcore.xbionic.product.ui.ProductDetailsActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
 import com.imcore.xbionic.util.Const;
@@ -39,19 +40,19 @@ public class LoadingActivity extends Activity {
 		boolean isLogin = sp.getBoolean("isLogin", false);
 
 		Intent intent = null;
-//		if (isFirstUse) {
-//			intent = new Intent(this, InstructorActivtity.class);
-//		} else {
-//			if(isLogin){
-//				intent = new Intent(this, HomeActivityLogin.class);
-//			}else{
-//				intent = new Intent(this, HomeActivityUnLogin.class);
-//			}
-//		}
+		if (isFirstUse) {
+			intent = new Intent(this, InstructorActivtity.class);
+		} else {
+			if(isLogin){
+				intent = new Intent(this, HomeActivityLogin.class);
+			}else{
+				intent = new Intent(this, HomeActivityUnLogin.class);
+			}
+		}
 		
-		//intent = new Intent(this, HomeActivityLogin.class);
-		intent = new Intent(this, ProductDetailsActivity.class);
-		intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, (long)267);
+		//intent = new Intent(this, CommentActivity.class);
+//		intent = new Intent(this, ProductDetailsActivity.class);
+//		intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, (long)267);
  
 		final Intent it = intent; // 你要转向的Activity
 		Timer timer = new Timer();

@@ -228,9 +228,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 		}
 	}
 	
-	
-	
-	
+
 
 	// 监听颜色控件
 	private OnClickListener colorOnClickListener = new OnClickListener() {
@@ -288,7 +286,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 				new AlertDialog.Builder(getActivity()).setMessage("尺寸还没有选....")
 						.create().show();
 				return;
-			} else if (productQuantity.qty == 0 || productQuantity == null) {
+			} else if (productQuantity == null || productQuantity.qty == 0) {
 				new AlertDialog.Builder(getActivity()).setTitle("太火了，已经卖光了...")
 						.create().show();
 				return;

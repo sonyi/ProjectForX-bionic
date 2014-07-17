@@ -6,37 +6,46 @@
     <LinearLayout
         android:id="@+id/lin_pro_menu_title"
         android:layout_width="fill_parent"
-        android:layout_height="48dp" >
+        android:layout_height="48dp"
+        android:background="#BFBABE" >
 
         <TextView
             android:id="@+id/tv_product_menu_comment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginRight="0.5dp"
+            
             android:layout_weight="1.0"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:text="标题1"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_product_menu_news"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginRight="0.5dp"
             android:layout_weight="1.0"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:text="标题2"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_product_menu_award"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginLeft="0.5dp"
             android:layout_weight="1.0"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:text="标题3"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ImageView
@@ -52,8 +61,8 @@
         android:id="@+id/view_product_menu_viewpage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@id/iv_pro_menu_cursor" />
+        android:layout_below="@id/iv_pro_menu_cursor"
+        android:layout_marginBottom="50dp" />
 
     <LinearLayout
         android:id="@+id/lin_view_pro_comment_layout"

@@ -62,10 +62,17 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 	private void intiMenuFragment() {
 		// 设置滑动菜单视图界面
 		setBehindContentView(R.layout.fragment_product_menu);
-		getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment_product_menu,
-						new FragmentProductDetailMenu()).commit();
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		Fragment fragment = new FragmentProductDetailMenu();
+		ft.replace(R.id.fragment_product_menu,fragment);
+		Bundle bundle = new Bundle();
+		bundle.putLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY, productDetailId);
+		fragment.setArguments(bundle);
+		ft.commit();
+		
+		
+//		getSupportFragmentManager().beginTransaction().replace(R.id.fragment_product_menu,
+//						new FragmentProductDetailMenu()).commit();
 
 		// 设置滑动菜单的属性值
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);

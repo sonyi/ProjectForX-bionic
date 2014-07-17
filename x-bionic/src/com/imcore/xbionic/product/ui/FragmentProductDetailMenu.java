@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.util.Const;
+import com.imcore.xbionic.util.ToastUtil;
 
 import android.app.LocalActivityManager;
 import android.content.Context;
@@ -34,6 +36,7 @@ public class FragmentProductDetailMenu extends Fragment{
 	ViewPager pager = null;
 	TabHost tabHost = null;
 	TextView mCommentTv,mNewsTv,mAwardTv;
+	private long productDetailId;
 	
 	private int offset = 0;// 动画图片偏移量
 	private int currIndex = 0;// 当前页卡编号
@@ -47,7 +50,8 @@ public class FragmentProductDetailMenu extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_product_detail_menu, null);
-		
+		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
+
 		context = getActivity();
 		manager = new LocalActivityManager(getActivity() , true);
 		manager.dispatchCreate(savedInstanceState);
@@ -84,10 +88,13 @@ public class FragmentProductDetailMenu extends Fragment{
 		pager = (ViewPager) view.findViewById(R.id.view_product_menu_viewpage);
 		final ArrayList<View> list = new ArrayList<View>();
 		Intent intent = new Intent(context, ActivityProductMenuComment.class);
+		intent.putExtra("productDetailId", productDetailId);
 		list.add(getView("A", intent));
 		Intent intent2 = new Intent(context, ActivityProductMenuNews.class);
+		intent2.putExtra("productDetailId", productDetailId);
 		list.add(getView("B", intent2));
 		Intent intent3 = new Intent(context, ActivitytProductMenuAward.class);
+		intent3.putExtra("productDetailId", productDetailId);
 		list.add(getView("C", intent3));
 
 		pager.setAdapter(new MyPagerAdapter(list));

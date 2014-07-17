@@ -89,13 +89,16 @@
 
         <EditText
             android:id="@+id/et_pro_det_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="5"
+            android:background="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="7dp"
             android:layout_alignBottom="@id/tv_pro_det_amount_detail"
             android:layout_toRightOf="@id/tv_pro_det_amount_detail"
-            android:textColor="@android:color/white"
+           
             />
 
         <TextView
