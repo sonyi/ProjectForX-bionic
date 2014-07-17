@@ -117,7 +117,7 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
-			ToastUtil.showToast(getActivity(), position+ "");
+			//ToastUtil.showToast(getActivity(), position+ "");
 			switch (position) {
 			case 0://产品购买
 				Intent intent = new Intent(getActivity(),ProductMainActivity.class);

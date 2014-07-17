@@ -56,7 +56,6 @@ public class FragmentProductDetailInfo extends Fragment implements
 	private TextView mTitleView;
 	private TextView mPriceView;
 	private int mImgID;
-	private TextView mTvS, mTvM, mTvL, mTvXL, mTvXXL;
 	private ImageView mBuyImg;
 	private TextView mAmount;
 	private EditText mBuyEt;
@@ -83,23 +82,9 @@ public class FragmentProductDetailInfo extends Fragment implements
 	private void initWidget() {
 		mTitleView = (TextView) view.findViewById(R.id.tv_pro_det_info_title);
 		mPriceView = (TextView) view.findViewById(R.id.tv_pro_det_price);
-//		mTvS = (TextView) view.findViewById(R.id.tv_pro_det_size_s);
-//		mTvM = (TextView) view.findViewById(R.id.tv_pro_det_size_m);
-//		mTvL = (TextView) view.findViewById(R.id.tv_pro_det_size_l);
-//		mTvXL = (TextView) view.findViewById(R.id.tv_pro_det_size_xl);
-//		mTvXXL = (TextView) view.findViewById(R.id.tv_pro_det_size_xxl);
 		mBuyImg = (ImageView) view.findViewById(R.id.iv_pro_det_buy);
 		mAmount = (TextView) view.findViewById(R.id.tv_pro_det_amount);
 		mBuyEt = (EditText) view.findViewById(R.id.et_pro_det_amount);
-		
-//		mSizeArray.add(mTvS);
-//		mSizeArray.add(mTvM);
-//		mSizeArray.add(mTvL);
-//		mSizeArray.add(mTvXL);
-//		mSizeArray.add(mTvXXL);
-//		for (TextView tv : mSizeArray) {
-//			tv.setOnClickListener(sizeOnClickListener);
-//		}
 		mBuyImg.setOnClickListener(this);
 
 	}
@@ -113,9 +98,9 @@ public class FragmentProductDetailInfo extends Fragment implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						// Log.i("sign", response);
-						onResponseForProductList(response);
-
+						if(response != null){
+							onResponseForProductList(response);
+						}
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -158,9 +143,8 @@ public class FragmentProductDetailInfo extends Fragment implements
 			String url = Constant.IMAGE_ADDRESS + p.colorImage + ".jpg";
 			setImag(img, url);
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-					40, 40);
-			layoutParams.leftMargin = 10;
-			layoutParams.topMargin = 20;
+					50, 50);
+			layoutParams.leftMargin = 20;
 			img.setScaleType(ScaleType.FIT_XY);
 			img.setId(mImgID++);
 			insertLayout.addView(img, layoutParams);
@@ -194,12 +178,13 @@ public class FragmentProductDetailInfo extends Fragment implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						 Log.i("sign", response);
-						String jsonSize = JsonUtil.getJsonValueByKey(response,
-								"sysSizeList");
-						mSize = (ArrayList<ProductSize>) JsonUtil.toObjectList(
-								jsonSize, ProductSize.class);
-						addSize();
+						 if(response != null){
+							 String jsonSize = JsonUtil.getJsonValueByKey(response,
+										"sysSizeList");
+								mSize = (ArrayList<ProductSize>) JsonUtil.toObjectList(
+										jsonSize, ProductSize.class);
+								addSize();
+						 }
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -213,9 +198,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 				request);
 	}
 	
-	
-	
-	
+
 	// 动态生成尺寸控件
 	private int mSizeId;
 	private void addSize() {
@@ -225,7 +208,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 		mSizeId = 0x01;
 		for (ProductSize p : mSize) {
 			TextView tv = new TextView(getActivity());
-			int index = p.size.indexOf("(");
+			int index = p.size.indexOf("（");
 			String s ;
 			if(index != -1){
 				s = p.size.substring(0, index);
@@ -235,10 +218,8 @@ public class FragmentProductDetailInfo extends Fragment implements
 			tv.setText(s);
 			
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-					 LinearLayout.LayoutParams.WRAP_CONTENT, 40);
+					 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 			layoutParams.leftMargin = 10;
-			//layoutParams.topMargin = 10;
-			
 			tv.setId(mSizeId++);
 			insertLayout.addView(tv, layoutParams);
 			tv.setOnClickListener(sizeOnClickListener);
@@ -258,7 +239,6 @@ public class FragmentProductDetailInfo extends Fragment implements
 		public void onClick(View v) {
 			for (ImageView img : mColorImgArray) {
 				if (v.getId() == img.getId()) {
-					// ToastUtil.showToast(getActivity(), img.getId() + "");
 					img.setBackgroundResource(R.drawable.product_detail_info_color_select_background);
 					mSelectProductColor = mColorArray.get(mColorImgArray
 							.indexOf(img));
@@ -308,7 +288,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 				new AlertDialog.Builder(getActivity()).setMessage("尺寸还没有选....")
 						.create().show();
 				return;
-			} else if (productQuantity.qty == 0) {
+			} else if (productQuantity.qty == 0 || productQuantity == null) {
 				new AlertDialog.Builder(getActivity()).setTitle("太火了，已经卖光了...")
 						.create().show();
 				return;
@@ -379,13 +359,13 @@ public class FragmentProductDetailInfo extends Fragment implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						// Log.i("sign", response);
-						showDialog(getActivity()).show();
+						 if(response != null){
+							 showDialog(getActivity()).show();
+						 }
 					}
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						// TODO Auto-generated method stub
 						Log.i("sign", error.getMessage());
 					}
 				}) {
@@ -415,16 +395,13 @@ public class FragmentProductDetailInfo extends Fragment implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						// Log.i("sign", response);
 						 if(response != null){
 							 productQuantity = JsonUtil.toObject(response,
 										ProductQuantity.class);
 						 }
-						// Log.i("sign", productQuantity.toString());
 						if(productQuantity != null){
 							mAmount.setText("(库存" + productQuantity.qty + "件)");
 						}
-						
 					}
 				}, new Response.ErrorListener() {
 					@Override

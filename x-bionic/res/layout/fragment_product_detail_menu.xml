@@ -1,16 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ic_product_detail_img_backgroud" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/lin_pro_menu_title"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp" >
+
+        <TextView
+            android:id="@+id/tv_product_menu_comment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="标题1"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_product_menu_news"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="标题2"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_product_menu_award"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="标题3"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_pro_menu_cursor"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="202dp"
-        android:text="menu" />
+        android:layout_below="@id/lin_pro_menu_title"
+        android:background="#EEEEEE"
+        android:scaleType="matrix"
+        android:src="@drawable/roller" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_product_menu_viewpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:layout_below="@id/iv_pro_menu_cursor" />
+
+    <LinearLayout
+        android:id="@+id/lin_view_pro_comment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true" >
+
+        <TextView
+            android:id="@+id/tv_pro_menu_share"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/product_menu_bottom_background"
+            android:gravity="center"
+            android:text="分享"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_pro_menu_shopping"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/product_menu_bottom_background"
+            android:gravity="center"
+            android:text="购物车"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_pro_menu_collect"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/product_menu_bottom_background"
+            android:gravity="center"
+            android:text="收藏"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
 
 </RelativeLayout>

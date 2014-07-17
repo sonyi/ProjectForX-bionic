@@ -178,8 +178,6 @@ public class ProductListActivity extends Activity implements OnClickListener{
 		
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			//ToastUtil.showToast(ProductListActivity.this, p.id + "");
 			Intent intent = new Intent(ProductListActivity.this,ProductDetailsActivity.class);
 			intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, p.id);
 			startActivity(intent);

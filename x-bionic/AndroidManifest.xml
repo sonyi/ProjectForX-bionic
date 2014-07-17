@@ -41,6 +41,11 @@
         <activity android:name="com.imcore.xbionic.product.ui.ProductListActivity" />
         <activity android:name="com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity" />
         <activity android:name="com.imcore.xbionic.product.ui.ProductDetailsActivity" />
+        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuComment" />
+        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuNews" />
+        <activity android:name="com.imcore.xbionic.product.ui.ActivitytProductMenuAward" />
+        
+        
     </application>
 
 </manifest>

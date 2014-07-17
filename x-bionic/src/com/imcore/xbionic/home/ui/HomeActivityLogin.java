@@ -113,4 +113,12 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 	            });  
 	    return builder.create();  
 	}  
+	   
+	   
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		unregisterReceiver(receiverForDrawer);
+	}
 }

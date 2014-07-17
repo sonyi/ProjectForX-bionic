@@ -23,7 +23,6 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_detail);
 		mBack = (ImageView) findViewById(R.id.iv_product_detail_back);
