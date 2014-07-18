@@ -11,16 +11,18 @@ import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
+import com.imcore.xbionic.http.RequestQueueSingleton;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class ProductDetailsActivity extends SlidingFragmentActivity implements OnClickListener{
+public class ProductDetailsActivity extends SlidingFragmentActivity implements
+		OnClickListener {
 	private long productDetailId;
 	private ImageView mBack;
 	private ImageView mMenu;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,10 +31,11 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 		mMenu = (ImageView) findViewById(R.id.iv_product_detail_menu);
 		mBack.setOnClickListener(this);
 		mMenu.setOnClickListener(this);
-		
+
 		Intent intent = getIntent();
-		productDetailId = intent.getLongExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, 0);
-		
+		productDetailId = intent.getLongExtra(
+				Const.PRODUCT_DETAIL_FRAGMENT_KEY, 0);
+
 		initProductDetailFragment();
 		intiMenuFragment();
 	}
@@ -54,7 +57,7 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 		infoFragment.setArguments(bundle);
 		sizeFragment.setArguments(bundle);
 		techFragment.setArguments(bundle);
-	
+
 		ft.addToBackStack(null).commit();
 
 	}
@@ -64,15 +67,14 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 		setBehindContentView(R.layout.fragment_product_menu);
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		Fragment fragment = new FragmentProductDetailMenu();
-		ft.replace(R.id.fragment_product_menu,fragment);
+		ft.replace(R.id.fragment_product_menu, fragment);
 		Bundle bundle = new Bundle();
 		bundle.putLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY, productDetailId);
 		fragment.setArguments(bundle);
 		ft.commit();
-		
-		
-//		getSupportFragmentManager().beginTransaction().replace(R.id.fragment_product_menu,
-//						new FragmentProductDetailMenu()).commit();
+
+		// getSupportFragmentManager().beginTransaction().replace(R.id.fragment_product_menu,
+		// new FragmentProductDetailMenu()).commit();
 
 		// 设置滑动菜单的属性值
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
@@ -82,26 +84,30 @@ public class ProductDetailsActivity extends SlidingFragmentActivity implements O
 		getSlidingMenu().setFadeDegree(0.35f);
 		getSlidingMenu().setMode(SlidingMenu.RIGHT);
 	}
-	
-	/** 
-	 * 捕捉back 
-	 */  
-	@Override  
-	public boolean onKeyDown(int keyCode, KeyEvent event) {  
-	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
-	        finish();
-	        return true;  
-	    }  
-	    return super.onKeyDown(keyCode, event);  
+
+	/**
+	 * 捕捉back
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			RequestQueueSingleton.getInstance(this).cancelAllRequestQueue(
+					ProductDetailsActivity.class);
+			finish();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.iv_product_detail_back){
+		if (v.getId() == R.id.iv_product_detail_back) {
+			RequestQueueSingleton.getInstance(this).cancelAllRequestQueue(
+					ProductDetailsActivity.class);
 			finish();
 		}
-		if(v.getId() == R.id.iv_product_detail_menu){
+		if (v.getId() == R.id.iv_product_detail_menu) {
 			toggle();
 		}
-	} 
+	}
 }

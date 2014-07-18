@@ -99,6 +99,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 					@Override
 					public void onResponse(String response) {
 						if(response != null){
+							//Log.i("sign", response);
 							onResponseForProductList(response);
 						}
 					}
@@ -108,6 +109,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 						Log.i("sign", error.getMessage());
 					}
 				});
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(
 				request);
 	}
@@ -124,6 +126,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 			mPrice = j.getString("price");
 			mColorArray = (ArrayList<ProductColor>) JsonUtil.toObjectList(
 					j.getString("sysColorList"), ProductColor.class);
+			//Log.i("sign", mColorArray.toString());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -194,8 +197,9 @@ public class FragmentProductDetailInfo extends Fragment implements
 					}
 				});
 
-		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(
-				request);
+		request.setTag(ProductDetailsActivity.class);
+		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(request);
+		
 	}
 	
 
@@ -240,6 +244,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 					img.setBackgroundResource(R.drawable.product_detail_info_color_select_background);
 					mSelectProductColor = mColorArray.get(mColorImgArray
 							.indexOf(img));
+					//Log.i("sign", mSelectProductColor.toString());
 					if (mSelectProductColor != null
 							&& mSelectProductSize != null) {
 						getProductNum(mSelectProductColor.id,
@@ -379,6 +384,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 				return params;
 			}
 		};
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(
 				request);
 	}
@@ -387,6 +393,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 	private ProductQuantity productQuantity;
 
 	private void getProductNum(long colorId, long sizeId) {
+		//Log.i("sign", colorId + "---" + sizeId);
 		String url = Constant.HOST + "/product/quantity/get.do?id="
 				+ productDetailId + "&colorId=" + colorId + "&sizeId=" + sizeId;
 		DataRequest request = new DataRequest(Request.Method.GET, url,
@@ -399,6 +406,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 						 }
 						if(productQuantity != null){
 							mAmount.setText("(库存" + productQuantity.qty + "件)");
+							//Log.i("sign", productQuantity.qty + "");
 						}
 					}
 				}, new Response.ErrorListener() {
@@ -407,7 +415,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 						Log.i("sign", error.getMessage());
 					}
 				});
-
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(
 				request);
 	}

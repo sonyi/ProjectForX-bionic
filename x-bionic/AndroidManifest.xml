@@ -17,34 +17,53 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+         >
         <activity
             android:name="com.imcore.xbionic.ui.LoadingActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation= "portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.imcore.xbionic.ui.InstructorActivtity" />
+        <activity android:name="com.imcore.xbionic.ui.InstructorActivtity"
+            android:screenOrientation= "portrait" />
         <activity android:name="com.imcore.xbionic.home.ui.HomeActivityLogin" 
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:screenOrientation= "portrait"/>
         <activity android:name="com.imcore.xbionic.home.ui.HomeActivityUnLogin" 
-            android:launchMode="singleTask"/>
-        <activity android:name="com.imcore.xbionic.login.ui.LoginMainActivity" />
-        <activity android:name="com.imcore.xbionic.login.ui.XLoginActivity" />
-        <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity" />
-        <activity android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity" />
-        <activity android:name="com.tencent.weibo.sdk.android.component.Authorize" />
-        <activity android:name="com.imcore.xbionic.product.ui.ProductMainActivity" />
-        <activity android:name="com.imcore.xbionic.product.ui.ProductListActivity" />
-        <activity android:name="com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity" />
-        <activity android:name="com.imcore.xbionic.product.ui.ProductDetailsActivity" />
-        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuComment" />
-        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuNews" />
-        <activity android:name="com.imcore.xbionic.product.ui.ActivitytProductMenuAward" />
-         <activity android:name="com.imcore.xbionic.product.ui.CommentActivity" />
+            android:launchMode="singleTask"
+            android:screenOrientation= "portrait"/>
+        <activity android:name="com.imcore.xbionic.login.ui.LoginMainActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.login.ui.XLoginActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.tencent.weibo.sdk.android.component.Authorize"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.product.ui.ProductMainActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.product.ui.ProductListActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.product.ui.ProductDetailsActivity"
+            android:screenOrientation= "portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuComment"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuNews"
+            android:screenOrientation= "portrait" />
+        <activity android:name="com.imcore.xbionic.product.ui.ActivitytProductMenuAward"
+            android:screenOrientation= "portrait" />
+         <activity android:name="com.imcore.xbionic.product.ui.CommentActivity"
+             android:screenOrientation= "portrait" />
         
     </application>
 

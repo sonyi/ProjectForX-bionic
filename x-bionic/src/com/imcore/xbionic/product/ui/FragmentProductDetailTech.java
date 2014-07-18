@@ -114,7 +114,7 @@ public class FragmentProductDetailTech extends Fragment{
 
 					}
 				});
-
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(request);
 	}
 

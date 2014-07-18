@@ -38,3 +38,5 @@ http://bulo2bulo.com:8080/mobile/api/news/list.do?offset=0&fetchSize=10
 
 
 http://bulo2bulo.com:8080/mobile/api/news/get.do?id=23
+
+

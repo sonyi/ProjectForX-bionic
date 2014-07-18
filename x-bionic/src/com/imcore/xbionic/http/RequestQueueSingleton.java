@@ -98,4 +98,8 @@ public class RequestQueueSingleton {
 	public void stopRequestQueue() {
 		mRequestQueue.stop();
 	}
+	
+	public void cancelAllRequestQueue(Object o){
+		mRequestQueue.cancelAll(o);
+	}
 }

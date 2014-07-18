@@ -28,6 +28,7 @@ import com.imcore.xbionic.model.ProductCatagory;
 import com.imcore.xbionic.model.ProductItem;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
+import com.imcore.xbionic.util.ToastUtil;
 
 public class ProductMainActivity extends Activity implements OnClickListener{
 	private ExpandableListView mExpandableListView;
@@ -57,7 +58,9 @@ public class ProductMainActivity extends Activity implements OnClickListener{
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.i("sign", error.getMessage());
+						//Log.i("sign", error.getMessage());
+						ToastUtil.showToast(ProductMainActivity.this, "网络加载失败");
+						finish();
 					}
 				});
 
@@ -68,6 +71,12 @@ public class ProductMainActivity extends Activity implements OnClickListener{
 
 		mProductGroups = (ArrayList<ProductCatagory>) JsonUtil
 				.toObjectList(response, ProductCatagory.class);
+		if(mProductGroups == null || mProductGroups.size() == 0){
+			ToastUtil.showToast(this, "网络加载失败");
+			finish();
+			return;
+		}
+		
 		for(ProductCatagory p : mProductGroups){
 			getItemsInfo(p);
 		}

@@ -1,7 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/ic_all_background"
     android:layout_height="match_parent" >
-    
+
+    <RelativeLayout
+        android:id="@+id/rel_product_shopping_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_home_top_background" >
+
+        <ImageView
+            android:id="@+id/iv_product_shopping_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_back_btn_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的购物车"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+        
+         <ImageView
+            android:id="@+id/iv_product_shopping_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+           android:src="@drawable/ic_product_shopping_pencil" />
+        
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_product_shopping_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_product_shopping_top"
+        
+        android:layout_marginBottom="60dp" />
+
+    <RelativeLayout
+        android:id="@+id/rel_product_shopping_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_product_shopping_bottom_background"
+        android:layout_alignParentBottom="true" >
+
+        <TextView
+            android:id="@+id/tv_pro_shopping_mail_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+             android:textColor="@android:color/white"
+            android:text="邮寄费用：" />
+
+        <TextView
+            android:id="@+id/tv_pro_shopping_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_pro_shopping_mail_cost"
+            android:layout_toRightOf="@id/tv_pro_shopping_mail_cost"
+             android:textColor="@android:color/white"
+            android:text="￥0.0" />
+
+        <TextView
+            android:id="@+id/tv_pro_shopping_total_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_pro_shopping_mail_cost"
+            android:layout_alignLeft="@id/tv_pro_shopping_mail_cost"
+             android:textColor="#D24916"
+            android:layout_marginTop="5dp"
+            android:text="金额总计：" />
+
+        <TextView
+            android:id="@+id/tv_pro_shopping_totals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_pro_shopping_total_cost"
+            android:layout_toRightOf="@id/tv_pro_shopping_total_cost"
+             android:textColor="#D24916"
+            android:text="￥0.0" />
+        
+        <TextView
+            android:id="@+id/tv_pro_shopping_settle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@drawable/ic_product_shopping_settle"
+            android:text="结算" />
+    </RelativeLayout>
 
 </RelativeLayout>

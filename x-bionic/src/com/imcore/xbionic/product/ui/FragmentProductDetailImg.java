@@ -115,7 +115,7 @@ public class FragmentProductDetailImg extends Fragment {
 
 					}
 				});
-
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(request);
 	}
 

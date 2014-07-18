@@ -15,7 +15,7 @@
 
    <ListView android:id="@+id/lv_pro_det_tech"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="match_parent"
        android:layout_below="@id/tv_pro_det_tech_title"/>
 
 </RelativeLayout>

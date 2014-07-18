@@ -29,7 +29,7 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 		intiMenuFragment();
 
 		// 注册打开侧拉菜单监听事件
-		IntentFilter filter = new IntentFilter(Const.OPEN_DRAWERLAYOUT);
+		IntentFilter filter = new IntentFilter(Const.OPEN_OR_CLOSE_DRAWERLAYOUT);
 		registerReceiver(receiverForDrawer, filter);
 	}
 
@@ -65,7 +65,7 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 	private BroadcastReceiver receiverForDrawer = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (intent.getAction().equals(Const.OPEN_DRAWERLAYOUT)) {
+			if (intent.getAction().equals(Const.OPEN_OR_CLOSE_DRAWERLAYOUT)) {
 				toggle();
 			}
 		}
@@ -103,7 +103,6 @@ public class HomeActivityLogin extends SlidingFragmentActivity {
 	                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	                    i.addCategory(Intent.CATEGORY_HOME);
 	                    startActivity(i);
-	                    
 	                }  
 	            });  
 	    builder.setNegativeButton("取消",  

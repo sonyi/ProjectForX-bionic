@@ -70,6 +70,7 @@ public class ActivityProductMenuComment extends Activity implements
 						Log.i("sign", error.getMessage());
 					}
 				});
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
 	}
 

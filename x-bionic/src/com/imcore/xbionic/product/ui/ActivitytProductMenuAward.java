@@ -119,6 +119,7 @@ private BaseAdapter awardAdapter = new BaseAdapter() {
 						//Log.i("sign", error.getMessage());
 					}
 				});
+		request.setTag(ProductDetailsActivity.class);
 		RequestQueueSingleton.getInstance(this).addToRequestQueue(
 				request);
 	}

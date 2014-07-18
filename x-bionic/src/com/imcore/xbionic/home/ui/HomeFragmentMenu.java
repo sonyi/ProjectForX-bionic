@@ -19,6 +19,8 @@ import android.widget.SimpleAdapter;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.menu.ui.AccountResetActivity;
+import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
+import com.imcore.xbionic.model.ProductShopping;
 import com.imcore.xbionic.util.Const;
 
 public class HomeFragmentMenu extends Fragment {
@@ -39,7 +41,8 @@ public class HomeFragmentMenu extends Fragment {
 	}
 
 	private void initFragmentForLogin() {
-		FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+		FragmentTransaction ft = getActivity().getSupportFragmentManager()
+				.beginTransaction();
 		ft.add(R.id.drawer_fragment_user, new HomeDrawerUser());
 		ft.commit();
 	}
@@ -92,13 +95,9 @@ public class HomeFragmentMenu extends Fragment {
 			break;
 
 		case 1:// 账户设置
-				// ToastUtil.showToast(HomeActivityLogin.this, "账户设置");
-			Intent intent = new Intent(getActivity(),AccountResetActivity.class);
-			Intent in = new Intent(Const.OPEN_DRAWERLAYOUT);
-			getActivity().sendBroadcast(in);
-			startActivity(intent);
+			getActivity().sendBroadcast(new Intent(Const.OPEN_OR_CLOSE_DRAWERLAYOUT));
+			startActivity(new Intent(getActivity(),AccountResetActivity.class));
 			break;
-
 		case 2:// 达人社区
 
 			break;
@@ -108,7 +107,8 @@ public class HomeFragmentMenu extends Fragment {
 			break;
 
 		case 4:// 购物车
-
+			startActivity(new Intent(getActivity(),ShoppingTrolleyActivity.class));
+			getActivity().sendBroadcast(new Intent(Const.OPEN_OR_CLOSE_DRAWERLAYOUT));
 			break;
 
 		case 5:// 订阅信息
