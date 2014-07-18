@@ -19,6 +19,7 @@ import android.widget.SimpleAdapter;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.menu.ui.AccountResetActivity;
+import com.imcore.xbionic.util.Const;
 
 public class HomeFragmentMenu extends Fragment {
 	View view;
@@ -92,8 +93,9 @@ public class HomeFragmentMenu extends Fragment {
 
 		case 1:// 账户设置
 				// ToastUtil.showToast(HomeActivityLogin.this, "账户设置");
-			Intent intent = new Intent(getActivity(),
-					AccountResetActivity.class);
+			Intent intent = new Intent(getActivity(),AccountResetActivity.class);
+			Intent in = new Intent(Const.OPEN_DRAWERLAYOUT);
+			getActivity().sendBroadcast(in);
 			startActivity(intent);
 			break;
 
