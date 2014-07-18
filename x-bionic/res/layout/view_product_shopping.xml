@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_all_background"
+     >
+    
+    <ImageView android:id="@+id/iv_pro_shopping_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_product_img"/>
+    
+    <TextView android:id="@+id/tv_pro_shopping_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_pro_shopping_img"
+        android:layout_alignTop="@id/iv_pro_shopping_img"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/white"
+        android:text="title"/>
+    
+     <TextView android:id="@+id/tv_pro_shopping_color_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_pro_shopping_title"
+        android:layout_alignLeft="@id/tv_pro_shopping_title"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white"
+        android:text="颜色："/>
+     
+       <TextView android:id="@+id/tv_pro_shopping_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/tv_pro_shopping_color_detail"
+        android:layout_alignTop="@id/tv_pro_shopping_color_detail"
+        android:textColor="@android:color/white"
+        android:text="白色"/>
+     
+       <TextView android:id="@+id/tv_pro_shopping_size_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/tv_pro_shopping_color"
+        android:layout_alignTop="@id/tv_pro_shopping_color"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/white"
+        android:text="尺码："/>
+     
+       <TextView android:id="@+id/tv_pro_shopping_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/tv_pro_shopping_size_detail"
+        android:layout_alignTop="@id/tv_pro_shopping_size_detail"
+        android:textColor="@android:color/white"
+        android:text="S"/>
+       
+       <TextView android:id="@+id/tv_pro_shopping_total_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_pro_shopping_color_detail"
+        android:layout_alignLeft="@id/tv_pro_shopping_color_detail"
+        android:textColor="@android:color/white"
+        android:text="总价："/>
+     
+       <TextView android:id="@+id/tv_pro_shopping_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/tv_pro_shopping_total_detail"
+        android:layout_alignTop="@id/tv_pro_shopping_total_detail"
+        android:textColor="#D24916"
+        android:text="￥2990"/>
+       
+       <TextView android:id="@+id/tv_pro_shopping_qty_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_pro_shopping_total_detail"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="@android:color/white"
+        android:text="件"/>
+     
+       <TextView android:id="@+id/tv_pro_shopping_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_toLeftOf="@id/tv_pro_shopping_qty_detail"
+        android:layout_alignTop="@id/tv_pro_shopping_qty_detail"
+        android:textColor="@android:color/white"
+        android:text="1"/>
+       
+        <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_pro_shopping_img"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_product_comment_dottedline" />
+
+</RelativeLayout>

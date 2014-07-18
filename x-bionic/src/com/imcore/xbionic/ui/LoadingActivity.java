@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
+import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
 import com.imcore.xbionic.product.ui.CommentActivity;
 import com.imcore.xbionic.product.ui.ProductDetailsActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
@@ -50,7 +51,7 @@ public class LoadingActivity extends Activity {
 			}
 		}
 		
-		//intent = new Intent(this, CommentActivity.class);
+		//intent = new Intent(this, ShoppingTrolleyActivity.class);
 //		intent = new Intent(this, ProductDetailsActivity.class);
 //		intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, (long)267);
  

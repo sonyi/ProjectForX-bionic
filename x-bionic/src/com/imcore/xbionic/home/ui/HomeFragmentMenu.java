@@ -19,6 +19,8 @@ import android.widget.SimpleAdapter;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.menu.ui.AccountResetActivity;
+import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
+import com.imcore.xbionic.model.ProductShopping;
 
 public class HomeFragmentMenu extends Fragment {
 	View view;
@@ -106,7 +108,7 @@ public class HomeFragmentMenu extends Fragment {
 			break;
 
 		case 4:// 购物车
-
+			startActivity(new Intent(getActivity(),ShoppingTrolleyActivity.class));
 			break;
 
 		case 5:// 订阅信息
