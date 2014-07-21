@@ -78,7 +78,7 @@
             android:layout_alignLeft="@id/tv_pro_shopping_mail_cost"
              android:textColor="#D24916"
             android:layout_marginTop="5dp"
-            android:text="金额总计：" />
+            android:text="金额总计：￥" />
 
         <TextView
             android:id="@+id/tv_pro_shopping_totals"

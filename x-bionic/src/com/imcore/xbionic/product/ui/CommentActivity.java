@@ -30,13 +30,13 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class CommentActivity extends Activity implements OnClickListener{
+public class CommentActivity extends Activity implements OnClickListener {
 	private ImageView mBack;
-	private EditText mCommentText,mCommentTitle;
+	private EditText mCommentText, mCommentTitle;
 	private TextView mSendComment;
 	private RatingBar mRatingBar;
 	private long productDetailId;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -48,30 +48,30 @@ public class CommentActivity extends Activity implements OnClickListener{
 		mSendComment = (TextView) findViewById(R.id.tv_pro_comment_sendcomment);
 		mRatingBar = (RatingBar) findViewById(R.id.rat_pro_comment_ratingbar);
 		mBack.setOnClickListener(this);
-		
+
 		productDetailId = getIntent().getLongExtra("productDetailId", 0);
-		//ToastUtil.showToast(this, productDetailId+"");
-		
+		// ToastUtil.showToast(this, productDetailId+"");
+
 		mSendComment.setOnClickListener(this);
-		
+
 	}
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.tv_pro_comment_sendcomment){
+		if (v.getId() == R.id.tv_pro_comment_sendcomment) {
 			addComment();
 			return;
-		}else if(v.getId() == R.id.iv_product_comment_back){
+		} else if (v.getId() == R.id.iv_product_comment_back) {
 			finish();
 		}
 	}
-	
+
 	private String userId;
 	private String token;
 	private String title;
 	private String comment;
 	private int star;
-	
+
 	private void addComment() {
 		SharedPreferences sp = getSharedPreferences("loginUser",
 				Context.MODE_PRIVATE); // 私有数据
@@ -84,7 +84,8 @@ public class CommentActivity extends Activity implements OnClickListener{
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int whichButton) {
-									Intent intent = new Intent(CommentActivity.this,
+									Intent intent = new Intent(
+											CommentActivity.this,
 											XLoginActivity.class);
 									intent.putExtra(Const.LOGIN_KEY,
 											Const.LOGIN_AT_BUY_VALUE);
@@ -96,7 +97,7 @@ public class CommentActivity extends Activity implements OnClickListener{
 		title = mCommentTitle.getText().toString();
 		comment = mCommentText.getText().toString();
 		star = (int) mRatingBar.getRating();
-		if(comment == null || comment.equals("")){
+		if (comment == null || comment.equals("")) {
 			ToastUtil.showToast(this, "评论内容不能为空");
 			return;
 		}
@@ -106,11 +107,11 @@ public class CommentActivity extends Activity implements OnClickListener{
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						 if(response != null){
+						if (response != null) {
 							// Log.i("sign", response);
 							ToastUtil.showToast(CommentActivity.this, "发表成功");
 							finish();
-						 }
+						}
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -124,17 +125,15 @@ public class CommentActivity extends Activity implements OnClickListener{
 				Map<String, String> params = new HashMap<String, String>();
 				params.put("userId", userId);
 				params.put("token", token);
-				params.put("id", productDetailId+"");
+				params.put("id", productDetailId + "");
 				params.put("comment", comment);
-				params.put("star", star+"");
+				params.put("star", star + "");
 				params.put("title", title);
 				// Log.i("sign", productQuantity.id + "----" + sumBuy);
 				return params;
 			}
 		};
-		RequestQueueSingleton.getInstance(this).addToRequestQueue(
-				request);
+		RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
 	}
-	
 
 }

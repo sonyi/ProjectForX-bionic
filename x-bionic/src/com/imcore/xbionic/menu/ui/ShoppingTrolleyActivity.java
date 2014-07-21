@@ -24,8 +24,11 @@ import com.imcore.xbionic.util.JsonUtil;
 import com.imcore.xbionic.util.ToastUtil;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -65,12 +68,6 @@ public class ShoppingTrolleyActivity extends Activity implements
 		mTotal = (TextView) findViewById(R.id.tv_pro_shopping_totals);
 		mEdit = (ImageView) findViewById(R.id.iv_product_shopping_edit);
 
-		// mRemove = (ImageView) findViewById(R.id.iv_pro_shopping_remove);
-		// mAddProduct = (ImageButton)
-		// findViewById(R.id.ib_pro_shopping_right_btn);
-		// mDelProduct = (ImageButton)
-		// findViewById(R.id.ib_pro_shopping_left_btn);
-
 		mEdit.setOnClickListener(this);
 		mBack.setOnClickListener(this);
 		mSettle.setOnClickListener(this);
@@ -90,14 +87,16 @@ public class ShoppingTrolleyActivity extends Activity implements
 					@Override
 					public void onResponse(String response) {
 						// 解析用户信息的json，保存userid和token
-						Log.i("sign", response);
-						onResponseForLogin(response);
+						//Log.i("sign", response);
+						 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForLogin(responseData);
 					}
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
-						Log.i("sign", error.getMessage());
+						error.printStackTrace();
+						//Log.i("sign", error.getMessage());
 					}
 				}) {
 			@Override
@@ -121,7 +120,7 @@ public class ShoppingTrolleyActivity extends Activity implements
 		mShoppingArray = new ArrayList<ProductShopping>();
 		ArrayList<String> arr = (ArrayList<String>) JsonUtil
 				.toJsonStrList(response);
-	
+
 		for (String json : arr) {
 			ProductShopping ps = new ProductShopping();
 			String product = JsonUtil.getJsonValueByKey(json, "product");
@@ -137,8 +136,8 @@ public class ShoppingTrolleyActivity extends Activity implements
 			mShoppingArray.add(ps);
 			totalMoney += Float.parseFloat(ps.price) * Float.parseFloat(ps.qty);
 		}
-		//Log.i("sign", mShoppingArray.toString());
-		mTotal.setText("￥" + totalMoney);
+		// Log.i("sign", mShoppingArray.toString());
+		mTotal.setText(totalMoney + "");
 		mVhArray = new ArrayList<ViewHolder>();
 		mList.setAdapter(shoppingAdapter);
 	}
@@ -172,19 +171,26 @@ public class ShoppingTrolleyActivity extends Activity implements
 				vh.remove = (ImageView) view
 						.findViewById(R.id.iv_pro_shopping_remove);
 				view.setTag(vh);
+
 			} else {
 				vh = (ViewHolder) view.getTag();
 			}
 			vh.title.setText(mShoppingArray.get(position).name);
 			vh.color.setText(mShoppingArray.get(position).color);
 			vh.size.setText(mShoppingArray.get(position).size);
-			vh.price.setText("￥" + mShoppingArray.get(position).price);
+			vh.price.setText(mShoppingArray.get(position).price);
 			vh.qty.setText(mShoppingArray.get(position).qty);
 			String url = Constant.IMAGE_ADDRESS
 					+ mShoppingArray.get(position).imageUrl + "_L.jpg";
 			setImag(vh.img, url);
 
-			mVhArray.add(vh);
+			vh.add.setOnClickListener(new vhImgOnClickListener(vh));
+			vh.del.setOnClickListener(new vhImgOnClickListener(vh));
+			vh.remove.setOnClickListener(new vhImgOnClickListener(vh));
+			if (mVhArray.indexOf(vh) == -1) {
+				mVhArray.add(vh);
+			}
+
 			return view;
 		}
 
@@ -233,7 +239,7 @@ public class ShoppingTrolleyActivity extends Activity implements
 		} else if (v.getId() == R.id.tv_pro_shopping_settle) {
 			ToastUtil.showToast(this, "settle");
 		} else if (v.getId() == R.id.iv_product_shopping_edit) {
-			//ToastUtil.showToast(this, "edit");
+			// ToastUtil.showToast(this, "edit");
 			setViewVisible();
 		}
 
@@ -253,32 +259,78 @@ public class ShoppingTrolleyActivity extends Activity implements
 					vh.add.setVisibility(View.VISIBLE);
 					vh.del.setVisibility(View.VISIBLE);
 					vh.remove.setVisibility(View.VISIBLE);
-					vh.add.setOnClickListener(vhImgOnClickListener);
-					vh.del.setOnClickListener(vhImgOnClickListener);
-					vh.remove.setOnClickListener(vhImgOnClickListener);
 				}
 				isVisible = true;
 			}
 		}
 	}
-	
-	private OnClickListener vhImgOnClickListener = new OnClickListener() {
-		
+
+	private class vhImgOnClickListener implements OnClickListener {
+		private ViewHolder vh;
+
+		vhImgOnClickListener(ViewHolder vh) {
+			this.vh = vh;
+		}
+
 		@Override
 		public void onClick(View v) {
-			for(ViewHolder vh : mVhArray){
-				if(v.getId() == vh.add.getId()){
-					ToastUtil.showToast(ShoppingTrolleyActivity.this, "add");
-					return;
-				}else if(v.getId() == vh.del.getId()){
-					ToastUtil.showToast(ShoppingTrolleyActivity.this, "del");
-					return;
-				}else if(v.getId() == vh.remove.getId()){
-					ToastUtil.showToast(ShoppingTrolleyActivity.this, "remove");
-					return;
-				}
+			if (v.getId() == vh.add.getId()) {
+				addProduct(vh);
+				return;
+			} else if (v.getId() == vh.del.getId()) {
+				delProduct(vh);
+				return;
+			} else if (v.getId() == vh.remove.getId()) {
+				removeProduct(vh);
+				return;
 			}
-			
 		}
-	};
+
+	}
+
+	private void addProduct(ViewHolder vh) {
+		int sum = Integer.parseInt(vh.qty.getText().toString());
+		vh.qty.setText((sum + 1) + "");
+		float total = Float.parseFloat(mTotal.getText().toString());
+		mTotal.setText((total + Float.parseFloat(vh.price.getText().toString()))
+				+ "");
+
+	}
+
+	private void delProduct(ViewHolder vh) {
+		int sum = Integer.parseInt(vh.qty.getText().toString());
+		if (sum == 0) {
+			return;
+		}
+		vh.qty.setText((sum - 1) + "");
+		float total = Float.parseFloat(mTotal.getText().toString());
+		mTotal.setText((total - Float.parseFloat(vh.price.getText().toString()))
+				+ "");
+	}
+
+	private void removeProduct(ViewHolder vh) {
+		removeDialog(this, vh).show();
+
+	}
+
+	/**
+	 * 提示是否删除商品
+	 * 
+	 * @param context
+	 * @return
+	 */
+	private Dialog removeDialog(Context context, ViewHolder vh) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setMessage("确定要删除该商品吗?");
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				
+			}
+		});
+		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			}
+		});
+		return builder.create();
+	}
 }

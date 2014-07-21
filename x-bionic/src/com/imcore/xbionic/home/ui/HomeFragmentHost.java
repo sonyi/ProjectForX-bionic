@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity;
 import com.imcore.xbionic.login.ui.LoginMainActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
 import com.imcore.xbionic.util.Const;
@@ -127,7 +128,7 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 
 				break;
 			case 2://达人故事
-
+				startActivity(new Intent(getActivity(),ExpertStoryHomeActivity.class));
 				break;
 			case 3://x的活动
 

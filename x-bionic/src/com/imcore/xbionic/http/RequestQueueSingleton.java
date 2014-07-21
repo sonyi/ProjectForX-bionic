@@ -99,7 +99,7 @@ public class RequestQueueSingleton {
 		mRequestQueue.stop();
 	}
 	
-	public void cancelAllRequestQueue(Object o){
-		mRequestQueue.cancelAll(o);
+	public void cancelAllRequestQueue(Object tag){
+		mRequestQueue.cancelAll(tag);
 	}
 }

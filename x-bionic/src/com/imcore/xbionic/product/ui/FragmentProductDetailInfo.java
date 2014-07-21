@@ -100,7 +100,8 @@ public class FragmentProductDetailInfo extends Fragment implements
 					public void onResponse(String response) {
 						if(response != null){
 							//Log.i("sign", response);
-							onResponseForProductList(response);
+							String responseData = JsonUtil.getJsonValueByKey(response, "data");
+							onResponseForProductList(responseData);
 						}
 					}
 				}, new Response.ErrorListener() {
@@ -120,6 +121,9 @@ public class FragmentProductDetailInfo extends Fragment implements
 	private ArrayList<ImageView> mColorImgArray;
 
 	private void onResponseForProductList(String response) {
+		if(getActivity() == null){
+			return;
+		}
 		try {
 			JSONObject j = new JSONObject(response);
 			mTitle = j.getString("name");
@@ -138,6 +142,9 @@ public class FragmentProductDetailInfo extends Fragment implements
 
 	// 动态生成颜色控件
 	private void addColor() {
+		if(getActivity() == null){
+			return;
+		}
 		LinearLayout insertLayout = (LinearLayout) view
 				.findViewById(R.id.rel_pro_det_color);
 		mImgID = 0x11;
@@ -182,7 +189,8 @@ public class FragmentProductDetailInfo extends Fragment implements
 					@Override
 					public void onResponse(String response) {
 						 if(response != null){
-							 String jsonSize = JsonUtil.getJsonValueByKey(response,
+							 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+							 String jsonSize = JsonUtil.getJsonValueByKey(responseData,
 										"sysSizeList");
 								mSize = (ArrayList<ProductSize>) JsonUtil.toObjectList(
 										jsonSize, ProductSize.class);
@@ -206,6 +214,9 @@ public class FragmentProductDetailInfo extends Fragment implements
 	// 动态生成尺寸控件
 	private int mSizeId;
 	private void addSize() {
+		if(getActivity() == null){
+			return;
+		}
 		mSizeArray = new ArrayList<TextView>();
 		LinearLayout insertLayout = (LinearLayout) view
 				.findViewById(R.id.rel_pro_det_size);
@@ -401,7 +412,8 @@ public class FragmentProductDetailInfo extends Fragment implements
 					@Override
 					public void onResponse(String response) {
 						 if(response != null){
-							 productQuantity = JsonUtil.toObject(response,
+							 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+							 productQuantity = JsonUtil.toObject(responseData,
 										ProductQuantity.class);
 						 }
 						if(productQuantity != null){

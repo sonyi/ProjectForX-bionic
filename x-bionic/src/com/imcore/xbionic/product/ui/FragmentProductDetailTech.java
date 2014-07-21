@@ -104,7 +104,8 @@ public class FragmentProductDetailTech extends Fragment{
 					@Override
 					public void onResponse(String response) {
 						//Log.i("sign", response);
-						onResponseForProductList(response);
+						 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForProductList(responseData);
 
 					}
 				}, new Response.ErrorListener() {
@@ -121,9 +122,10 @@ public class FragmentProductDetailTech extends Fragment{
 	ArrayList<String> mImgUrl;
 	ArrayList<String> mTitle;
 	private void onResponseForProductList(String response) {
-		
+		if(getActivity() == null){
+			return;
+		}
 		ArrayList<String> arr = (ArrayList<String>) JsonUtil.toJsonStrList(response);
-		
 		for (String json : arr) {
 			try {
 				JSONObject jsonObject = new JSONObject(json);

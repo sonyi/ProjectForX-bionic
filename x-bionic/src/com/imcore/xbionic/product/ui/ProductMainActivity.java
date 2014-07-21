@@ -53,7 +53,10 @@ public class ProductMainActivity extends Activity implements OnClickListener{
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						onResponseForLogin(response);
+//						String total = JsonUtil.getJsonValueByKey(response, "total");
+//						mTotal = Integer.parseInt(total);
+						String data = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForLogin(data);
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -89,7 +92,8 @@ public class ProductMainActivity extends Activity implements OnClickListener{
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						ArrayList<ProductItem> a = (ArrayList<ProductItem>) JsonUtil.toObjectList(response, ProductItem.class);
+						String data = JsonUtil.getJsonValueByKey(response, "data");
+						ArrayList<ProductItem> a = (ArrayList<ProductItem>) JsonUtil.toObjectList(data, ProductItem.class);
 						mProductItems.put(mProductGroups.indexOf(pro) + "", a);
 						if(mProductItems.size() == mProductGroups.size()){
 							initAdapter();
@@ -98,7 +102,7 @@ public class ProductMainActivity extends Activity implements OnClickListener{
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.i("sign", error.getMessage());
+						//Log.i("sign", error.getMessage());
 					}
 				});
 

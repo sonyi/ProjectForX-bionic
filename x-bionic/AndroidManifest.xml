@@ -64,6 +64,8 @@
             android:screenOrientation= "portrait" />
          <activity android:name="com.imcore.xbionic.product.ui.CommentActivity"
              android:screenOrientation= "portrait" />
+         <activity android:name="com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity"
+             android:screenOrientation= "portrait" />
         
     </application>
 

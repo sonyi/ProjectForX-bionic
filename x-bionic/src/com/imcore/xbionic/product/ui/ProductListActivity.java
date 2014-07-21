@@ -1,36 +1,13 @@
 package com.imcore.xbionic.product.ui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.ImageLoader.ImageListener;
-import com.imcore.xbionic.R;
-import com.imcore.xbionic.home.ui.HomeActivityLogin;
-import com.imcore.xbionic.http.Constant;
-import com.imcore.xbionic.http.DataRequest;
-import com.imcore.xbionic.http.RequestQueueSingleton;
-import com.imcore.xbionic.login.ui.XLoginActivity;
-import com.imcore.xbionic.model.ProductList;
-import com.imcore.xbionic.util.Const;
-import com.imcore.xbionic.util.JsonUtil;
-import com.imcore.xbionic.util.ToastUtil;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +17,19 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
+import com.imcore.xbionic.R;
+import com.imcore.xbionic.http.Constant;
+import com.imcore.xbionic.http.DataRequest;
+import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.model.ProductList;
+import com.imcore.xbionic.util.Const;
+import com.imcore.xbionic.util.JsonUtil;
 
 public class ProductListActivity extends Activity implements OnClickListener{
 	private GridView mGridView;
@@ -69,7 +59,7 @@ public class ProductListActivity extends Activity implements OnClickListener{
 
 	private void getProductListInfo() {
 		String url = Constant.HOST + "/category/products.do?navId=" + navId
-				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=10";
+				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=24";
 		mDialog = ProgressDialog.show(ProductListActivity.this, " ",
 				"正在获取数据,请稍后... ", true);
 		
@@ -77,7 +67,8 @@ public class ProductListActivity extends Activity implements OnClickListener{
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						onResponseForProductList(response);
+						String data = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForProductList(data);
 						mDialog.cancel();
 					}
 				}, new Response.ErrorListener() {

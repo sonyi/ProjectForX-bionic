@@ -39,4 +39,9 @@ http://bulo2bulo.com:8080/mobile/api/news/list.do?offset=0&fetchSize=10
 
 http://bulo2bulo.com:8080/mobile/api/news/get.do?id=23
 
+//达人故事
+http://bulo2bulo.com:8080/mobile/api/testteam/list.do?offset=0&fetchSize=10
+
+http://bulo2bulo.com/Image/TestFile/acf031eb-1924-4c61-9abb-d2eccc60145f.jpg
+
 

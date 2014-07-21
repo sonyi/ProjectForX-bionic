@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/iv_experstory_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_product_img" />
+
+    <TextView
+        android:id="@+id/tv_experstory_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="13dp"
+        android:textColor="@android:color/white"
+        android:singleLine="true"
+        android:text="2013-04-01" />
+
+    <TextView
+        android:id="@+id/tv_experstory_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+          android:textColor="@android:color/white"
+        android:layout_toLeftOf="@id/tv_experstory_data"
+        android:layout_toRightOf="@id/iv_experstory_img"
+        android:singleLine="true"
+        android:text="title" />
+
+        <ImageView
+        android:id="@+id/iv_experstory_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_experstory_data"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_drawer_boult_right" />
+        
+        <TextView
+        android:id="@+id/tv_experstory_simpleDescrition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_experstory_title"
+        android:layout_alignLeft="@id/tv_experstory_title"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+          android:textColor="@android:color/white"
+        android:layout_toLeftOf="@id/iv_experstory_more"
+        android:maxLines="2"
+        android:text="simpleDescrition" />
+    
+</RelativeLayout>

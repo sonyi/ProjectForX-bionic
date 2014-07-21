@@ -61,7 +61,10 @@ public class ActivityProductMenuComment extends Activity implements
 					public void onResponse(String response) {
 						if (response != null) {
 							// Log.i("sign", response);
-							onResponseForProductComment(response);
+//							String total = JsonUtil.getJsonValueByKey(response, "total");
+//							mTotal = Integer.parseInt(total);
+							 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+							onResponseForProductComment(responseData);
 						}
 					}
 				}, new Response.ErrorListener() {
@@ -82,7 +85,6 @@ public class ActivityProductMenuComment extends Activity implements
 	}
 
 	private BaseAdapter commentAdapter = new BaseAdapter() {
-
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = convertView;

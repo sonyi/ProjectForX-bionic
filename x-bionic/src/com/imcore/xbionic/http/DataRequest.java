@@ -1,5 +1,8 @@
 package com.imcore.xbionic.http;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
@@ -26,7 +29,13 @@ public class DataRequest extends Request<String> {
 			int status = Integer.parseInt(JsonUtil.getJsonValueByKey(json, "status"));
 			if (status == 200) {
 				String data = JsonUtil.getJsonValueByKey(json, "data");
-				return Response.success(data, HttpHeaderParser.parseCacheHeaders(response));
+				String total = JsonUtil.getJsonValueByKey(json, "total");
+				JSONObject j = new JSONObject();
+				j.put("total", total);
+				j.put("data", data);
+				//Log.i("sign", total);
+				//Log.i("sign", j.toString());
+				return Response.success(j.toString(), HttpHeaderParser.parseCacheHeaders(response));
 			} else {
 				String message = JsonUtil.getJsonValueByKey(json, "message");
 				return Response.error(new VolleyError(message));

@@ -105,7 +105,10 @@ public class FragmentProductDetailImg extends Fragment {
 					@Override
 					public void onResponse(String response) {
 						//Log.i("sign", response);
-						onResponseForProductList(response);
+//						String total = JsonUtil.getJsonValueByKey(response, "total");
+//						mTotal = Integer.parseInt(total);
+						String responseData = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForProductList(responseData);
 
 					}
 				}, new Response.ErrorListener() {
@@ -122,6 +125,9 @@ public class FragmentProductDetailImg extends Fragment {
 	ArrayList<String> imgUrl;
 
 	private void onResponseForProductList(String response) {
+		if(getActivity() == null){
+			return;
+		}
 		ArrayList<String> arrJsonStr = (ArrayList<String>) JsonUtil
 				.toJsonStrList(response);
 		for (String json : arrJsonStr) {

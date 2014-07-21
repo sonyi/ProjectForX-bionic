@@ -110,7 +110,10 @@ private BaseAdapter awardAdapter = new BaseAdapter() {
 					public void onResponse(String response) {
 						 if(response != null){
 							 //Log.i("sign", response);
-							 response(response);
+//								String total = JsonUtil.getJsonValueByKey(response, "total");
+//								mTotal = Integer.parseInt(total);
+								 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+							 response(responseData);
 						 }
 					}
 				}, new Response.ErrorListener() {

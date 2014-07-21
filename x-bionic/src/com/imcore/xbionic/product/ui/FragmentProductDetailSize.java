@@ -128,7 +128,8 @@ public class FragmentProductDetailSize extends Fragment{
 					@Override
 					public void onResponse(String response) {
 						//Log.i("sign", response);
-						onResponseForProductList(response);
+						 String responseData = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForProductList(responseData);
 
 					}
 				}, new Response.ErrorListener() {
@@ -143,8 +144,10 @@ public class FragmentProductDetailSize extends Fragment{
 	}
 
 	ArrayList<String> imgUrl;
-
 	private void onResponseForProductList(String response) {
+		if(getActivity() == null){
+			return;
+		}
 		String jsonSize = JsonUtil.getJsonValueByKey(response, "sizeStandardDetailList");
 		ArrayList<String> arrRow = (ArrayList<String>) JsonUtil.toJsonStrList(jsonSize);
 		if(!dataList.isEmpty()){

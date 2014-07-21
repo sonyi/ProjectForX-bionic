@@ -68,7 +68,7 @@
         android:layout_alignLeft="@id/tv_pro_shopping_color_detail"
         android:layout_below="@id/tv_pro_shopping_color_detail"
         android:layout_marginTop="5dp"
-        android:text="总价："
+        android:text="总价：￥"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -108,14 +108,16 @@
             android:src="@drawable/ic_product_shopping_right_icon"
             />
 
-        <EditText
+        <TextView
             android:id="@+id/et_pro_shopping_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/ib_pro_shopping_right_btn"
-            android:enabled="false"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
             android:text="1"
+            android:layout_marginRight="5dp"
             android:textColor="@android:color/white" />
         
           <ImageView android:id="@+id/ib_pro_shopping_left_btn"
@@ -142,6 +144,7 @@
         android:layout_height="2dp"
         android:layout_below="@id/iv_pro_shopping_img"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/ic_product_comment_dottedline" />
 
 </RelativeLayout>
