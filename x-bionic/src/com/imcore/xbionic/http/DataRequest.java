@@ -31,7 +31,9 @@ public class DataRequest extends Request<String> {
 				String data = JsonUtil.getJsonValueByKey(json, "data");
 				String total = JsonUtil.getJsonValueByKey(json, "total");
 				JSONObject j = new JSONObject();
-				j.put("total", total);
+				if(total != null){
+					j.put("total", total);
+				}
 				j.put("data", data);
 				//Log.i("sign", total);
 				//Log.i("sign", j.toString());

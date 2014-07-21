@@ -1,4 +1,4 @@
-package com.imcore.xbionic.expertstory.ui;
+package com.imcore.xbionic.XActivities.ui;
 
 import java.util.ArrayList;
 
@@ -6,11 +6,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,10 +24,11 @@ import com.imcore.xbionic.DefinedListView.XListView.IXListViewListener;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
-import com.imcore.xbionic.model.ExperStoryList;
+import com.imcore.xbionic.model.XActivityMain;
+import com.imcore.xbionic.product.ui.ProductListActivity;
 import com.imcore.xbionic.util.JsonUtil;
 
-public class ExpertStoryHomeActivity extends Activity implements
+public class XActivitiesMainActivity extends Activity implements
 		OnClickListener {
 	private XListView mListView;
 	private ImageView mBack;
@@ -37,43 +36,43 @@ public class ExpertStoryHomeActivity extends Activity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_experstory_home);
-		mExperStoryLists = new ArrayList<ExperStoryList>();
-		mListView = (XListView) findViewById(R.id.lv_experstory_layout);
+		setContentView(R.layout.activity_xactivities_main);
+		mXActivityArray = new ArrayList<XActivityMain>();
+		mListView = (XListView) findViewById(R.id.lv_xactivities_layout);
 		mListView.setPullLoadEnable(true);
 		mListView.setXListViewListener(listViewListener);
-		mBack = (ImageView) findViewById(R.id.iv_experstory_back);
+		mBack = (ImageView) findViewById(R.id.iv_xactivities_back);
 		mBack.setOnClickListener(this);
-
-		getExperStoryListInfo(0, 10);
+		getXActivityListInfo(0, 10);
 		mDialog = ProgressDialog.show(this, " ",
 				"正在获取数据,请稍后... ", true);
-
+		
 	}
 
 	private IXListViewListener listViewListener = new IXListViewListener() {
 
 		@Override
 		public void onLoadMore() {
-			if (mExperStoryLists.size() == mTotal) {
+			if (mXActivityArray.size() == mTotal) {
 				mListView.noLoadMore();
 			} else {
-				int offset = mExperStoryLists.size();
-				int fetchSize = mExperStoryLists.size() + 10;
+				int offset = mXActivityArray.size();
+				int fetchSize = mXActivityArray.size() + 10;
 				if (fetchSize > mTotal) {
 					fetchSize = mTotal;
 				}
-				getExperStoryListInfo(offset, fetchSize);
+				getXActivityListInfo(offset, fetchSize);
 			}
 		}
 	};
 
 	private int mTotal = 0;
 
-	private void getExperStoryListInfo(int offset, int fetchSize) {
-		String url = Constant.HOST + "/testteam/list.do?offset=" + offset
-				+ "&fetchSize=" + fetchSize;
+	private void getXActivityListInfo(int offset, int fetchSize) {
+		String url = Constant.HOST + "/search/keyword.do?type=2&offset="
+				+ offset + "&fetchSize=" + fetchSize;
 
 		DataRequest request = new DataRequest(Request.Method.GET, url,
 				new Response.Listener<String>() {
@@ -84,8 +83,9 @@ public class ExpertStoryHomeActivity extends Activity implements
 						mTotal = Integer.parseInt(total);
 						String data = JsonUtil.getJsonValueByKey(response,
 								"data");
-						// Log.i("sign", data);
-						onResponseForExperStoryList(data);
+						// Log.i("sign", mTotal + "------" + data);
+						onResponseForXActivityList(data);
+						
 						if(mDialog != null){
 							mDialog.cancel();
 						}
@@ -104,14 +104,15 @@ public class ExpertStoryHomeActivity extends Activity implements
 		RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
 	}
 
-	ArrayList<ExperStoryList> mExperStoryLists;
+	ArrayList<XActivityMain> mXActivityArray;
 
-	private void onResponseForExperStoryList(String response) {
-		ArrayList<ExperStoryList> data = (ArrayList<ExperStoryList>) JsonUtil
-				.toObjectList(response, ExperStoryList.class);
-		// Log.i("sign", mExperStoryLists.toString());
-		mExperStoryLists.addAll(data);
-		if (mExperStoryLists.size() == data.size()) {
+	private void onResponseForXActivityList(String response) {
+		ArrayList<XActivityMain> data = (ArrayList<XActivityMain>) JsonUtil
+				.toObjectList(response, XActivityMain.class);
+
+		mXActivityArray.addAll(data);
+		// Log.i("sign", mXActivityArray.toString());
+		if (mXActivityArray.size() == data.size()) {
 			mListView.setAdapter(mListViewAdapter);
 		} else {
 			mListViewAdapter.notifyDataSetChanged();
@@ -122,58 +123,82 @@ public class ExpertStoryHomeActivity extends Activity implements
 	private BaseAdapter mListViewAdapter = new BaseAdapter() {
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View view = convertView;
-			ViewHolder vh = null;
-			if (view == null) {
-				view = getLayoutInflater().inflate(
-						R.layout.view_experstory_layout, null);
-				vh = new ViewHolder();
-				vh.img = (ImageView) view.findViewById(R.id.iv_experstory_img);
-				vh.title = (TextView) view
-						.findViewById(R.id.tv_experstory_title);
-				vh.data = (TextView) view.findViewById(R.id.tv_experstory_data);
-				vh.dec = (TextView) view
-						.findViewById(R.id.tv_experstory_simpleDescrition);
-				view.setTag(vh);
-			} else {
-				vh = (ViewHolder) view.getTag();
-			}
-			vh.title.setText(mExperStoryLists.get(position).title);
-			String testdata = mExperStoryLists.get(position).testDate;
-			String d = testdata.substring(0, testdata.indexOf("T"));
-			String[] sp = d.split("/");
-			vh.data.setText(sp[2] + "-" + sp[0] + "-" + sp[1]);
-			vh.dec.setText(mExperStoryLists.get(position).simpleDescrition);
-			String url = Constant.IMAGE_ADDRESS + mExperStoryLists.get(position).phoneUrl + "_N.jpg";
-			setImag(vh.img, url);
-			view.setOnClickListener(new listViewOnClickListener(
-					mExperStoryLists.get(position).descrition));
-			return view;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return mXActivityArray.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return mExperStoryLists.get(position);
+			// TODO Auto-generated method stub
+			return mXActivityArray.get(position);
 		}
 
 		@Override
-		public int getCount() {
-			return mExperStoryLists.size();
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			View view = convertView;
+			ViewHolder vh = null;
+			if (view == null) {
+				view = getLayoutInflater().inflate(
+						R.layout.view_xactivities_main, null);
+				vh = new ViewHolder();
+				vh.title = (TextView) view
+						.findViewById(R.id.tv_xactivities_title);
+				vh.date = (TextView) view
+						.findViewById(R.id.tv_xactivities_date);
+				vh.img = (ImageView) view.findViewById(R.id.iv_xactivities_img);
+				view.setTag(vh);
+			} else {
+				vh = (ViewHolder) view.getTag();
+			}
+			vh.title.setText(mXActivityArray.get(position).title);
+			String sd = mXActivityArray.get(position).beginTime;
+			String startDate = sd.substring(0, sd.indexOf("T"));
+			String ed = mXActivityArray.get(position).endTime;
+			String endDate = ed.substring(0, ed.indexOf("T"));
+			vh.date.setText(startDate + "-" + endDate);
+			String url = Constant.IMAGE_ADDRESS
+					+ mXActivityArray.get(position).titleImageUrl + ".jpg";
+			setImag(vh.img, url);
+			view.setOnClickListener(new ListViewOnClickListener(position));
+
+			return view;
 		}
 
 		class ViewHolder {
-			ImageView img;
 			TextView title;
-			TextView data;
-			TextView dec;
+			TextView date;
+			ImageView img;
 		}
+
 	};
+
+	private class ListViewOnClickListener implements OnClickListener {
+		private int position;
+
+		ListViewOnClickListener(int position) {
+			this.position = position;
+		}
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(XActivitiesMainActivity.this,
+					XActivitiesDetailsActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putParcelable("xactivities", mXActivityArray.get(position));
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+
+	}
 
 	private void setImag(ImageView image, String url) {
 		ImageLoader loader = RequestQueueSingleton.getInstance(
@@ -183,27 +208,13 @@ public class ExpertStoryHomeActivity extends Activity implements
 		loader.get(url, listener, 400, 400);
 	}
 
-	private class listViewOnClickListener implements OnClickListener {
-		String detail;
-
-		listViewOnClickListener(String detail) {
-			this.detail = detail;
-		}
-
-		@Override
-		public void onClick(View v) {
-			Intent intent = new Intent(ExpertStoryHomeActivity.this,
-					ExperStoryDtailActivity.class);
-			intent.putExtra("experStoryDetail", detail);
-			startActivity(intent);
-		}
-	};
-
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		if (v.getId() == R.id.iv_experstory_back) {
+		if (v.getId() == R.id.iv_xactivities_back) {
 			finish();
 		}
+
 	}
+
 }

@@ -8,10 +8,12 @@ public class ProductShopping {
 	public String size;
 	public String price;
 	public String qty;
+	public String productQuantityId;
 	@Override
 	public String toString() {
 		return "ProductShopping [id=" + id + ", imageUrl=" + imageUrl
 				+ ", name=" + name + ", color=" + color + ", size=" + size
-				+ ", price=" + price + ", qty=" + qty + "]";
+				+ ", price=" + price + ", qty=" + qty + ", productQuantityId="
+				+ productQuantityId + "]";
 	}
 }

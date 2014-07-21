@@ -17,56 +17,80 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-         >
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.imcore.xbionic.ui.LoadingActivity"
             android:label="@string/app_name"
-            android:screenOrientation= "portrait" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.imcore.xbionic.ui.InstructorActivtity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityLogin" 
+        <activity
+            android:name="com.imcore.xbionic.ui.InstructorActivtity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.home.ui.HomeActivityLogin"
             android:launchMode="singleTask"
-            android:screenOrientation= "portrait"/>
-        <activity android:name="com.imcore.xbionic.home.ui.HomeActivityUnLogin" 
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.home.ui.HomeActivityUnLogin"
             android:launchMode="singleTask"
-            android:screenOrientation= "portrait"/>
-        <activity android:name="com.imcore.xbionic.login.ui.LoginMainActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.login.ui.XLoginActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.menu.ui.AccountResetActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.tencent.weibo.sdk.android.component.Authorize"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.product.ui.ProductMainActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.product.ui.ProductListActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.product.ui.ProductDetailsActivity"
-            android:screenOrientation= "portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.login.ui.LoginMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.login.ui.XLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.menu.ui.AccountResetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.login.ui.PhoneRegisterCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.tencent.weibo.sdk.android.component.Authorize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.product.ui.ProductMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.product.ui.ProductListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.product.ui.ProductDetailsActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuComment"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.product.ui.ActivityProductMenuNews"
-            android:screenOrientation= "portrait" />
-        <activity android:name="com.imcore.xbionic.product.ui.ActivitytProductMenuAward"
-            android:screenOrientation= "portrait" />
-         <activity android:name="com.imcore.xbionic.product.ui.CommentActivity"
-             android:screenOrientation= "portrait" />
-         <activity android:name="com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity"
-             android:screenOrientation= "portrait" />
-        
+        <activity
+            android:name="com.imcore.xbionic.product.ui.ActivityProductMenuComment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.product.ui.ActivityProductMenuNews"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.product.ui.ActivitytProductMenuAward"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.product.ui.CommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.expertstory.ui.ExperStoryDtailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.XActivities.ui.XActivitiesMainActivity"
+            android:screenOrientation="portrait" />
+         <activity
+            android:name="com.imcore.xbionic.XActivities.ui.XActivitiesDetailsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -43,6 +43,7 @@ import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
 import com.imcore.xbionic.login.ui.LoginMainActivity;
 import com.imcore.xbionic.login.ui.XLoginActivity;
+import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
 import com.imcore.xbionic.model.ProductColor;
 import com.imcore.xbionic.model.ProductQuantity;
 import com.imcore.xbionic.model.ProductSize;
@@ -333,7 +334,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 		builder.setPositiveButton("马上结算",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-
+						startActivity(new Intent(getActivity(),ShoppingTrolleyActivity.class));
 					}
 				});
 		builder.setNegativeButton("再逛逛", new DialogInterface.OnClickListener() {

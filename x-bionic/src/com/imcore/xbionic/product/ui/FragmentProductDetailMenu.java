@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 
@@ -22,6 +23,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -29,13 +31,14 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-public class FragmentProductDetailMenu extends Fragment{
+public class FragmentProductDetailMenu extends Fragment implements OnClickListener{
 	Context context = null;
 	@SuppressWarnings("deprecation")
 	LocalActivityManager manager = null;
 	ViewPager pager = null;
 	TabHost tabHost = null;
-	TextView mCommentTv,mNewsTv,mAwardTv;
+	private TextView mCommentTv,mNewsTv,mAwardTv;
+	private TextView mShare,mShopping,mStore;
 	private long productDetailId;
 	
 	private int offset = 0;// 动画图片偏移量
@@ -75,11 +78,16 @@ public class FragmentProductDetailMenu extends Fragment{
 		mCommentTv.setText("产品评价");
 		mNewsTv.setText("产品新闻");
 		mAwardTv.setText("所获奖项");
-
 		mCommentTv.setOnClickListener(new MyOnClickListener(0));
 		mNewsTv.setOnClickListener(new MyOnClickListener(1));
 		mAwardTv.setOnClickListener(new MyOnClickListener(2));
 		
+		mShare = (TextView) view.findViewById(R.id.tv_pro_menu_share);
+		mShopping = (TextView) view.findViewById(R.id.tv_pro_menu_shopping);
+		mStore = (TextView) view.findViewById(R.id.tv_pro_menu_collect);
+		mShare.setOnClickListener(this);
+		mShopping.setOnClickListener(this);
+		mStore.setOnClickListener(this);
 	}
 	/**
 	 * 初始化PageViewer
@@ -239,6 +247,17 @@ public class FragmentProductDetailMenu extends Fragment{
 		public void onClick(View v) {
 			pager.setCurrentItem(index);
 		}
+	}
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.tv_pro_menu_share){
+			
+		}else if(v.getId() == R.id.tv_pro_menu_shopping){
+			startActivity(new Intent(getActivity(),ShoppingTrolleyActivity.class));
+		}else if(v.getId() == R.id.tv_pro_menu_collect){
+			
+		}
+		
 	};
 	
 }

@@ -25,3 +25,8 @@ http://bulo2bulo.com/Image/ProductColor/35e9e5d7-5f39-4c7f-b059-bfba918546ff.jpg
 http://bulo2bulo.com/Image/NewsFile/258bf0c5-3d21-4cb5-bfdd-108d8166dfae_M.jpg
 
 http://bulo2bulo.com/Image/HonorImage/106c9c31-6d26-4cb7-92b5-6b7e50a9cb89_M.jpg
+
+
+http://bulo2bulo.com/Image/TestFile/acf031eb-1924-4c61-9abb-d2eccc60145f_M.jpg
+
+http://bulo2bulo.com/Image/Activity/91a9bcf5-2769-4ea6-b42f-7aa9763fd106.jpg

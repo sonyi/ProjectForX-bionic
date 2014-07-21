@@ -59,7 +59,7 @@ public class ProductListActivity extends Activity implements OnClickListener{
 
 	private void getProductListInfo() {
 		String url = Constant.HOST + "/category/products.do?navId=" + navId
-				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=24";
+				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=15";
 		mDialog = ProgressDialog.show(ProductListActivity.this, " ",
 				"正在获取数据,请稍后... ", true);
 		

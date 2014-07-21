@@ -85,7 +85,8 @@ public class XLoginActivity extends Activity implements OnClickListener {
 					public void onResponse(String response) {
 						// 解析用户信息的json，保存userid和token
 						// Log.i("sign", response);
-						onResponseForLogin(response);
+						String responseData = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForLogin(responseData);
 
 					}
 				}, new Response.ErrorListener() {

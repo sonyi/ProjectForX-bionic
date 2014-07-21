@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/ic_all_background" >
+    
+    
+     <RelativeLayout
+        android:id="@+id/rel_xactivities_detail_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_home_top_background" >
+
+        <ImageView
+            android:id="@+id/iv_xactivities_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_back_btn_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="活动详情"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_xactivities_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:text="活动中"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_xactivities_activity"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_xactivities_activity"
+                android:singleLine="true"
+                android:text="title"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_xactivities_title"
+                android:layout_below="@id/tv_xactivities_title"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:text="12/21/2011--01/19/2012"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/iv_xactivities_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignLeft="@id/tv_xactivities_date"
+                android:layout_below="@id/tv_xactivities_date"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_product_img" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_xactivities_img"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:singleLine="true"
+                android:text="地点："
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_organizer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xactivities_address"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="发起人："
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_org"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xactivities_organizer"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="组织者：部落平方"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_signUpDeadLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xactivities_org"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="报名结束时间："
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_activityType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xactivities_signUpDeadLine"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="类   型：部落火把"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_xactivities_provinceId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xactivities_activityType"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="7人参加"
+                android:textColor="@android:color/white" />
+            
+            <TextView
+                android:id="@+id/tv_xactivities_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xactivities_provinceId"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:text="内容详情\r\n内容"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

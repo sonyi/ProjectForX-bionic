@@ -12,14 +12,9 @@ import android.view.Menu;
 import android.widget.ProgressBar;
 
 import com.imcore.xbionic.R;
-import com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity;
+import com.imcore.xbionic.XActivities.ui.XActivitiesMainActivity;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
-import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
-import com.imcore.xbionic.product.ui.CommentActivity;
-import com.imcore.xbionic.product.ui.ProductDetailsActivity;
-import com.imcore.xbionic.product.ui.ProductMainActivity;
-import com.imcore.xbionic.util.Const;
 
 public class LoadingActivity extends Activity {
 	private ProgressBar mProgressBar;
@@ -52,7 +47,7 @@ public class LoadingActivity extends Activity {
 			}
 		}
 		
-		//intent = new Intent(this, ExpertStoryHomeActivity.class);
+		//intent = new Intent(this, XActivitiesMainActivity.class);
 //		intent = new Intent(this, ProductDetailsActivity.class);
 //		intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, (long)267);
  

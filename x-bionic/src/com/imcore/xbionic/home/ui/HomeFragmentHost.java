@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.XActivities.ui.XActivitiesMainActivity;
 import com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity;
 import com.imcore.xbionic.login.ui.LoginMainActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
@@ -59,9 +60,9 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 				.findViewById(R.id.drawer_main_body_layout);
 
 		imgIdArray = new int[] { R.drawable.ic_home_activtypage1,
-				R.drawable.ic_home_activtypage2,
 				R.drawable.ic_home_activtypage3,
-				R.drawable.ic_home_activtypage4 };
+				R.drawable.ic_home_activtypage4,
+				R.drawable.ic_home_activtypage2};
 
 		mImageViews = new ImageView[imgIdArray.length];
 		for (int i = 0; i < mImageViews.length; i++) {
@@ -124,13 +125,13 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 				Intent intent = new Intent(getActivity(),ProductMainActivity.class);
 				startActivity(intent);
 				break;
-			case 1://x的介绍
-
-				break;
-			case 2://达人故事
+			case 1://达人故事
 				startActivity(new Intent(getActivity(),ExpertStoryHomeActivity.class));
 				break;
-			case 3://x的活动
+			case 2://x的活动
+				startActivity(new Intent(getActivity(),XActivitiesMainActivity.class));
+				break;
+			case 3://x的介绍
 
 				break;
 			}
