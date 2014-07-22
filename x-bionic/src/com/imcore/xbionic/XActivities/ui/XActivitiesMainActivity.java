@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,8 +25,8 @@ import com.imcore.xbionic.DefinedListView.XListView.IXListViewListener;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.imagework.ImageWork;
 import com.imcore.xbionic.model.XActivityMain;
-import com.imcore.xbionic.product.ui.ProductListActivity;
 import com.imcore.xbionic.util.JsonUtil;
 
 public class XActivitiesMainActivity extends Activity implements
@@ -46,9 +47,8 @@ public class XActivitiesMainActivity extends Activity implements
 		mBack = (ImageView) findViewById(R.id.iv_xactivities_back);
 		mBack.setOnClickListener(this);
 		getXActivityListInfo(0, 10);
-		mDialog = ProgressDialog.show(this, " ",
-				"正在获取数据,请稍后... ", true);
-		
+		mDialog = ProgressDialog.show(this, " ", "正在获取数据,请稍后... ", true);
+
 	}
 
 	private IXListViewListener listViewListener = new IXListViewListener() {
@@ -85,8 +85,8 @@ public class XActivitiesMainActivity extends Activity implements
 								"data");
 						// Log.i("sign", mTotal + "------" + data);
 						onResponseForXActivityList(data);
-						
-						if(mDialog != null){
+
+						if (mDialog != null) {
 							mDialog.cancel();
 						}
 
@@ -95,7 +95,7 @@ public class XActivitiesMainActivity extends Activity implements
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						error.printStackTrace();
-						if(mDialog != null){
+						if (mDialog != null) {
 							mDialog.cancel();
 						}
 					}
@@ -113,6 +113,7 @@ public class XActivitiesMainActivity extends Activity implements
 		mXActivityArray.addAll(data);
 		// Log.i("sign", mXActivityArray.toString());
 		if (mXActivityArray.size() == data.size()) {
+			mListViewAdapter = new ListViewAdapter();
 			mListView.setAdapter(mListViewAdapter);
 		} else {
 			mListViewAdapter.notifyDataSetChanged();
@@ -120,8 +121,9 @@ public class XActivitiesMainActivity extends Activity implements
 		}
 	}
 
-	private BaseAdapter mListViewAdapter = new BaseAdapter() {
+	private ListViewAdapter mListViewAdapter;
 
+	private class ListViewAdapter extends BaseAdapter {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -166,8 +168,15 @@ public class XActivitiesMainActivity extends Activity implements
 			vh.date.setText(startDate + "-" + endDate);
 			String url = Constant.IMAGE_ADDRESS
 					+ mXActivityArray.get(position).titleImageUrl + ".jpg";
-			setImag(vh.img, url);
 			view.setOnClickListener(new ListViewOnClickListener(position));
+			
+			vh.img.setTag(url);
+			Bitmap bitmap = ImageWork.getImageWork().setImgBitmap(vh.img, url);
+			if (bitmap == null) {
+				vh.img.setImageResource(R.drawable.ic_product_img);
+			}else{
+				vh.img.setImageBitmap(bitmap);
+			}
 
 			return view;
 		}
@@ -197,7 +206,6 @@ public class XActivitiesMainActivity extends Activity implements
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}
-
 	}
 
 	private void setImag(ImageView image, String url) {
@@ -205,6 +213,7 @@ public class XActivitiesMainActivity extends Activity implements
 				getApplicationContext()).getImageLoader();
 		ImageListener listener = ImageLoader.getImageListener(image,
 				R.drawable.ic_product_img, R.drawable.ic_product_img);
+
 		loader.get(url, listener, 400, 400);
 	}
 
@@ -214,6 +223,12 @@ public class XActivitiesMainActivity extends Activity implements
 		if (v.getId() == R.id.iv_xactivities_back) {
 			finish();
 		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 
 	}
 

@@ -95,6 +95,7 @@
             android:maxLength="5"
             android:background="#FFFFFF"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:layout_marginBottom="7dp"
             android:layout_alignBottom="@id/tv_pro_det_amount_detail"
             android:layout_toRightOf="@id/tv_pro_det_amount_detail"

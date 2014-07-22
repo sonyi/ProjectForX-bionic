@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.Introduction.ui.IntroductionHomeActivity;
 import com.imcore.xbionic.XActivities.ui.XActivitiesMainActivity;
 import com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity;
 import com.imcore.xbionic.login.ui.LoginMainActivity;
@@ -132,7 +133,7 @@ public class HomeFragmentHost extends Fragment implements OnClickListener {
 				startActivity(new Intent(getActivity(),XActivitiesMainActivity.class));
 				break;
 			case 3://x的介绍
-
+				startActivity(new Intent(getActivity(),IntroductionHomeActivity.class));
 				break;
 			}
 		}

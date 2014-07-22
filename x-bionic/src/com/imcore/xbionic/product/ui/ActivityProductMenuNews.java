@@ -18,6 +18,7 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.imagework.ImageWork;
 import com.imcore.xbionic.login.ui.XLoginActivity;
 import com.imcore.xbionic.model.ProductColor;
 import com.imcore.xbionic.model.ProductNews;
@@ -31,6 +32,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -78,7 +80,15 @@ public class ActivityProductMenuNews extends Activity{
 			String[] d = mNewsArray.get(position).newsDate.split("T");
 			vh.data.setText(d[0] + "  " + d[1]);
 			String url = Constant.IMAGE_ADDRESS + mNewsArray.get(position).imageUrl + "_M.jpg";
-			setImag(vh.img, url);
+			//setImag(vh.img, url);
+			vh.img.setTag(url);
+			Bitmap bitmap = ImageWork.getImageWork().setImgBitmap(vh.img, url);
+			if (bitmap == null) {
+				vh.img.setImageResource(R.drawable.ic_product_img);
+			}else{
+				vh.img.setImageBitmap(bitmap);
+			}
+			
 			return view;
 		}
 		

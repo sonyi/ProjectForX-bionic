@@ -14,12 +14,14 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.imagework.ImageWork;
 import com.imcore.xbionic.model.ProductAward;
 import com.imcore.xbionic.model.ProductAward;
 import com.imcore.xbionic.util.JsonUtil;
 import com.imcore.xbionic.util.ToastUtil;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -64,7 +66,15 @@ private BaseAdapter awardAdapter = new BaseAdapter() {
 			String[] d = mAwardArray.get(position).createDate.split("T");
 			vh.data.setText(d[0] + "  " + d[1]);
 			String url = Constant.IMAGE_ADDRESS + mAwardArray.get(position).imageUrl + "_S.jpg";
-			setImag(vh.img, url);
+			//setImag(vh.img, url);
+			vh.img.setTag(url);
+			Bitmap bitmap = ImageWork.getImageWork().setImgBitmap(vh.img, url);
+			if (bitmap == null) {
+				vh.img.setImageResource(R.drawable.ic_product_img);
+			}else{
+				vh.img.setImageBitmap(bitmap);
+			}
+			
 			return view;
 		}
 		

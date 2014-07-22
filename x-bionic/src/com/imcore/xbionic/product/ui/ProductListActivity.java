@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.imagework.ImageWork;
 import com.imcore.xbionic.model.ProductList;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
@@ -78,7 +80,6 @@ public class ProductListActivity extends Activity implements OnClickListener{
 						mDialog.cancel();
 					}
 				});
-
 		RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
 	}
 
@@ -140,7 +141,15 @@ public class ProductListActivity extends Activity implements OnClickListener{
 			vh.tvName.setText(mProductListGroup.get(position).name);
 			vh.tvPrice.setText("￥" + mProductListGroup.get(position).price);
 			String url = Constant.IMAGE_ADDRESS + mProductListGroup.get(position).imageUrl + "_L.jpg";
-			setImag(vh.img, url);
+			//setImag(vh.img, url);
+			vh.img.setTag(url);
+			Bitmap bitmap = ImageWork.getImageWork().setImgBitmap(vh.img, url);
+			if (bitmap == null) {
+				vh.img.setImageResource(R.drawable.ic_product_img);
+			}else{
+				vh.img.setImageBitmap(bitmap);
+			}
+			
 			view.setOnClickListener(new ItemOnClickListener(mProductListGroup.get(position)));
 			return view;
 		}

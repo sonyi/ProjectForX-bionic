@@ -47,7 +47,7 @@ public class XActivitiesDetailsActivity extends Activity implements OnClickListe
 		organizer.setText("发起人：" + x.organizer);
 		String deadDate = x.signUpDeadLine.substring(0, x.signUpDeadLine.indexOf("T"));
 		signUpDeadLine.setText("报名结束时间：" + deadDate);
-		provinceId.setText("地点：" + x.provinceId);
+		provinceId.setText(x.provinceId + "人参加");
 		String s = x.content.replaceAll("<br />", "\r\n");
 		String ss = s.replaceAll("<br/>", "\r\n");
 		content.setText(ss);

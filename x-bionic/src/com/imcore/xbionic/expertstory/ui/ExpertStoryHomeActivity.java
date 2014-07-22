@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.imcore.xbionic.DefinedListView.XListView.IXListViewListener;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.imagework.ImageWork;
 import com.imcore.xbionic.model.ExperStoryList;
 import com.imcore.xbionic.util.JsonUtil;
 
@@ -146,7 +148,15 @@ public class ExpertStoryHomeActivity extends Activity implements
 			vh.data.setText(sp[2] + "-" + sp[0] + "-" + sp[1]);
 			vh.dec.setText(mExperStoryLists.get(position).simpleDescrition);
 			String url = Constant.IMAGE_ADDRESS + mExperStoryLists.get(position).phoneUrl + "_N.jpg";
-			setImag(vh.img, url);
+			//setImag(vh.img, url);
+			vh.img.setTag(url);
+			Bitmap bitmap = ImageWork.getImageWork().setImgBitmap(vh.img, url);
+			if (bitmap == null) {
+				vh.img.setImageResource(R.drawable.ic_product_img);
+			}else{
+				vh.img.setImageBitmap(bitmap);
+			}
+			
 			view.setOnClickListener(new listViewOnClickListener(
 					mExperStoryLists.get(position).descrition));
 			return view;
