@@ -13,13 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.imcore.xbionic.R;
-import com.imcore.xbionic.Introduction.ui.IntroductionHomeActivity;
-import com.imcore.xbionic.XActivities.ui.XActivitiesMainActivity;
 import com.imcore.xbionic.expertstory.ui.ExpertStoryHomeActivity;
+import com.imcore.xbionic.introduction.ui.IntroductionHomeActivity;
 import com.imcore.xbionic.login.ui.LoginMainActivity;
 import com.imcore.xbionic.product.ui.ProductMainActivity;
 import com.imcore.xbionic.util.Const;
-import com.imcore.xbionic.util.ToastUtil;
+import com.imcore.xbionic.xactivities.ui.XActivitiesMainActivity;
 
 public class HomeFragmentHost extends Fragment implements OnClickListener {
 	private View mFragmentView;

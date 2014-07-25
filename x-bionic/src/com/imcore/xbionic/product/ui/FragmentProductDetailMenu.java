@@ -1,16 +1,29 @@
 package com.imcore.xbionic.product.ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.imcore.xbionic.R;
+import com.imcore.xbionic.http.Constant;
+import com.imcore.xbionic.http.DataRequest;
+import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.login.ui.XLoginActivity;
 import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.ToastUtil;
 
+import android.app.AlertDialog;
 import android.app.LocalActivityManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -20,6 +33,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -54,7 +68,7 @@ public class FragmentProductDetailMenu extends Fragment implements OnClickListen
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_product_detail_menu, null);
 		productDetailId = getArguments().getLong(Const.PRODUCT_DETAIL_FRAGMENT_KEY);
-
+		//Log.i("sign", productDetailId + "");
 		context = getActivity();
 		manager = new LocalActivityManager(getActivity() , true);
 		manager.dispatchCreate(savedInstanceState);
@@ -248,6 +262,7 @@ public class FragmentProductDetailMenu extends Fragment implements OnClickListen
 			pager.setCurrentItem(index);
 		}
 	}
+	
 	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.tv_pro_menu_share){
@@ -255,9 +270,64 @@ public class FragmentProductDetailMenu extends Fragment implements OnClickListen
 		}else if(v.getId() == R.id.tv_pro_menu_shopping){
 			startActivity(new Intent(getActivity(),ShoppingTrolleyActivity.class));
 		}else if(v.getId() == R.id.tv_pro_menu_collect){
-			
+			addFavorite();
 		}
-		
 	};
 	
+	private String userId;
+	private String token;
+	private void addFavorite() {
+		SharedPreferences sp = getActivity().getSharedPreferences("loginUser",
+				Context.MODE_PRIVATE); // 私有数据
+		userId = sp.getString("userId", "");
+		token = sp.getString("token", "");
+		if (userId.equals("") || token.equals("")) {
+			new AlertDialog.Builder(getActivity())
+					.setTitle("您还未登陆，请先登陆.....")
+					.setPositiveButton("登陆",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int whichButton) {
+									Intent intent = new Intent(getActivity(),
+											XLoginActivity.class);
+									intent.putExtra(Const.LOGIN_KEY,
+											Const.LOGIN_AT_BUY_VALUE);
+									startActivity(intent);
+								}
+							}).create().show();
+			return;
+		}
+
+		String url = Constant.HOST + "/user/favorite/add.do";
+		DataRequest request = new DataRequest(Request.Method.POST, url,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						 if(response != null){
+							 //Log.i("sign", response);
+							ToastUtil.showToast(getActivity(), "收藏成功！");
+						 }
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						//Log.i("sign", error.getMessage());
+					}
+				}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				// 在此方法中设置要提交的请求参数
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("userId", userId);
+				params.put("token", token);
+				params.put("type", "1");
+				params.put("productId", productDetailId + "");
+				 //Log.i("sign", productDetailId + "----");
+				return params;
+			}
+		};
+		request.setTag(ProductDetailsActivity.class);
+		RequestQueueSingleton.getInstance(getActivity()).addToRequestQueue(
+				request);
+	}
 }

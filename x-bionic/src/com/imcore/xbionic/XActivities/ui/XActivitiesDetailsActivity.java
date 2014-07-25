@@ -1,4 +1,4 @@
-package com.imcore.xbionic.XActivities.ui;
+package com.imcore.xbionic.xactivities.ui;
 
 import android.app.Activity;
 import android.os.Bundle;

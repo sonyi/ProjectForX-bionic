@@ -1,4 +1,4 @@
-package com.imcore.xbionic.XActivities.ui;
+package com.imcore.xbionic.xactivities.ui;
 
 import java.util.ArrayList;
 
@@ -20,8 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.imcore.xbionic.R;
-import com.imcore.xbionic.DefinedListView.XListView;
-import com.imcore.xbionic.DefinedListView.XListView.IXListViewListener;
+import com.imcore.xbionic.definedlistView.XListView;
+import com.imcore.xbionic.definedlistView.XListView.IXListViewListener;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;

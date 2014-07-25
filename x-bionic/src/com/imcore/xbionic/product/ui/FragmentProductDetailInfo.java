@@ -403,7 +403,6 @@ public class FragmentProductDetailInfo extends Fragment implements
 
 	// 获取产品库存
 	private ProductQuantity productQuantity;
-
 	private void getProductNum(long colorId, long sizeId) {
 		//Log.i("sign", colorId + "---" + sizeId);
 		String url = Constant.HOST + "/product/quantity/get.do?id="

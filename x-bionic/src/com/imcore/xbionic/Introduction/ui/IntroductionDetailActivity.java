@@ -1,4 +1,4 @@
-package com.imcore.xbionic.Introduction.ui;
+package com.imcore.xbionic.introduction.ui;
 
 import com.imcore.xbionic.R;
 

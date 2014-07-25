@@ -86,16 +86,19 @@
             android:name="com.imcore.xbionic.expertstory.ui.ExperStoryDtailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.imcore.xbionic.XActivities.ui.XActivitiesMainActivity"
+            android:name="com.imcore.xbionic.xactivities.ui.XActivitiesMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.imcore.xbionic.XActivities.ui.XActivitiesDetailsActivity"
+            android:name="com.imcore.xbionic.xactivities.ui.XActivitiesDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.imcore.xbionic.Introduction.ui.IntroductionHomeActivity"
+            android:name="com.imcore.xbionic.introduction.ui.IntroductionHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.imcore.xbionic.Introduction.ui.IntroductionDetailActivity"
+            android:name="com.imcore.xbionic.introduction.ui.IntroductionDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.imcore.xbionic.menu.ui.FavoriteActivity"
             android:screenOrientation="portrait" />
     </application>
 

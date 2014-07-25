@@ -1,0 +1,46 @@
+
+
+http://bulo2bulo.com:8080/mobile/api/product/get.do?id=267
+{
+    "status": 200,
+    "message": null,
+    "data": {
+        "id": 430,
+        "name": "聚能儿童长袖衣 I20243",
+        "categoryId": 1,
+        "price": 1490,
+        "serialNo": "I20243",
+        "description": "",
+        "washCareStandardId": 0,
+        "sizeStandardId": 16,
+        "createDate": "01/29/2013T17:36:25",
+        "updateByUserId": 1,
+        "updateDate": "01/31/2013T10:25:46",
+        "createByUserId": 1,
+        "publishedDate": "01/29/2013T17:41:48",
+        "publishedByUserId": 1,
+        "isNearPublished": 0,
+        "courseStartDate": null,
+        "courseEndDate": null,
+        "courseTeachers": "",
+        "isCommision": "Y",
+        "cataLogId": 2,
+        "imageUrl": "/Image/Product/2013/1/dba9524b-96d2-47df-b877-a83d5221b367",
+        "sysColorList": [
+            {
+                "id": 57,
+                "color": "X4J 深灰/黄色",
+                "colorImage": "/Image/ProductColor/9e20c6cd-e02f-412f-b6b4-ccda0eaf885c"
+            },
+            {
+                "id": 104,
+                "color": "X7K 粉色/白色",
+                "colorImage": "/Image/ProductColor/98c53e1a-d6bf-4567-b4a3-220bca11d2c1"
+            }
+        ],
+        "sysSize": null,
+        "sysColor": null,
+        "published": true
+    },
+    "fieldErrors": null
+}

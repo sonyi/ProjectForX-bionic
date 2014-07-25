@@ -87,7 +87,7 @@ public class ShoppingTrolleyActivity extends Activity implements
 					@Override
 					public void onResponse(String response) {
 						// 解析用户信息的json，保存userid和token
-
+						
 						String responseData = JsonUtil.getJsonValueByKey(
 								response, "data");
 						onResponseForLogin(responseData);

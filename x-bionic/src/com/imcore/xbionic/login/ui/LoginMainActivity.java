@@ -99,7 +99,6 @@ public class LoginMainActivity extends Activity implements OnClickListener {
 				Toast.makeText(LoginMainActivity.this,
 						"微博成功授权，但该死的部落接口不能用，试试部落账号登录吧....", Toast.LENGTH_LONG)
 						.show();
-
 			} else {
 				String code = values.getString("code");
 				Log.i("msg", code);

@@ -1,5 +1,5 @@
 
-package com.imcore.xbionic.DefinedListView;
+package com.imcore.xbionic.definedlistView;
 
 import com.imcore.xbionic.R;
 
