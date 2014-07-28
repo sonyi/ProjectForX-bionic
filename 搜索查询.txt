@@ -1,4 +1,6 @@
-http://bulo2bulo.com:8080/mobile/api/search/keyword.do?type=1&keyword="x"
+http://bulo2bulo.com:8080/mobile/api/search/keyword.do?type=1&keyword="袜子"&filterId=1&desc=1
+
+http://bulo2bulo.com:8080/mobile/api/product/filter/list
 
 {
     "status": 200,
