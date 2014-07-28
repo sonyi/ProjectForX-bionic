@@ -1,0 +1,39 @@
+{
+    "status": 200,
+    "message": null,
+    "data": [
+        {
+            "id": 1,
+            "filterName": "0-2500",
+            "filterSql": "price between 0 and 2500",
+            "filterSolr": null,
+            "displayOrder": "1",
+            "updatedTime": "05/06/2013T15:48:17",
+            "createdTime": "05/06/2013T15:47:46",
+            "status": 1
+        },
+        {
+            "id": 2,
+            "filterName": "2500-5000",
+            "filterSql": "price between 2500 and 5000",
+            "filterSolr": null,
+            "displayOrder": "2",
+            "updatedTime": "05/06/2013T15:51:23",
+            "createdTime": "05/06/2013T15:50:33",
+            "status": 1
+        },
+        {
+            "id": 3,
+            "filterName": ">5000",
+            "filterSql": "price > 5000",
+            "filterSolr": null,
+            "displayOrder": "3",
+            "updatedTime": "05/06/2013T15:52:17",
+            "createdTime": "05/06/2013T15:51:54",
+            "status": 1
+        }
+    ],
+    "offset": 0,
+    "fetchSize": 0,
+    "total": 3
+}

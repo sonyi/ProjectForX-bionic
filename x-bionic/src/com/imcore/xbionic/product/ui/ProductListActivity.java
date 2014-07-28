@@ -15,8 +15,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -33,14 +36,16 @@ import com.imcore.xbionic.model.ProductList;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
 
-public class ProductListActivity extends Activity implements OnClickListener{
+public class ProductListActivity extends Activity implements OnClickListener {
 	private GridView mGridView;
 	private ArrayList<ProductList> mProductListGroup;
-	private TextView mAsceOrder,mDescOrder;
+	private TextView mAsceOrder, mDescOrder;
 	private String navId;
 	private String subNavId;
 	private ImageView mBack;
 	private ProgressDialog mDialog;
+	private RadioGroup mRadioGroup;
+	private int mFilterId = 2;
 	private static int ASCE_ORDER = 0;
 	private static int DESC_ORDER = 1;
 
@@ -52,33 +57,45 @@ public class ProductListActivity extends Activity implements OnClickListener{
 		mBack = (ImageView) findViewById(R.id.iv_product_list_back);
 		mAsceOrder = (TextView) findViewById(R.id.tv_product_list_asce);
 		mDescOrder = (TextView) findViewById(R.id.tv_product_list_desc);
+		mRadioGroup = (RadioGroup) findViewById(R.id.rg_product_list_radio);
+		mRadioGroup.setOnCheckedChangeListener(mRadioGroupListener);
 		mBack.setOnClickListener(this);
 		mAsceOrder.setOnClickListener(this);
 		mDescOrder.setOnClickListener(this);
-		
+
 		Bundle bundle = this.getIntent().getExtras();
 		navId = bundle.getString("navId");
 		subNavId = bundle.getString("subNavId");
 		mProductListGroup = new ArrayList<ProductList>();
-		getProductListInfo(ASCE_ORDER);
-		
+		getUrl();
 
 	}
 
-	private void getProductListInfo(int order) {
+	private void getUrl(int order, int filterId) {
 		String url = Constant.HOST + "/category/products.do?navId=" + navId
-				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=15&desc=" + order;
-		Log.i("sign", url);
+				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=15&desc="
+				+ order + "&filterId=" + filterId;
+		getProductListInfo(url);
+	}
+
+	private void getUrl() {
+		String url = Constant.HOST + "/category/products.do?navId=" + navId
+				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=15";
+		getProductListInfo(url);
+	}
+
+	private void getProductListInfo(String url) {
 		mDialog = ProgressDialog.show(ProductListActivity.this, " ",
 				"正在获取数据,请稍后... ", true);
-		
+
 		DataRequest request = new DataRequest(Request.Method.GET, url,
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						String data = JsonUtil.getJsonValueByKey(response, "data");
+						String data = JsonUtil.getJsonValueByKey(response,
+								"data");
 						onResponseForProductList(data);
-						
+
 						mDialog.cancel();
 					}
 				}, new Response.ErrorListener() {
@@ -92,11 +109,12 @@ public class ProductListActivity extends Activity implements OnClickListener{
 	}
 
 	private void onResponseForProductList(String response) {
-		ArrayList<String> arrJsonStr = (ArrayList<String>) JsonUtil.toJsonStrList(response);
-		if(mProductListGroup != null && mProductListGroup.size() != 0){
+		ArrayList<String> arrJsonStr = (ArrayList<String>) JsonUtil
+				.toJsonStrList(response);
+		if (mProductListGroup != null && mProductListGroup.size() != 0) {
 			mProductListGroup.clear();
 		}
-		for(String json : arrJsonStr){
+		for (String json : arrJsonStr) {
 			try {
 				JSONObject jsonObject = new JSONObject(json);
 				ProductList proList = new ProductList();
@@ -109,7 +127,7 @@ public class ProductListActivity extends Activity implements OnClickListener{
 				e.printStackTrace();
 			}
 		}
-		
+
 		mGridView.setAdapter(new ProductListAdapter());
 	}
 
@@ -151,17 +169,19 @@ public class ProductListActivity extends Activity implements OnClickListener{
 
 			vh.tvName.setText(mProductListGroup.get(position).name);
 			vh.tvPrice.setText("￥" + mProductListGroup.get(position).price);
-			String url = Constant.IMAGE_ADDRESS + mProductListGroup.get(position).imageUrl + "_L.jpg";
-			//setImag(vh.img, url);
+			String url = Constant.IMAGE_ADDRESS
+					+ mProductListGroup.get(position).imageUrl + "_L.jpg";
+			// setImag(vh.img, url);
 			vh.img.setTag(url);
 			Bitmap bitmap = ImageWork.getImageWork().setImgBitmap(vh.img, url);
 			if (bitmap == null) {
 				vh.img.setImageResource(R.drawable.ic_product_img);
-			}else{
+			} else {
 				vh.img.setImageBitmap(bitmap);
 			}
-			
-			view.setOnClickListener(new ItemOnClickListener(mProductListGroup.get(position)));
+
+			view.setOnClickListener(new ItemOnClickListener(mProductListGroup
+					.get(position)));
 			return view;
 		}
 
@@ -171,34 +191,56 @@ public class ProductListActivity extends Activity implements OnClickListener{
 			TextView tvPrice;
 		}
 	}
-	
-	private class ItemOnClickListener implements OnClickListener{
+
+	private class ItemOnClickListener implements OnClickListener {
 		private ProductList p;
-		ItemOnClickListener(ProductList p){
+
+		ItemOnClickListener(ProductList p) {
 			this.p = p;
 		}
-		
+
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(ProductListActivity.this,ProductDetailsActivity.class);
+			Intent intent = new Intent(ProductListActivity.this,
+					ProductDetailsActivity.class);
 			intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, p.id);
 			startActivity(intent);
 		}
-		
+
 	}
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.iv_product_list_back){
+		if (v.getId() == R.id.iv_product_list_back) {
 			finish();
 			return;
-		}else if(v.getId() == R.id.tv_product_list_asce){
-			getProductListInfo(ASCE_ORDER);
+		} else if (v.getId() == R.id.tv_product_list_asce) {
+			getUrl(ASCE_ORDER,mFilterId);
 			return;
-		}else if(v.getId() == R.id.tv_product_list_desc){
-			getProductListInfo(DESC_ORDER);
+		} else if (v.getId() == R.id.tv_product_list_desc) {
+			getUrl(DESC_ORDER,mFilterId);
 			return;
 		}
 	}
+
+	private OnCheckedChangeListener mRadioGroupListener = new OnCheckedChangeListener() {
+
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			if (checkedId == R.id.rb_product_list_btn1) {
+				mFilterId = 1;
+				Log.i("sign", mFilterId + "");
+				return;
+			} else if (checkedId == R.id.rb_product_list_btn2) {
+				mFilterId = 2;
+				Log.i("sign", mFilterId + "");
+				return;
+			} else if (checkedId == R.id.rb_product_list_btn3) {
+				mFilterId = 3;
+				Log.i("sign", mFilterId + "");
+				return;
+			}
+		}
+	};
 
 }

@@ -1,5 +1,5 @@
 
-http://bulo2bulo.com:8080/mobile/api/category/products.do?navId=100001&subNavId=4&orderBy=“price”&desc=0
+http://bulo2bulo.com:8080/mobile/api/category/products.do?navId=100001&subNavId=4
 {
     "status": 200,
     "message": null,
