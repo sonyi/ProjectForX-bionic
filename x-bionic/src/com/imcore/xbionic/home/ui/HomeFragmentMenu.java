@@ -19,6 +19,7 @@ import android.widget.SimpleAdapter;
 
 import com.imcore.xbionic.R;
 import com.imcore.xbionic.menu.ui.AccountResetActivity;
+import com.imcore.xbionic.menu.ui.FavoriteActivity;
 import com.imcore.xbionic.menu.ui.ShoppingTrolleyActivity;
 import com.imcore.xbionic.model.ProductShopping;
 import com.imcore.xbionic.util.Const;
@@ -53,10 +54,7 @@ public class HomeFragmentMenu extends Fragment {
 		mNaviItemText = getResources().getStringArray(
 				R.array.drawer_item_array_text);
 		mNaviItemIcon = new int[] { R.drawable.ic_launcher,
-				R.drawable.ic_launcher, R.drawable.ic_launcher,
-				R.drawable.ic_launcher, R.drawable.ic_launcher,
-				R.drawable.ic_launcher, R.drawable.ic_launcher,
-				R.drawable.ic_launcher, R.drawable.ic_launcher };
+				R.drawable.ic_launcher, R.drawable.ic_launcher};
 
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		for (int i = 0; i < mNaviItemText.length; i++) {
@@ -84,48 +82,26 @@ public class HomeFragmentMenu extends Fragment {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			listMenuClickListener(arg2);
-
 		}
 	};
 
 	private void listMenuClickListener(int arg2) {
 		switch (arg2) {
 		case 0:// 您的订购
-
+			getActivity().sendBroadcast(new Intent(Const.OPEN_OR_CLOSE_DRAWERLAYOUT));
+			startActivity(new Intent(getActivity(),FavoriteActivity.class));
 			break;
 
 		case 1:// 账户设置
 			getActivity().sendBroadcast(new Intent(Const.OPEN_OR_CLOSE_DRAWERLAYOUT));
 			startActivity(new Intent(getActivity(),AccountResetActivity.class));
 			break;
-		case 2:// 达人社区
 
-			break;
-
-		case 3:// 部落社区
-
-			break;
-
-		case 4:// 购物车
+		case 2:// 购物车
 			startActivity(new Intent(getActivity(),ShoppingTrolleyActivity.class));
 			getActivity().sendBroadcast(new Intent(Const.OPEN_OR_CLOSE_DRAWERLAYOUT));
 			break;
 
-		case 5:// 订阅信息
-
-			break;
-
-		case 6:// 分享设置
-
-			break;
-
-		case 7:// 密码设置
-
-			break;
-
-		case 8:// 关于我们
-
-			break;
 		}
 	}
 }

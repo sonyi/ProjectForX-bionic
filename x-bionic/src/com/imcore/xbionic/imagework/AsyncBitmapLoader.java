@@ -104,7 +104,7 @@ public class AsyncBitmapLoader {
 				FileOutputStream fos;
 				try {
 					fos = new FileOutputStream(bitmapFile);
-					bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+					bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);//有时会有空指针异常
 					fos.close();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block

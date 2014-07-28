@@ -36,10 +36,13 @@ import com.imcore.xbionic.util.JsonUtil;
 public class ProductListActivity extends Activity implements OnClickListener{
 	private GridView mGridView;
 	private ArrayList<ProductList> mProductListGroup;
+	private TextView mAsceOrder,mDescOrder;
 	private String navId;
 	private String subNavId;
 	private ImageView mBack;
 	private ProgressDialog mDialog;
+	private static int ASCE_ORDER = 0;
+	private static int DESC_ORDER = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +50,25 @@ public class ProductListActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_product_list);
 		mGridView = (GridView) findViewById(R.id.gri_product_list_layout);
 		mBack = (ImageView) findViewById(R.id.iv_product_list_back);
+		mAsceOrder = (TextView) findViewById(R.id.tv_product_list_asce);
+		mDescOrder = (TextView) findViewById(R.id.tv_product_list_desc);
 		mBack.setOnClickListener(this);
-		
+		mAsceOrder.setOnClickListener(this);
+		mDescOrder.setOnClickListener(this);
 		
 		Bundle bundle = this.getIntent().getExtras();
 		navId = bundle.getString("navId");
 		subNavId = bundle.getString("subNavId");
 		mProductListGroup = new ArrayList<ProductList>();
-		getProductListInfo();
+		getProductListInfo(ASCE_ORDER);
 		
 
 	}
 
-	private void getProductListInfo() {
+	private void getProductListInfo(int order) {
 		String url = Constant.HOST + "/category/products.do?navId=" + navId
-				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=15";
+				+ "&subNavId=" + subNavId + "&offset=0&fetchSize=15&desc=" + order;
+		Log.i("sign", url);
 		mDialog = ProgressDialog.show(ProductListActivity.this, " ",
 				"正在获取数据,请稍后... ", true);
 		
@@ -71,6 +78,7 @@ public class ProductListActivity extends Activity implements OnClickListener{
 					public void onResponse(String response) {
 						String data = JsonUtil.getJsonValueByKey(response, "data");
 						onResponseForProductList(data);
+						
 						mDialog.cancel();
 					}
 				}, new Response.ErrorListener() {
@@ -85,6 +93,9 @@ public class ProductListActivity extends Activity implements OnClickListener{
 
 	private void onResponseForProductList(String response) {
 		ArrayList<String> arrJsonStr = (ArrayList<String>) JsonUtil.toJsonStrList(response);
+		if(mProductListGroup != null && mProductListGroup.size() != 0){
+			mProductListGroup.clear();
+		}
 		for(String json : arrJsonStr){
 			try {
 				JSONObject jsonObject = new JSONObject(json);
@@ -159,15 +170,6 @@ public class ProductListActivity extends Activity implements OnClickListener{
 			TextView tvName;
 			TextView tvPrice;
 		}
-		
-		private void setImag(ImageView image, String url) {
-			ImageLoader loader = RequestQueueSingleton.getInstance(
-					getApplicationContext()).getImageLoader();
-			ImageListener listener = ImageLoader.getImageListener(image,
-					R.drawable.ic_product_img, R.drawable.ic_product_img);
-			loader.get(url, listener, 400, 400);
-		}
-
 	}
 	
 	private class ItemOnClickListener implements OnClickListener{
@@ -189,6 +191,13 @@ public class ProductListActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		if(v.getId() == R.id.iv_product_list_back){
 			finish();
+			return;
+		}else if(v.getId() == R.id.tv_product_list_asce){
+			getProductListInfo(ASCE_ORDER);
+			return;
+		}else if(v.getId() == R.id.tv_product_list_desc){
+			getProductListInfo(DESC_ORDER);
+			return;
 		}
 	}
 

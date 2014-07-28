@@ -76,7 +76,6 @@ public class LoginMainActivity extends Activity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.iv_login_main_register:// 新用户注册
-			startActivity(new Intent(this, PhoneRegisterCodeActivity.class));
 			break;
 		case R.id.iv_login_help:
 
@@ -95,13 +94,13 @@ public class LoginMainActivity extends Activity implements OnClickListener {
 		public void onComplete(Bundle values) {
 			mAccessToken = Oauth2AccessToken.parseAccessToken(values);
 			if (mAccessToken.isSessionValid()) {
-				Log.i("msg", mAccessToken.toString());
+				//Log.i("sign", mAccessToken.toString());
 				Toast.makeText(LoginMainActivity.this,
 						"微博成功授权，但该死的部落接口不能用，试试部落账号登录吧....", Toast.LENGTH_LONG)
 						.show();
 			} else {
 				String code = values.getString("code");
-				Log.i("msg", code);
+				//Log.i("sign", code);
 			}
 		}
 

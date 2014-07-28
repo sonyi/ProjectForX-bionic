@@ -4,8 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -14,40 +27,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.imcore.xbionic.R;
-import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.http.Constant;
 import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
-import com.imcore.xbionic.login.ui.XLoginActivity;
 import com.imcore.xbionic.model.ProductShopping;
 import com.imcore.xbionic.util.JsonUtil;
 import com.imcore.xbionic.util.ToastUtil;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class ShoppingTrolleyActivity extends Activity implements
 		OnClickListener {
 	private ListView mList;
 	private ImageView mBack, mEdit;
-	private TextView mSettle, mTotal, mMail;
+	private TextView mSettle, mTotal;
 	private boolean isVisible = false;
 
 	@Override
@@ -64,7 +55,6 @@ public class ShoppingTrolleyActivity extends Activity implements
 		mList.setDividerHeight(0);
 		mBack = (ImageView) findViewById(R.id.iv_product_shopping_back);
 		mSettle = (TextView) findViewById(R.id.tv_pro_shopping_settle);
-		mMail = (TextView) findViewById(R.id.tv_pro_shopping_mail);
 		mTotal = (TextView) findViewById(R.id.tv_pro_shopping_totals);
 		mEdit = (ImageView) findViewById(R.id.iv_product_shopping_edit);
 
@@ -151,7 +141,7 @@ public class ShoppingTrolleyActivity extends Activity implements
 	private ArrayList<ViewHolder> mVhArray;
 	private BaseAdapter shoppingAdapter = new BaseAdapter() {
 
-		@Override
+		@SuppressLint("InflateParams") @Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = convertView;
 			ViewHolder vh = null;
@@ -159,23 +149,24 @@ public class ShoppingTrolleyActivity extends Activity implements
 				view = getLayoutInflater().inflate(
 						R.layout.view_product_shopping, null);
 				vh = new ViewHolder();
-				vh.img = (ImageView) view
-						.findViewById(R.id.iv_pro_shopping_img);
+				
 				vh.title = (TextView) view
 						.findViewById(R.id.tv_pro_shopping_title);
 				vh.color = (TextView) view
 						.findViewById(R.id.tv_pro_shopping_color);
 				vh.size = (TextView) view
 						.findViewById(R.id.tv_pro_shopping_size);
-				vh.price = (TextView) view
-						.findViewById(R.id.tv_pro_shopping_total);
-				vh.qty = (TextView) view.findViewById(R.id.et_pro_shopping_qty);
+				vh.qty = (TextView) view.findViewById(R.id.tv_pro_shopping_qty);
 				vh.add = (ImageView) view
 						.findViewById(R.id.ib_pro_shopping_right_btn);
 				vh.del = (ImageView) view
 						.findViewById(R.id.ib_pro_shopping_left_btn);
 				vh.remove = (ImageView) view
 						.findViewById(R.id.iv_pro_shopping_remove);
+				vh.img = (ImageView) view
+						.findViewById(R.id.iv_pro_shopping_img);
+				vh.price = (TextView) view
+						.findViewById(R.id.tv_pro_shopping_total);
 				view.setTag(vh);
 
 			} else {
@@ -198,7 +189,6 @@ public class ShoppingTrolleyActivity extends Activity implements
 			if (mVhArray.indexOf(vh) == -1) {
 				mVhArray.add(vh);
 			}
-
 			return view;
 		}
 

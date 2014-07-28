@@ -6,18 +6,6 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.imcore.xbionic.R;
-import com.imcore.xbionic.home.ui.HomeActivityLogin;
-import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
-import com.imcore.xbionic.http.Constant;
-import com.imcore.xbionic.http.DataRequest;
-import com.imcore.xbionic.http.RequestQueueSingleton;
-import com.imcore.xbionic.util.JsonUtil;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +17,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.imcore.xbionic.R;
+import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
+import com.imcore.xbionic.http.Constant;
+import com.imcore.xbionic.http.DataRequest;
+import com.imcore.xbionic.http.RequestQueueSingleton;
+import com.imcore.xbionic.util.JsonUtil;
 
 public class AccountResetActivity extends Activity implements OnClickListener {
 	private ImageView mBack;
@@ -48,9 +47,6 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 		mEmail = (TextView) findViewById(R.id.tv_acc_reset_info_email);
 		mProvince = (TextView) findViewById(R.id.tv_acc_reset_address_province);
 		mAddress = (TextView) findViewById(R.id.tv_acc_reset_address);
-
-		
-		
 		SharedPreferences sp = getSharedPreferences("userInfo",
 				Context.MODE_PRIVATE); // 私有数据
 		if(sp.getBoolean("isChange", true)){
@@ -120,13 +116,14 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 					@Override
 					public void onResponse(String response) {
 						// 解析用户信息的json，保存userid和token
-						Log.i("sign", response);
-						onResponseForLogin(response);
+						//Log.i("sign", response);
+						String responseData = JsonUtil.getJsonValueByKey(response, "data");
+						onResponseForLogin(responseData);
 					}
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.i("sign", error.getMessage());
+						//Log.i("sign", error.getMessage());
 					}
 				}) {
 			@Override
@@ -135,7 +132,7 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 				Map<String, String> params = new HashMap<String, String>();
 				params.put("userId", id);
 				params.put("token", tok);
-				Log.i("msg", id);
+				//Log.i("msg", id);
 				return params;
 			}
 		};
@@ -158,7 +155,7 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 		String firstName = JsonUtil.getJsonValueByKey(response, "firstName");
 		String lastName = JsonUtil.getJsonValueByKey(response, "lastName");
 		String email = JsonUtil.getJsonValueByKey(response, "email");
-
+		//Log.i("sign", firstName + lastName + email);
 		SharedPreferences sp = getSharedPreferences("userInfo",
 				Context.MODE_PRIVATE); // 私有数据
 		Editor editor = sp.edit();// 获取编辑器
@@ -168,7 +165,6 @@ public class AccountResetActivity extends Activity implements OnClickListener {
 		editor.putString("lastName", lastName);
 		editor.putString("email", email);
 		editor.commit();// 提交修改
-		
 		initWidget(sp);
 	}
 }

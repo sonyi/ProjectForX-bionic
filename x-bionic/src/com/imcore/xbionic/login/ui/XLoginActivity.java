@@ -30,6 +30,7 @@ import com.imcore.xbionic.http.DataRequest;
 import com.imcore.xbionic.http.RequestQueueSingleton;
 import com.imcore.xbionic.util.Const;
 import com.imcore.xbionic.util.JsonUtil;
+import com.imcore.xbionic.util.ToastUtil;
 
 public class XLoginActivity extends Activity implements OnClickListener {
 	private ImageView mBackImg, mForgetpsw, mSignIn;
@@ -93,7 +94,8 @@ public class XLoginActivity extends Activity implements OnClickListener {
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
-						Log.i("sign", error.getMessage());
+						//Log.i("sign", error.getMessage());
+						ToastUtil.showToast(XLoginActivity.this, "账户或密码错误...");
 						mDialog.cancel();
 					}
 				}) {

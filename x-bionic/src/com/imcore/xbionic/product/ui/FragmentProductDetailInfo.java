@@ -418,7 +418,7 @@ public class FragmentProductDetailInfo extends Fragment implements
 						 }
 						if(productQuantity != null){
 							mAmount.setText("(库存" + productQuantity.qty + "件)");
-							//Log.i("sign", productQuantity.qty + "");
+							//Log.i("sign", productQuantity.toString());
 						}
 					}
 				}, new Response.ErrorListener() {

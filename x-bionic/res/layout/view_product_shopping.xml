@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    
      >
 
     <ImageView
@@ -109,7 +110,7 @@
             />
 
         <TextView
-            android:id="@+id/et_pro_shopping_qty"
+            android:id="@+id/tv_pro_shopping_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -123,7 +124,7 @@
           <ImageView android:id="@+id/ib_pro_shopping_left_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/et_pro_shopping_qty"
+            android:layout_toLeftOf="@id/tv_pro_shopping_qty"
             android:layout_centerVertical="true"
             android:visibility="gone"
             android:src="@drawable/ic_product_shopping_left_icon"

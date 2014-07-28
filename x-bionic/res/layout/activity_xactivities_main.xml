@@ -28,7 +28,7 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <com.imcore.xbionic.DefinedListView.XListView 
+    <com.imcore.xbionic.definedlistView.XListView 
         android:id="@+id/lv_xactivities_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

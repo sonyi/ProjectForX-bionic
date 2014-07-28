@@ -15,8 +15,6 @@ import com.imcore.xbionic.R;
 import com.imcore.xbionic.home.ui.HomeActivityLogin;
 import com.imcore.xbionic.home.ui.HomeActivityUnLogin;
 import com.imcore.xbionic.menu.ui.FavoriteActivity;
-import com.imcore.xbionic.model.ProductFavorite;
-import com.imcore.xbionic.xactivities.ui.XActivitiesMainActivity;
 
 public class LoadingActivity extends Activity {
 	private ProgressBar mProgressBar;
@@ -39,17 +37,17 @@ public class LoadingActivity extends Activity {
 		boolean isLogin = sp.getBoolean("isLogin", false);
 
 		Intent intent = null;
-//		if (isFirstUse) {
-//			intent = new Intent(this, InstructorActivtity.class);
-//		} else {
-//			if(isLogin){
-//				intent = new Intent(this, HomeActivityLogin.class);
-//			}else{
-//				intent = new Intent(this, HomeActivityUnLogin.class);
-//			}
-//		}
+		if (isFirstUse) {
+			intent = new Intent(this, InstructorActivtity.class);
+		} else {
+			if(isLogin){
+				intent = new Intent(this, HomeActivityLogin.class);
+			}else{
+				intent = new Intent(this, HomeActivityUnLogin.class);
+			}
+		}
 		
-		intent = new Intent(this, FavoriteActivity.class);
+		//intent = new Intent(this, FavoriteActivity.class);
 //		intent = new Intent(this, ProductDetailsActivity.class);
 //		intent.putExtra(Const.PRODUCT_DETAIL_FRAGMENT_KEY, (long)267);
  
