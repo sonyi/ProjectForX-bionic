@@ -28,7 +28,7 @@
     </RelativeLayout>
 
    
-	<RadioGroup android:id="@+id/rg_product_list_radio"
+<!-- 	<RadioGroup android:id="@+id/rg_product_list_radio"
 	    android:layout_width="match_parent"
 	    
 	    android:layout_below="@id/rel_product_list_top"
@@ -63,11 +63,11 @@
 	        android:textColor="@android:color/white"
 	        android:text=">5000"/>
 	    
-	</RadioGroup>
+	</RadioGroup> -->
        
  
     
-    <LinearLayout
+  <!--   <LinearLayout
         android:id="@+id/ll_product_list_order"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -95,13 +95,13 @@
             android:gravity="center"
             android:layout_weight="1"
             android:text="￥价格  ↓" />
-    </LinearLayout>
+    </LinearLayout> -->
 
     <GridView
         android:id="@+id/gri_product_list_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_product_list_order"
+        android:layout_below="@id/rel_product_list_top"
         android:numColumns="3" />
 
 </RelativeLayout>

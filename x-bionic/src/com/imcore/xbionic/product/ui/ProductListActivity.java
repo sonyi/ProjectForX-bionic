@@ -55,13 +55,13 @@ public class ProductListActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_product_list);
 		mGridView = (GridView) findViewById(R.id.gri_product_list_layout);
 		mBack = (ImageView) findViewById(R.id.iv_product_list_back);
-		mAsceOrder = (TextView) findViewById(R.id.tv_product_list_asce);
-		mDescOrder = (TextView) findViewById(R.id.tv_product_list_desc);
-		mRadioGroup = (RadioGroup) findViewById(R.id.rg_product_list_radio);
-		mRadioGroup.setOnCheckedChangeListener(mRadioGroupListener);
+//		mAsceOrder = (TextView) findViewById(R.id.tv_product_list_asce);
+//		mDescOrder = (TextView) findViewById(R.id.tv_product_list_desc);
+//		mRadioGroup = (RadioGroup) findViewById(R.id.rg_product_list_radio);
+//		mRadioGroup.setOnCheckedChangeListener(mRadioGroupListener);
 		mBack.setOnClickListener(this);
-		mAsceOrder.setOnClickListener(this);
-		mDescOrder.setOnClickListener(this);
+//		mAsceOrder.setOnClickListener(this);
+//		mDescOrder.setOnClickListener(this);
 
 		Bundle bundle = this.getIntent().getExtras();
 		navId = bundle.getString("navId");
@@ -214,32 +214,33 @@ public class ProductListActivity extends Activity implements OnClickListener {
 		if (v.getId() == R.id.iv_product_list_back) {
 			finish();
 			return;
-		} else if (v.getId() == R.id.tv_product_list_asce) {
-			getUrl(ASCE_ORDER,mFilterId);
-			return;
-		} else if (v.getId() == R.id.tv_product_list_desc) {
-			getUrl(DESC_ORDER,mFilterId);
-			return;
-		}
+		} 
+//		else if (v.getId() == R.id.tv_product_list_asce) {
+//			getUrl(ASCE_ORDER,mFilterId);
+//			return;
+//		} else if (v.getId() == R.id.tv_product_list_desc) {
+//			getUrl(DESC_ORDER,mFilterId);
+//			return;
+//		}
 	}
 
 	private OnCheckedChangeListener mRadioGroupListener = new OnCheckedChangeListener() {
 
 		@Override
 		public void onCheckedChanged(RadioGroup group, int checkedId) {
-			if (checkedId == R.id.rb_product_list_btn1) {
-				mFilterId = 1;
-				Log.i("sign", mFilterId + "");
-				return;
-			} else if (checkedId == R.id.rb_product_list_btn2) {
-				mFilterId = 2;
-				Log.i("sign", mFilterId + "");
-				return;
-			} else if (checkedId == R.id.rb_product_list_btn3) {
-				mFilterId = 3;
-				Log.i("sign", mFilterId + "");
-				return;
-			}
+//			if (checkedId == R.id.rb_product_list_btn1) {
+//				mFilterId = 1;
+//				Log.i("sign", mFilterId + "");
+//				return;
+//			} else if (checkedId == R.id.rb_product_list_btn2) {
+//				mFilterId = 2;
+//				Log.i("sign", mFilterId + "");
+//				return;
+//			} else if (checkedId == R.id.rb_product_list_btn3) {
+//				mFilterId = 3;
+//				Log.i("sign", mFilterId + "");
+//				return;
+//			}
 		}
 	};
 
